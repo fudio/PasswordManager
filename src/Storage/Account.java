@@ -61,8 +61,6 @@ public class Account extends AESUtil {
 		Account a = new Account("fudio", "Ng01637202484");
 		System.out.println(a);
 		System.out.println(a.getHasedPw());
-		// $2a$12$O5nGM9Rl9W6nv.f41TwM1u5Cm3/fijWemqD6FfNebNvcRgJxuaLIm
-		// $2a$12$KuuXHsgY9phQ0.GmXquEF.E1x5jfuuIgiqYCV4YEcJFt8yxQQjNHG
 		System.out.println(a.check("Ng01637202484"));
 	}
 

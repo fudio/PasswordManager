@@ -14,8 +14,7 @@ public class Account {
 
 	public Account(String username, String password) throws NoSuchAlgorithmException {
 		this.username = username;
-		this.password = password;
-
+		this.password = password;//uytuyuyy
 		byte[] sha256hash = sha256(password);
 		// String sha256hex = bytesToHex(sha256hash);
 		this.hashedPw = BCrypt.withDefaults().hash(12, sha256hash);

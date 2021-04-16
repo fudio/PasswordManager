@@ -146,6 +146,12 @@ public class AESUtil {
 		return new String(cipher.doFinal(Base64.getDecoder().decode(cipherText)));
 	}
 
+	protected static SecretKey getKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
+		String password = "baeldung";
+		String salt = "12345678";
+		return AESUtil.getKeyFromPassword(password, salt);
+	}
+
 	public static void main(String[] args)
 			throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, NoSuchPaddingException,
 			InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {

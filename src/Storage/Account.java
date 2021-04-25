@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Date;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -20,14 +21,20 @@ public class Account extends AESUtil {
 	private String username;
 	private String password;
 	private String password_;
+	private int rank;
+	private Date birthday;
+	private String fullName;
 	private byte[] salt;
 	private IvParameterSpec ivParameterSpec;
 
-	public Account(String username, String password) throws NoSuchAlgorithmException, InvalidKeyException,
+	public Account(String un, String pw, String fN, Date bd) throws NoSuchAlgorithmException, InvalidKeyException,
 			NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException,
 			InvalidKeySpecException {
-		this.username = username;
-		this.password = password;
+		this.username = un;
+		this.password = pw;
+		this.rank = this.username.contains("_admin007") ? 0 : 1;
+		this.fullName = fN;
+		this.birthday = bd;
 		this.salt = new byte[16];
 		byte[] sha256Hash = sha256(password);
 		new SecureRandom().nextBytes(this.salt);
@@ -58,7 +65,7 @@ public class Account extends AESUtil {
 	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException,
 			InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException,
 			InvalidKeySpecException {
-		Account a = new Account("fudio", "Ng01637202484");
+		Account a = new Account("fudio", "Ng01637202484","Nguyễn Đỗ Thế Nguyên",new Date(2001,1,1));
 		System.out.println(a);
 		System.out.println(a.getHasedPw());
 		System.out.println(a.check("Ng01637202484"));

@@ -45,6 +45,10 @@ public class Register {
 		}
 	}
 
+	public Queue<Account> getAccountList() {
+		return accountList;
+	}
+
 	private void writeFile(String path) {
 		File myObj = new File(path);
 		myObj.delete();

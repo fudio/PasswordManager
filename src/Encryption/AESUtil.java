@@ -1,5 +1,7 @@
 package Encryption;
 
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -146,22 +148,62 @@ public class AESUtil {
 		return new String(cipher.doFinal(Base64.getDecoder().decode(cipherText)));
 	}
 
-	protected static SecretKey getKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
-		String password = "baeldung";
-		String salt = "12345678";
-		return AESUtil.getKeyFromPassword(password, salt);
+//	public static SecretKey getKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
+//		String password = "Nguyensieudeptraii";
+//		String salt = "imbaresalt";
+//		return AESUtil.getKeyFromPassword(password, salt);
+//	}
+
+	private static void saveKey(SecretKey key, String path) throws IOException {
+		byte[] keyByte = key.getEncoded();
+		FileOutputStream fs = new FileOutputStream(new File(path));
+		BufferedOutputStream bos = new BufferedOutputStream(fs);
+		bos.write(keyByte);
+		bos.close();
+	}
+
+	public static SecretKey readKey(String path) throws IOException {
+		byte[] fileData = new byte[32];
+		DataInputStream dis = new DataInputStream(new FileInputStream(new File(path)));
+		dis.readFully(fileData);
+		if (dis != null) {
+			dis.close();
+		}
+		return new SecretKeySpec(fileData, "AES");
+	}
+
+	private static void saveIv(IvParameterSpec ivspec, String path) throws IOException {
+		FileOutputStream fs = new FileOutputStream(new File(path));
+		BufferedOutputStream bos = new BufferedOutputStream(fs);
+		bos.write(ivspec.getIV());
+		bos.close();
+	}
+
+	public static IvParameterSpec readIv(String path) throws IOException {
+		byte[] fileData = new byte[16];
+		DataInputStream dis = null;
+
+		dis = new DataInputStream(new FileInputStream(new File(path)));
+		dis.readFully(fileData);
+		if (dis != null) {
+			dis.close();
+		}
+		return new IvParameterSpec(fileData);
 	}
 
 	public static void main(String[] args)
 			throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+			InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException, IOException {
 		String plainText = "www.656546546546.com";
+		IvParameterSpec ivParameterSpec = AESUtil.generateIv();
 		String password = "baeldung";
 		String salt = "12345678";
-		IvParameterSpec ivParameterSpec = AESUtil.generateIv();
 		SecretKey key = AESUtil.getKeyFromPassword(password, salt);
+		// SecretKey key = getKey();
 		String cipherText = AESUtil.encryptPasswordBased(plainText, key, ivParameterSpec);
-		String decryptedCipherText = AESUtil.decryptPasswordBased(cipherText, key, ivParameterSpec);
+		AESUtil.saveKey(key, "keyFile_");
+		SecretKey key2 = AESUtil.readKey("keyFile_");
+		String decryptedCipherText = AESUtil.decryptPasswordBased(cipherText, key2, ivParameterSpec);
 		System.out.println(plainText);
 		System.out.println(decryptedCipherText);
 		System.out.println(cipherText);

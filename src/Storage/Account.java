@@ -7,8 +7,16 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -57,6 +65,8 @@ public class Account {
 		System.out.println(a);
 		System.out.println(a.getHasedPw());
 		System.out.println(a.check("Ng01637202484"));
+		a.insert("Account.db");
+		a.selectAll("Account.db");
 	}
 
 	public boolean check(String password) {
@@ -96,6 +106,55 @@ public class Account {
 
 	public String getFullName() {
 		return fullName;
+	}
+
+	private Connection connect(String path) {
+		// SQLite connection string
+		String url = "jdbc:sqlite:" + path;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
+	}
+
+	public void insert(String path) {
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, salt) VALUES(?,?,?,?,?,?)";
+
+		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, this.username);
+			pstmt.setString(2, this.password);
+			pstmt.setInt(3, this.rank);
+			pstmt.setDate(4, this.getBirthdayDate());
+			pstmt.setString(5, this.fullName);
+			pstmt.setBytes(6, this.salt);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private Date getBirthdayDate() {
+		return Date.valueOf(birthday);
+	}
+
+	public void selectAll(String path) {
+		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
+
+		try (Connection conn = this.connect(path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				System.out.println(rs.getString("username") + "\t" + rs.getString("password") + "\t" + rs.getInt("rank")
+						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname"));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

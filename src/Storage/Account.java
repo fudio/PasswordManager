@@ -139,7 +139,6 @@ public class Account {
 	private Date getBirthdayDate() {
 		return Date.valueOf(birthday);
 	}
-
 	public void selectAll(String path) {
 		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
 

@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.ZoneId;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -35,7 +34,7 @@ public class Account {
 	private byte[] salt;
 
 	public Account(String un, String pw, String fN, LocalDate bd) {
-		this.username = un;
+		this.username = un.toLowerCase();
 		this.rank = this.username.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
@@ -52,6 +51,24 @@ public class Account {
 				| IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public Account(String un) {
+		this.username=un.toLowerCase();
+	}
+
+	public Account(ResultSet rs) {
+		// username, password, rank, birthday, fullname, salt
+		try {
+			this.username = rs.getString("username");
+			this.password = rs.getString("password");
+			this.rank = rs.getInt("rank");
+			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
+			this.fullName = rs.getString("fullname");
+			this.salt = rs.getBytes("salt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private static byte[] sha256(String value) throws NoSuchAlgorithmException {
@@ -131,6 +148,7 @@ public class Account {
 			pstmt.setString(5, this.fullName);
 			pstmt.setBytes(6, this.salt);
 			pstmt.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -139,6 +157,7 @@ public class Account {
 	private Date getBirthdayDate() {
 		return Date.valueOf(birthday);
 	}
+
 	public void selectAll(String path) {
 		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
 

@@ -6,7 +6,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -31,29 +30,44 @@ public class Account {
 	private int rank;
 	private LocalDate birthday;
 	private String fullName;
-	private byte[] salt;
 
 	public Account(String un, String pw, String fN, LocalDate bd) {
 		this.username = un.toLowerCase();
 		this.rank = this.username.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
-		this.salt = new byte[16];
-		byte[] sha256Hash;
+		String BCryptHash = BCryptHash(pw);
 		try {
-			sha256Hash = sha256(pw);
-			new SecureRandom().nextBytes(this.salt);
-			byte[] BCryptHash = BCrypt.withDefaults().hash(12, this.salt, sha256Hash);
-			String a = new String(BCryptHash, StandardCharsets.UTF_8);
-			this.password = AESUtil.encryptPasswordBased(a, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
-		} catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException
+			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
+					AESUtil.readIv("paramFile"));
+		} catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
 				| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
 				| IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+	private byte[] getSalt() {
+		String tempt = this.username;
+		while (tempt.length() < 32) {
+			tempt += tempt;
+		}
+		byte[] data = new byte[16];
+		for (int i = 0; i < 32; i += 2) {
+			data[i / 2] = (byte) (((float) (Character.digit(tempt.charAt(i), 36)) * (-Math.PI * Math.PI))
+					+ ((float) Character.digit(tempt.charAt(i + 1), 36)) * (Math.PI * Math.PI));
+		}
+		return data;
+	}
+
+	private String BCryptHash(String pw) {
+		byte[] sha256Hash = sha256(pw);
+		byte[] BCryptHash = BCrypt.withDefaults().hash(12, this.getSalt(), sha256Hash);
+		return new String(BCryptHash, StandardCharsets.UTF_8);
+	}
+
 	public Account(String un) {
-		this.username=un.toLowerCase();
+		this.username = un.toLowerCase();
 	}
 
 	public Account(ResultSet rs) {
@@ -64,17 +78,23 @@ public class Account {
 			this.rank = rs.getInt("rank");
 			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
 			this.fullName = rs.getString("fullname");
-			this.salt = rs.getBytes("salt");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	private static byte[] sha256(String value) throws NoSuchAlgorithmException {
-		MessageDigest digest = MessageDigest.getInstance("SHA-256");
-		byte[] hash = digest.digest(value.getBytes(StandardCharsets.UTF_8));
+	private static byte[] sha256(String value) {
+		MessageDigest digest;
+		byte[] hash = null;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			hash = digest.digest(value.getBytes(StandardCharsets.UTF_8));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		return hash;
+
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -88,13 +108,8 @@ public class Account {
 
 	public boolean check(String password) {
 		byte[] sha256Hash;
-		try {
-			sha256Hash = sha256(password);
-			return BCrypt.verifyer().verify(sha256Hash, this.getHasedPw().getBytes(StandardCharsets.UTF_8)).verified;
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return false;
-		}
+		sha256Hash = sha256(password);
+		return BCrypt.verifyer().verify(sha256Hash, this.getHasedPw().getBytes(StandardCharsets.UTF_8)).verified;
 
 	}
 
@@ -138,7 +153,7 @@ public class Account {
 	}
 
 	public void insert(String path) {
-		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, salt) VALUES(?,?,?,?,?,?)";
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname) VALUES(?,?,?,?,?)";
 
 		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, this.username);
@@ -146,7 +161,6 @@ public class Account {
 			pstmt.setInt(3, this.rank);
 			pstmt.setDate(4, this.getBirthdayDate());
 			pstmt.setString(5, this.fullName);
-			pstmt.setBytes(6, this.salt);
 			pstmt.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -159,7 +173,7 @@ public class Account {
 	}
 
 	public void selectAll(String path) {
-		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
+		String sql = "SELECT username, password, rank, birthday, fullname FROM Account";
 
 		try (Connection conn = this.connect(path);
 				Statement stmt = conn.createStatement();

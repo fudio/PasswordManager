@@ -35,7 +35,7 @@ public class AcccountList implements Serializable {
 	}
 
 	protected void readFile(String path) {
-		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
+		String sql = "SELECT username, password, rank, birthday, fullname FROM Account";
 
 		try (Connection conn = this.connect(path);
 				Statement stmt = conn.createStatement();

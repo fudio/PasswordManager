@@ -7,6 +7,13 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -27,7 +34,7 @@ public class Account {
 	private byte[] salt;
 
 	public Account(String un, String pw, String fN, LocalDate bd) {
-		this.username = un;
+		this.username = un.toLowerCase();
 		this.rank = this.username.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
@@ -45,6 +52,24 @@ public class Account {
 			e.printStackTrace();
 		}
 	}
+	public Account(String un) {
+		this.username=un.toLowerCase();
+	}
+
+	public Account(ResultSet rs) {
+		// username, password, rank, birthday, fullname, salt
+		try {
+			this.username = rs.getString("username");
+			this.password = rs.getString("password");
+			this.rank = rs.getInt("rank");
+			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
+			this.fullName = rs.getString("fullname");
+			this.salt = rs.getBytes("salt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	private static byte[] sha256(String value) throws NoSuchAlgorithmException {
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -57,6 +82,8 @@ public class Account {
 		System.out.println(a);
 		System.out.println(a.getHasedPw());
 		System.out.println(a.check("Ng01637202484"));
+		a.insert("Account.db");
+		a.selectAll("Account.db");
 	}
 
 	public boolean check(String password) {
@@ -98,4 +125,53 @@ public class Account {
 		return fullName;
 	}
 
+	private Connection connect(String path) {
+		// SQLite connection string
+		String url = "jdbc:sqlite:" + path;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
+	}
+
+	public void insert(String path) {
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, salt) VALUES(?,?,?,?,?,?)";
+
+		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, this.username);
+			pstmt.setString(2, this.password);
+			pstmt.setInt(3, this.rank);
+			pstmt.setDate(4, this.getBirthdayDate());
+			pstmt.setString(5, this.fullName);
+			pstmt.setBytes(6, this.salt);
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private Date getBirthdayDate() {
+		return Date.valueOf(birthday);
+	}
+
+	public void selectAll(String path) {
+		String sql = "SELECT username, password, rank, birthday, fullname, salt FROM Account";
+
+		try (Connection conn = this.connect(path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				System.out.println(rs.getString("username") + "\t" + rs.getString("password") + "\t" + rs.getInt("rank")
+						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname"));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

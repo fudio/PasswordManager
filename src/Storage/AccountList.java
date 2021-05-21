@@ -21,7 +21,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-public class AcccountList implements Serializable {
+public class AccountList implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,13 +29,13 @@ public class AcccountList implements Serializable {
 	private String path = "Account.db";
 	private Queue<Account> accountList;
 
-	public AcccountList() {
+	public AccountList() {
 		accountList = new LinkedList<>();
 		readFile(this.path);
 	}
 
 	protected void readFile(String path) {
-		String sql = "SELECT username, password, rank, birthday, fullname FROM Account";
+		String sql = "SELECT username, password, rank, birthday, fullname, phoneNumber FROM Account";
 
 		try (Connection conn = this.connect(path);
 				Statement stmt = conn.createStatement();
@@ -159,7 +159,7 @@ public class AcccountList implements Serializable {
 		if (y >= x) {
 			int mid = x + (y - x) / 2;
 			Account a = (Account) t.get(mid);
-			int rs = AcccountList.stringCompare(a.getUsername(), s);
+			int rs = AccountList.stringCompare(a.getUsername(), s);
 			// If the element is present at the
 			// middle itself
 			if (rs == 0)
@@ -188,9 +188,9 @@ public class AcccountList implements Serializable {
 			throws InvalidAlgorithmParameterException, InvalidKeyException, NoSuchPaddingException,
 			NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
 		// https://stackoverflow.com/questions/60705536/task-not-serializable-error-while-calling-udf-to-spark-dataframe
-		AcccountList a = new AcccountList();
-		a.addAccount(new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1)));
-		a.addAccount(new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1)));
+		AccountList a = new AccountList();
+		a.addAccount(new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484"));
+		a.addAccount(new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484"));
 		System.out.println(a.accountSearch("fudio"));
 		System.out.println(a.getAccountList());
 		a.writeFile(a.path);

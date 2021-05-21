@@ -30,12 +30,14 @@ public class Account {
 	private int rank;
 	private LocalDate birthday;
 	private String fullName;
+	private String phoneNum;
 
-	public Account(String un, String pw, String fN, LocalDate bd) {
+	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
 		this.username = un.toLowerCase();
 		this.rank = this.username.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
+		this.phoneNum = pN;
 		String BCryptHash = BCryptHash(pw);
 		try {
 			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
@@ -71,13 +73,14 @@ public class Account {
 	}
 
 	public Account(ResultSet rs) {
-		// username, password, rank, birthday, fullname, salt
+		// username, password, rank, birthday, fullname, salt, phoneNumber
 		try {
 			this.username = rs.getString("username");
 			this.password = rs.getString("password");
 			this.rank = rs.getInt("rank");
 			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
 			this.fullName = rs.getString("fullname");
+			this.phoneNum = rs.getString("phoneNumber");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +101,8 @@ public class Account {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1));
+		Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1),
+				"0337202484");
 		System.out.println(a);
 		System.out.println(a.getHasedPw());
 		System.out.println(a.check("Ng01637202484"));
@@ -153,7 +157,7 @@ public class Account {
 	}
 
 	public void insert(String path) {
-		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname) VALUES(?,?,?,?,?)";
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, phoneNumber) VALUES(?,?,?,?,?,?)";
 
 		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, this.username);
@@ -161,6 +165,7 @@ public class Account {
 			pstmt.setInt(3, this.rank);
 			pstmt.setDate(4, this.getBirthdayDate());
 			pstmt.setString(5, this.fullName);
+			pstmt.setString(6, this.phoneNum);
 			pstmt.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -172,8 +177,8 @@ public class Account {
 		return Date.valueOf(birthday);
 	}
 
-	public void selectAll(String path) {
-		String sql = "SELECT username, password, rank, birthday, fullname FROM Account";
+	private void selectAll(String path) {
+		String sql = "SELECT * FROM Account";
 
 		try (Connection conn = this.connect(path);
 				Statement stmt = conn.createStatement();
@@ -182,7 +187,8 @@ public class Account {
 			// loop through the result set
 			while (rs.next()) {
 				System.out.println(rs.getString("username") + "\t" + rs.getString("password") + "\t" + rs.getInt("rank")
-						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname"));
+						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname") + "\t"
+						+ rs.getString("phoneNumber"));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

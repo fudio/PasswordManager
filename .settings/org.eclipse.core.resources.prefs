@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/GUI/GuiLogin.java=UTF-8
+encoding//src/GUI/GuiProfile.java=UTF-8
+encoding//src/GUI/GuiRegier.java=UTF-8
+encoding//src/GUI/GuiRegier1.java=UTF-8
 encoding//src/Storage/Account.java=UTF-8

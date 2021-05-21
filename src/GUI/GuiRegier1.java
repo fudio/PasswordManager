@@ -13,28 +13,24 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
-import com.toedter.calendar.JDateChooser;
-
-import Storage.AccountList;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GuiRegier extends JFrame {
+public class GuiRegier1 extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 6470489315656149557L;
 	private JPanel contentPane;
-	private JTextField usernameField;
+	private JTextField textField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_2;
 	private JLabel lblNewLabel_5;
 	private JLabel lblNewLabel_6;
-	private JTextField fullnameField;
-	private JTextField phoneField;
-	private JButton ButtonDangKy;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JButton DKbuttonDK;
 
 	/**
 	 * Launch the application.
@@ -43,7 +39,7 @@ public class GuiRegier extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GuiRegier frame = new GuiRegier();
+					GuiRegier1 frame = new GuiRegier1();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,9 +51,7 @@ public class GuiRegier extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GuiRegier() {
-		AccountList list = new AccountList();
-
+	public GuiRegier1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 453);
 		contentPane = new JPanel();
@@ -66,7 +60,7 @@ public class GuiRegier extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("\u0110\u0102NG KY\u0301");
-		lblNewLabel.setBounds(170, 10, 111, 40);
+		lblNewLabel.setBounds(156, 10, 111, 40);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel);
 
@@ -85,10 +79,16 @@ public class GuiRegier extends JFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(lblNewLabel_3);
 
-		usernameField = new JTextField();
-		usernameField.setBounds(178, 60, 171, 22);
-		contentPane.add(usernameField);
-		usernameField.setColumns(10);
+		JLabel lblNewLabel_4 = new JLabel(
+				"\u0110\u00EA\u0309 n\u00E2ng cao ti\u0301nh ba\u0309o m\u00E2\u0323t ha\u0303y tra\u0309 l\u01A1\u0300i c\u00E2u ho\u0309i");
+		lblNewLabel_4.setBounds(69, 177, 280, 18);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		contentPane.add(lblNewLabel_4);
+
+		textField = new JTextField();
+		textField.setBounds(178, 60, 171, 22);
+		contentPane.add(textField);
+		textField.setColumns(10);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(178, 97, 171, 22);
@@ -98,54 +98,41 @@ public class GuiRegier extends JFrame {
 		passwordField_2.setBounds(178, 135, 171, 22);
 		contentPane.add(passwordField_2);
 
-		lblNewLabel_5 = new JLabel("Ho\u0323 t\u00EAn ");
+		lblNewLabel_5 = new JLabel("Ho\u0323 t\u00EAn cha ho\u0103\u0323c me\u0323 ");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_5.setBounds(40, 172, 101, 24);
+		lblNewLabel_5.setBounds(42, 205, 149, 24);
 		contentPane.add(lblNewLabel_5);
 
 		lblNewLabel_6 = new JLabel("S\u00F4\u0301 \u0111i\u00EA\u0323n thoa\u0323i");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_6.setBounds(40, 218, 93, 18);
+		lblNewLabel_6.setBounds(42, 278, 93, 18);
 		contentPane.add(lblNewLabel_6);
 
-		fullnameField = new JTextField();
-		fullnameField.setBounds(178, 175, 171, 22);
-		contentPane.add(fullnameField);
-		fullnameField.setColumns(10);
+		textField_1 = new JTextField();
+		textField_1.setBounds(42, 239, 225, 29);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
 
-		phoneField = new JTextField();
-		phoneField.setBounds(178, 214, 171, 22);
-		contentPane.add(phoneField);
-		phoneField.setColumns(10);
+		textField_2 = new JTextField();
+		textField_2.setBounds(42, 306, 225, 29);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
 
-		ButtonDangKy = new JButton("\u0110\u0102NG KY\u0301 ");
-		ButtonDangKy.addActionListener(new ActionListener() {
+		DKbuttonDK = new JButton("\u0110\u0102NG KY\u0301 ");
+		DKbuttonDK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(ButtonDangKy, "Đăng ký thành công", "Success",
+				JOptionPane.showMessageDialog(DKbuttonDK, "Đăng ký thành công", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
 				GuiMain frm1 = new GuiMain();
 				frm1.setVisible(true);
 				dispose();
 			}
 		});
-		ButtonDangKy.setBackground(Color.LIGHT_GRAY);
-		ButtonDangKy.setForeground(Color.BLACK);
-		ButtonDangKy.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		ButtonDangKy.setBounds(132, 319, 149, 48);
-		contentPane.add(ButtonDangKy);
-
-		JLabel lblNewLabel_4 = new JLabel("Ng\u00E0y sinh ");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(40, 262, 103, 13);
-		contentPane.add(lblNewLabel_4);
-
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		dateChooser.setBounds(178, 253, 171, 22);
-		contentPane.add(dateChooser);
-
+		DKbuttonDK.setBackground(new Color(240, 240, 240));
+		DKbuttonDK.setForeground(Color.BLACK);
+		DKbuttonDK.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		DKbuttonDK.setBounds(132, 358, 149, 48);
+		contentPane.add(DKbuttonDK);
 	}
+
 }

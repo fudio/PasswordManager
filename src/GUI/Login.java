@@ -9,10 +9,14 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import Storage.AcccountList;
+import Storage.AccountList;
 import Storage.Account;
 
-public class Login extends AcccountList {
+public class Login extends AccountList {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5226659379906941778L;
 	private boolean result;
 
 	public Login(String username, String password) throws InvalidKeyException, NoSuchAlgorithmException,

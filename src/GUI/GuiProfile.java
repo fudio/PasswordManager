@@ -12,10 +12,15 @@ import java.awt.Component;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Month;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.border.SoftBevelBorder;
+
+import Storage.Account;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import java.awt.Dimension;
@@ -45,8 +50,10 @@ public class GuiProfile extends JFrame {
 
 	/**
 	 * Creates new form JLabelLink
+	 * 
+	 * @param login
 	 */
-	public GuiProfile() {
+	public GuiProfile(Account login) {
 		this.setTitle("NMT");
 		this.setSize(946, 550);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +82,9 @@ public class GuiProfile extends JFrame {
 		pan_1.add(lblNewLabel_1);
 
 		fullname = new JTextField();
+		fullname.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		fullname.setEditable(false);
+		fullname.setText(login.getFullName());
 		fullname.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
 				new Color(102, 255, 255), new Color(255, 255, 153)));
 		fullname.setBounds(10, 108, 354, 36);
@@ -125,7 +134,9 @@ public class GuiProfile extends JFrame {
 		pan_1.add(lblNewLabel_1_7);
 
 		birthday = new JTextField();
+		birthday.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		birthday.setEditable(false);
+		birthday.setText(login.getBirthday());
 		birthday.setColumns(10);
 		birthday.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
 				new Color(102, 255, 255), new Color(255, 255, 153)));
@@ -133,6 +144,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(birthday);
 
 		sex = new JTextField();
+		sex.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		sex.setEditable(false);
 		sex.setColumns(10);
 		sex.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
@@ -141,6 +153,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(sex);
 
 		job = new JTextField();
+		job.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		job.setEditable(false);
 		job.setColumns(10);
 		job.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
@@ -149,6 +162,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(job);
 
 		address = new JTextField();
+		address.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		address.setEditable(false);
 		address.setColumns(10);
 		address.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
@@ -157,7 +171,9 @@ public class GuiProfile extends JFrame {
 		pan_1.add(address);
 
 		phone = new JTextField();
+		phone.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		phone.setEditable(false);
+		phone.setText(login.getPhoneNum());
 		phone.setColumns(10);
 		phone.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
 				new Color(102, 255, 255), new Color(255, 255, 153)));
@@ -165,6 +181,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(phone);
 
 		email = new JTextField();
+		email.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		email.setEditable(false);
 		email.setColumns(10);
 		email.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
@@ -173,6 +190,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(email);
 
 		fb_link = new JTextField();
+		fb_link.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		fb_link.setEditable(false);
 		fb_link.setColumns(10);
 		fb_link.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
@@ -180,7 +198,7 @@ public class GuiProfile extends JFrame {
 		fb_link.setBounds(399, 273, 354, 36);
 		pan_1.add(fb_link);
 
-		mnNewMenu = new JMenu("Ch\u00E0o *t\u00EAn*");
+		mnNewMenu = new JMenu("Ch\u00E0o " + login.getUsername());
 		mnNewMenu.setDelay(0);
 		mnNewMenu.setBounds(805, 11, 115, 26);
 		pan_1.add(mnNewMenu);
@@ -249,7 +267,9 @@ public class GuiProfile extends JFrame {
 
 			@Override
 			public void run() {
-				new GuiProfile().setVisible(true);
+				Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
+						LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+				new GuiProfile(a).setVisible(true);
 			}
 		});
 	}

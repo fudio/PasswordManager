@@ -137,13 +137,14 @@ public class AccountList implements Serializable {
 		}
 	}
 
-	protected boolean addAccount(Account a) {
+	public boolean addAccount(Account a) {
 		String t = a.getUsername();
 		for (Account i : this.accountList) {
 			if (i.getUsername().equals(t))
 				return false;
 		}
 		this.accountList.add(a);
+		this.writeFile(this.path);
 		return true;
 	}
 

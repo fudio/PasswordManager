@@ -20,9 +20,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.border.CompoundBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Component;
+import javax.swing.JCheckBox;
 
 public class GuiLogin extends JFrame {
 
@@ -102,6 +103,7 @@ public class GuiLogin extends JFrame {
 		contentPane.add(lblNewLabel_2);
 
 		passwordField = new JPasswordField();
+		passwordField.setAlignmentY(Component.TOP_ALIGNMENT);
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -113,12 +115,25 @@ public class GuiLogin extends JFrame {
 		passwordField.setBounds(126, 120, 177, 21);
 		contentPane.add(passwordField);
 
-		JButton btnNewButton_1 = new JButton("Ba\u0323n \u0111a\u0303 qu\u00EAn m\u00E2\u0323t kh\u00E2\u0309u");
-		btnNewButton_1.setBackground(new Color(240, 240, 240));
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_1.setBounds(235, 150, 166, 21);
-		contentPane.add(btnNewButton_1);
+		JButton forgetPassButton = new JButton("Ba\u0323n \u0111a\u0303 qu\u00EAn m\u00E2\u0323t kh\u00E2\u0309u");
+		forgetPassButton.setBackground(new Color(240, 240, 240));
+		forgetPassButton.setBorder(null);
+		forgetPassButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		forgetPassButton.setBounds(126, 229, 166, 21);
+		contentPane.add(forgetPassButton);
+		
+		final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
+		showPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (showPassword.isSelected()) {
+					passwordField.setEchoChar((char) 0);
+				} else {
+					passwordField.setEchoChar('•');
+				}
+			}
+		});
+		showPassword.setBounds(244, 148, 111, 23);
+		contentPane.add(showPassword);
 	}
 
 	private void login(AccountList list, JButton DNbuttonDN, JTextField usernameField, JPasswordField passwordField) {
@@ -136,7 +151,7 @@ public class GuiLogin extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(DNbuttonDN, "Đăng nhập thành công", "Success",
 							JOptionPane.INFORMATION_MESSAGE);
-					GuiProfile frm1 = new GuiProfile();
+					GuiProfile frm1 = new GuiProfile(login);
 					frm1.setVisible(true);
 					dispose();
 				}

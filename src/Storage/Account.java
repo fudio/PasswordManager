@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -33,7 +34,7 @@ public class Account {
 	private String phoneNum;
 
 	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
-		this.username = un.toLowerCase();
+		this.username = un;
 		this.rank = this.username.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
@@ -136,8 +137,13 @@ public class Account {
 		return rank;
 	}
 
-	public LocalDate getBirthday() {
+	public LocalDate getBirthday_() {
 		return birthday;
+	}
+	
+	public String getBirthday() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
+		return this.birthday.format(formatter);
 	}
 
 	public String getFullName() {
@@ -193,5 +199,9 @@ public class Account {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public String getPhoneNum() {
+		return this.phoneNum;
 	}
 }

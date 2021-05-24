@@ -141,13 +141,13 @@ public class GuiLogin extends JFrame {
 		char[] password = passwordField.getPassword();
 		if (username.equals("") || (new String(password)).equals(""))
 			JOptionPane.showMessageDialog(DNbuttonDN, "Vui lòng nhập đủ Tên đăng nhập và Mật khẩu", "NullError",
-					JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.WARNING_MESSAGE);
 		else {
 			Account login = list.accountSearch(username);
 			if (login != null)
 				if (!login.check(new String(password)))
 					JOptionPane.showMessageDialog(DNbuttonDN, "Sai Tên đăng nhập hoặc Mật khẩu", "VerifycationError",
-							JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.WARNING_MESSAGE);
 				else {
 					JOptionPane.showMessageDialog(DNbuttonDN, "Đăng nhập thành công", "Success",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -157,7 +157,7 @@ public class GuiLogin extends JFrame {
 				}
 			else
 				JOptionPane.showMessageDialog(DNbuttonDN, "Sai Tên đăng nhập hoặc Mật khẩu", "VerifycationError",
-						JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

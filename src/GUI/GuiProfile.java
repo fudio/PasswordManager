@@ -203,12 +203,15 @@ public class GuiProfile extends JFrame {
 		mnNewMenu.setBounds(805, 11, 115, 26);
 		pan_1.add(mnNewMenu);
 
-		PrbuttonHoso = new JButton("    Hồ sơ    ");
+		PrbuttonHoso = new JButton("Hồ sơ");
+		PrbuttonHoso.setPreferredSize(new Dimension(83, 23));
+		PrbuttonHoso.setMinimumSize(new Dimension(100, 23));
+		PrbuttonHoso.setMaximumSize(new Dimension(100, 23));
 		PrbuttonHoso.setBackground(SystemColor.controlHighlight);
 		PrbuttonHoso.setActionCommand("Hồ sơ");
 		mnNewMenu.add(PrbuttonHoso);
 
-		PrbuttonCaidat = new JButton("   Cài đặt  ");
+		PrbuttonCaidat = new JButton("Cài đặt");
 		PrbuttonCaidat.setPreferredSize(new Dimension(83, 23));
 		PrbuttonCaidat.setBackground(SystemColor.controlHighlight);
 		PrbuttonCaidat.setActionCommand("Cài đặt");

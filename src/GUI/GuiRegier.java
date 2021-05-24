@@ -18,10 +18,13 @@ import Storage.Account;
 import Storage.AccountList;
 
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
@@ -136,14 +139,19 @@ public class GuiRegier extends JFrame {
 		contentPane.add(lblNewLabel_4);
 
 		final JDateChooser dateChooser = new JDateChooser();
-//		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
 		dateChooser.setBounds(180, 271, 171, 22);
 		contentPane.add(dateChooser);
-		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 2001);
+		cal.set(Calendar.MONTH, 0);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		Date date = cal.getTime();
 		dateChooser.setDate(date);
+		dateChooser.setDateFormatString("dd/MM/YYYY");
 
 		final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
 		showPassword.addActionListener(new ActionListener() {
@@ -170,29 +178,29 @@ public class GuiRegier extends JFrame {
 				Date birtday = dateChooser.getCalendar().getTime();
 				if (username.equals("") || (new String(password)).equals("") || (new String(password_2)).equals("")
 						|| name.equals("") || phoneNum.equals(""))
-					JOptionPane.showMessageDialog(ButtonDangKy, "Vui long nhập đầy đủ thông tin", "NullError",
-							JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(ButtonDangKy, "Vui lòng nhập đầy đủ thông tin", "NullError",
+							JOptionPane.WARNING_MESSAGE);
 				else if (!isValidUsername(username))
 					JOptionPane.showMessageDialog(ButtonDangKy,
 							"Tên đăng nhập phải từ 5 đến 20 ký tự, có thể chứa chữ thường, chữ hoa số và một số ký tự đặc biệt (._=)",
-							"InvalidUsernameError", JOptionPane.INFORMATION_MESSAGE);
+							"InvalidUsernameError", JOptionPane.WARNING_MESSAGE);
 				else if (!isValidPassword(password))
 					JOptionPane.showMessageDialog(ButtonDangKy,
 							"Mật khẩu phải có từ 8 đến 30 ký tự, ít nhất một ký tự hoa, một ký tự thường, một số và một ký tự đặc biệt (@$!%*?&)",
-							"InvalidPasswordError", JOptionPane.INFORMATION_MESSAGE);
+							"InvalidPasswordError", JOptionPane.WARNING_MESSAGE);
 				else if (!(new String(password)).equals(new String(password_2)))
 					JOptionPane.showMessageDialog(ButtonDangKy, "Mât khẩu không khớp", "PasswordNotMatchError",
-							JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.WARNING_MESSAGE);
 				else if (!isValidPhone(phoneNum))
 					JOptionPane.showMessageDialog(ButtonDangKy,
 							"Số điện thoại bạn nhập không phải của nhà mạng Việt Nam", "InvalidPhoneNumberError",
-							JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.WARNING_MESSAGE);
 				else {
 					AccountList list = new AccountList();
 					if (!list.addAccount(new Account(username, new String(password), name,
 							convertToLocalDateViaMilisecond(birtday), phoneNum)))
 						JOptionPane.showMessageDialog(ButtonDangKy, "Tên đăng nhập đã được sử dụng",
-								"InvalidUsernameError", JOptionPane.INFORMATION_MESSAGE);
+								"InvalidUsernameError", JOptionPane.WARNING_MESSAGE);
 					else {
 						JOptionPane.showMessageDialog(ButtonDangKy, "Đăng ký thành công", "Success",
 								JOptionPane.INFORMATION_MESSAGE);

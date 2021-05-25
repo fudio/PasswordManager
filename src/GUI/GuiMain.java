@@ -75,7 +75,7 @@ public class GuiMain extends JFrame {
 		contact_1.setText("<html> <a href=\"\">ATHOR</a></html>");
 		contact_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		website_1.setText("<html> <a href=\"\">COURESE</a></html>");
+		website_1.setText("COURESE");
 		website_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		website.setText("<html> <a href=\"\">SV.UT</a></html>");

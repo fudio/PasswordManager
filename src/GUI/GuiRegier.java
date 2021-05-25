@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -29,6 +30,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
+import java.awt.Component;
+import javax.swing.SwingConstants;
 
 public class GuiRegier extends JFrame {
 
@@ -45,6 +51,9 @@ public class GuiRegier extends JFrame {
 	private JTextField fullnameField;
 	private JTextField phoneField;
 	private JButton ButtonDangKy;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -67,80 +76,12 @@ public class GuiRegier extends JFrame {
 	 */
 	public GuiRegier() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 453);
+		setBounds(100, 100, 842, 602);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("\u0110\u0102NG KY\u0301");
-		lblNewLabel.setBounds(170, 10, 111, 40);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("T\u00EAn \u0111\u0103ng nh\u00E2\u0323p");
-		lblNewLabel_1.setBounds(42, 56, 101, 27);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		contentPane.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("M\u00E2\u0323t kh\u00E2\u0309u");
-		lblNewLabel_2.setBounds(42, 93, 101, 27);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		contentPane.add(lblNewLabel_2);
-
-		JLabel lblNewLabel_3 = new JLabel("Nh\u00E2\u0323p la\u0323i m\u00E2\u0323t kh\u00E2\u0309u");
-		lblNewLabel_3.setBounds(40, 138, 120, 13);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		contentPane.add(lblNewLabel_3);
-
-		usernameField = new JTextField();
-		usernameField.setBounds(178, 60, 171, 22);
-		contentPane.add(usernameField);
-		usernameField.setColumns(10);
-
-		passwordField = new JPasswordField();
-		passwordField.setBounds(178, 97, 171, 22);
-		contentPane.add(passwordField);
-
-		passwordField_2 = new JPasswordField();
-		passwordField_2.setBounds(178, 135, 171, 22);
-		contentPane.add(passwordField_2);
-
-		lblNewLabel_5 = new JLabel("Ho\u0323 t\u00EAn ");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_5.setBounds(42, 190, 101, 24);
-		contentPane.add(lblNewLabel_5);
-
-		lblNewLabel_6 = new JLabel("S\u00F4\u0301 \u0111i\u00EA\u0323n thoa\u0323i");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_6.setBounds(42, 236, 93, 18);
-		contentPane.add(lblNewLabel_6);
-
-		fullnameField = new JTextField();
-		fullnameField.setBounds(180, 193, 171, 22);
-		contentPane.add(fullnameField);
-		fullnameField.setColumns(10);
-
-		phoneField = new JTextField();
-		phoneField.setBounds(180, 232, 171, 22);
-		contentPane.add(phoneField);
-		phoneField.setColumns(10);
-
-		ButtonDangKy = new JButton("\u0110\u0102NG KY\u0301 ");
-		ButtonDangKy.setBackground(Color.LIGHT_GRAY);
-		ButtonDangKy.setForeground(Color.BLACK);
-		ButtonDangKy.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		ButtonDangKy.setBounds(132, 319, 149, 48);
-		contentPane.add(ButtonDangKy);
-
-		JLabel lblNewLabel_4 = new JLabel("Ng\u00E0y sinh ");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(42, 280, 103, 13);
-		contentPane.add(lblNewLabel_4);
-
-		final JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(180, 271, 171, 22);
-		contentPane.add(dateChooser);
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, 2001);
 		cal.set(Calendar.MONTH, 0);
@@ -150,23 +91,132 @@ public class GuiRegier extends JFrame {
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		Date date = cal.getTime();
-		dateChooser.setDate(date);
-		dateChooser.setDateFormatString("dd/MM/YYYY");
-
-		final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
-		showPassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (showPassword.isSelected()) {
-					passwordField.setEchoChar((char) 0);
-					passwordField_2.setEchoChar((char) 0);
-				} else {
-					passwordField.setEchoChar('•');
-					passwordField_2.setEchoChar('•');
-				}
-			}
-		});
-		showPassword.setBounds(238, 163, 111, 23);
-		contentPane.add(showPassword);
+		
+		panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel.setBounds(167, 39, 480, 484);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBounds(20, 27, 440, 434);
+		panel.add(panel_1);
+				panel_1.setLayout(null);
+		
+				ButtonDangKy = new JButton("\u0110\u0102NG KY\u0301 ");
+				ButtonDangKy.setBorder(UIManager.getBorder("CheckBox.border"));
+				ButtonDangKy.setBounds(143, 341, 149, 48);
+				ButtonDangKy.setHorizontalTextPosition(SwingConstants.CENTER);
+				panel_1.add(ButtonDangKy);
+				ButtonDangKy.setBackground(new Color(240, 255, 255));
+				ButtonDangKy.setForeground(Color.BLACK);
+				ButtonDangKy.setFont(new Font("UTM Penumbra", Font.PLAIN, 20));
+				
+						JLabel lblNewLabel = new JLabel("\u0110\u0102NG KY\u0301");
+						lblNewLabel.setBounds(143, 11, 149, 59);
+						panel_1.add(lblNewLabel);
+						lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+						lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+						lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+						lblNewLabel.setFont(new Font("UTM Ericsson Capital", Font.BOLD, 30));
+						
+						btnNewButton = new JButton("Đã có tài khoản? Đăng nhập.");
+						btnNewButton.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+						btnNewButton.setBounds(229, 400, 201, 23);
+						btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
+						btnNewButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								GuiLogin frm1 = new GuiLogin();
+								frm1.setVisible(true);
+								dispose();
+							}
+						});
+						btnNewButton.setBackground(SystemColor.control);
+						btnNewButton.setBorderPainted(false);
+						btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
+						btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
+						panel_1.add(btnNewButton);
+						
+								JLabel lblNewLabel_1 = new JLabel("T\u00EAn \u0111\u0103ng nh\u00E2\u0323p");
+								lblNewLabel_1.setBounds(68, 81, 101, 27);
+								panel_1.add(lblNewLabel_1);
+								lblNewLabel_1.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+								
+										usernameField = new JTextField();
+										usernameField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+										usernameField.setBounds(204, 85, 171, 22);
+										panel_1.add(usernameField);
+										usernameField.setColumns(10);
+										
+												passwordField = new JPasswordField();
+												passwordField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+												passwordField.setBounds(204, 122, 171, 22);
+												panel_1.add(passwordField);
+												
+														JLabel lblNewLabel_2 = new JLabel("M\u00E2\u0323t kh\u00E2\u0309u");
+														lblNewLabel_2.setBounds(68, 118, 101, 27);
+														panel_1.add(lblNewLabel_2);
+														lblNewLabel_2.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+														
+																JLabel lblNewLabel_3 = new JLabel("Nh\u00E2\u0323p la\u0323i m\u00E2\u0323t kh\u00E2\u0309u");
+																lblNewLabel_3.setBounds(66, 163, 120, 19);
+																panel_1.add(lblNewLabel_3);
+																lblNewLabel_3.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																
+																		passwordField_2 = new JPasswordField();
+																		passwordField_2.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+																		passwordField_2.setBounds(204, 160, 171, 22);
+																		panel_1.add(passwordField_2);
+																		
+																				lblNewLabel_5 = new JLabel("Ho\u0323 t\u00EAn ");
+																				lblNewLabel_5.setBounds(68, 215, 101, 24);
+																				panel_1.add(lblNewLabel_5);
+																				lblNewLabel_5.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																				
+																						lblNewLabel_6 = new JLabel("S\u00F4\u0301 \u0111i\u00EA\u0323n thoa\u0323i");
+																						lblNewLabel_6.setBounds(68, 250, 93, 29);
+																						panel_1.add(lblNewLabel_6);
+																						lblNewLabel_6.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																						
+																								JLabel lblNewLabel_4 = new JLabel("Ng\u00E0y sinh ");
+																								lblNewLabel_4.setBounds(68, 290, 103, 28);
+																								panel_1.add(lblNewLabel_4);
+																								lblNewLabel_4.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																								
+																										fullnameField = new JTextField();
+																										fullnameField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+																										fullnameField.setBounds(206, 218, 171, 22);
+																										panel_1.add(fullnameField);
+																										fullnameField.setColumns(10);
+																										
+																												phoneField = new JTextField();
+																												phoneField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+																												phoneField.setBounds(206, 257, 171, 22);
+																												panel_1.add(phoneField);
+																												phoneField.setColumns(10);
+																												
+																														final JDateChooser dateChooser = new JDateChooser();
+																														dateChooser.setBounds(206, 296, 171, 22);
+																														panel_1.add(dateChooser);
+																														dateChooser.setDate(date);
+																														dateChooser.setDateFormatString("dd/MM/YYYY");
+																														
+																																final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
+																																showPassword.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+																																showPassword.setBounds(264, 188, 111, 23);
+																																panel_1.add(showPassword);
+																																showPassword.addActionListener(new ActionListener() {
+																																	public void actionPerformed(ActionEvent e) {
+																																		if (showPassword.isSelected()) {
+																																			passwordField.setEchoChar((char) 0);
+																																			passwordField_2.setEchoChar((char) 0);
+																																		} else {
+																																			passwordField.setEchoChar('•');
+																																			passwordField_2.setEchoChar('•');
+																																		}
+																																	}
+																																});
 
 		ButtonDangKy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

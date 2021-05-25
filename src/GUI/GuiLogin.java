@@ -24,6 +24,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Component;
 import javax.swing.JCheckBox;
+import javax.swing.border.BevelBorder;
+import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.SoftBevelBorder;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class GuiLogin extends JFrame {
 
@@ -55,74 +65,30 @@ public class GuiLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiLogin() {
+		setTitle("Login");
+		setName("Login");
 		final AccountList list = new AccountList();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 842, 602);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
+		contentPane.setForeground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("T\u00EAn \u0111\u0103ng nh\u00E2\u0323p");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBorder(new LineBorder(null, 0));
-		lblNewLabel.setBounds(20, 59, 96, 43);
-		contentPane.add(lblNewLabel);
-
-		usernameField = new JTextField();
-
-		usernameField.setBounds(126, 71, 177, 21);
-		contentPane.add(usernameField);
-		usernameField.setColumns(10);
-
-		final JButton DNbuttonDN = new JButton("\u0110\u0102NG NH\u00C2\u0323P");
-		DNbuttonDN.setForeground(Color.BLACK);
-		DNbuttonDN.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				login(list, DNbuttonDN, usernameField, passwordField);
-			}
-		});
-
-		DNbuttonDN.setBackground(Color.LIGHT_GRAY);
-		DNbuttonDN.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		DNbuttonDN.setBounds(136, 181, 153, 43);
-		contentPane.add(DNbuttonDN);
-
-		JLabel lblNewLabel_1 = new JLabel("\u0110\u0102NG NH\u00C2\u0323P");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setSize(new Dimension(10, 10));
-		lblNewLabel_1.setMaximumSize(new Dimension(43, 17));
-		lblNewLabel_1.setBounds(150, 10, 153, 37);
-		contentPane.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("M\u00E2\u0323t kh\u00E2\u0309u");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(20, 123, 84, 13);
-		contentPane.add(lblNewLabel_2);
-
-		passwordField = new JPasswordField();
-		passwordField.setAlignmentY(Component.TOP_ALIGNMENT);
-		passwordField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					login(list, DNbuttonDN, usernameField, passwordField);
-				}
-			}
-		});
-		passwordField.setBounds(126, 120, 177, 21);
-		contentPane.add(passwordField);
-
-		JButton forgetPassButton = new JButton("Ba\u0323n \u0111a\u0303 qu\u00EAn m\u00E2\u0323t kh\u00E2\u0309u");
-		forgetPassButton.setBackground(new Color(240, 240, 240));
-		forgetPassButton.setBorder(null);
-		forgetPassButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		forgetPassButton.setBounds(126, 229, 166, 21);
-		contentPane.add(forgetPassButton);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(167, 67, 480, 403);
+		panel_1.setBorder(UIManager.getBorder("CheckBox.border"));
+		panel_1.setBackground(UIManager.getColor("Button.light"));
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(20, 27, 440, 350);
+		panel.setBorder(UIManager.getBorder("InternalFrame.border"));
 		
 		final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
+		showPassword.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 11));
+		showPassword.setBounds(266, 212, 141, 23);
 		showPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (showPassword.isSelected()) {
@@ -132,8 +98,109 @@ public class GuiLogin extends JFrame {
 				}
 			}
 		});
-		showPassword.setBounds(244, 148, 111, 23);
-		contentPane.add(showPassword);
+		
+				final JButton DNbuttonDN = new JButton("ĐĂNG NHẬP");
+				DNbuttonDN.setBorder(UIManager.getBorder("CheckBox.border"));
+				DNbuttonDN.setBounds(60, 268, 315, 37);
+				DNbuttonDN.setForeground(Color.BLACK);
+				DNbuttonDN.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						login(list, DNbuttonDN, usernameField, passwordField);
+					}
+				});
+				
+						DNbuttonDN.setBackground(new Color(240, 255, 255));
+						DNbuttonDN.setFont(new Font("UTM Penumbra", Font.PLAIN, 20));
+		panel.setLayout(null);
+		panel.add(showPassword);
+		panel.add(DNbuttonDN);
+		contentPane.setLayout(null);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		panel_1.add(panel);
+						
+								JLabel lblNewLabel_1 = new JLabel("ĐĂNG NHẬP");
+								lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
+								lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+								lblNewLabel_1.setBounds(123, 29, 194, 43);
+								panel.add(lblNewLabel_1);
+								lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
+								lblNewLabel_1.setForeground(Color.BLACK);
+								lblNewLabel_1.setFont(new Font("UTM Ericsson Capital", Font.PLAIN, 30));
+								lblNewLabel_1.setMaximumSize(new Dimension(43, 17));
+								
+										JButton forgetPassButton = new JButton("Bạn đã quên mật khẩu ?");
+										forgetPassButton.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+											}
+										});
+										forgetPassButton.setBounds(41, 236, 144, 21);
+										panel.add(forgetPassButton);
+										forgetPassButton.setBackground(new Color(240, 240, 240));
+										forgetPassButton.setBorder(null);
+										forgetPassButton.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+														
+														JPanel panel_2 = new JPanel();
+														panel_2.setBorder(UIManager.getBorder("TitledBorder.border"));
+														panel_2.setBounds(60, 103, 315, 48);
+														panel.add(panel_2);
+														panel_2.setLayout(null);
+														
+																JLabel lblNewLabel = new JLabel("Tên đăng nhập");
+																lblNewLabel.setBounds(10, 11, 86, 23);
+																panel_2.add(lblNewLabel);
+																lblNewLabel.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																lblNewLabel.setBorder(new LineBorder(null, 0));
+																
+																		usernameField = new JTextField();
+																		usernameField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																		usernameField.setBackground(SystemColor.control);
+																		usernameField.setBorder(null);
+																		usernameField.setBounds(106, 13, 177, 21);
+																		panel_2.add(usernameField);
+																		usernameField.setColumns(10);
+														
+														JPanel panel_3 = new JPanel();
+														panel_3.setBorder(UIManager.getBorder("TitledBorder.border"));
+														panel_3.setBounds(60, 162, 315, 43);
+														panel.add(panel_3);
+														panel_3.setLayout(null);
+														
+																passwordField = new JPasswordField();
+																passwordField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																passwordField.setBackground(SystemColor.control);
+																passwordField.setBorder(null);
+																passwordField.setBounds(107, 11, 177, 21);
+																panel_3.add(passwordField);
+																passwordField.setAlignmentY(Component.TOP_ALIGNMENT);
+																
+																		JLabel lblNewLabel_2 = new JLabel("Mật khẩu");
+																		lblNewLabel_2.setBounds(10, 14, 68, 13);
+																		panel_3.add(lblNewLabel_2);
+																		lblNewLabel_2.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
+																		
+																		JButton DNđangkyDN = new JButton("Chưa có tài khoản? Đăng ký");
+																		DNđangkyDN.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+																		DNđangkyDN.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				GuiRegier frm1 = new GuiRegier();
+																				frm1.setVisible(true);
+																				dispose();
+																			}
+																		});
+																		DNđangkyDN.setBorderPainted(false);
+																		DNđangkyDN.setBackground(SystemColor.control);
+																		DNđangkyDN.setBorder(UIManager.getBorder("CheckBox.border"));
+																		DNđangkyDN.setBounds(219, 236, 211, 23);
+																		panel.add(DNđangkyDN);
+														passwordField.addKeyListener(new KeyAdapter() {
+															@Override
+															public void keyPressed(KeyEvent e) {
+																if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+																	login(list, DNbuttonDN, usernameField, passwordField);
+																}
+															}
+														});
 	}
 
 	private void login(AccountList list, JButton DNbuttonDN, JTextField usernameField, JPasswordField passwordField) {

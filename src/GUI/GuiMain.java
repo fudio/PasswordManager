@@ -53,7 +53,7 @@ public class GuiMain extends JFrame {
 		contact_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		contact_1.setHorizontalAlignment(SwingConstants.CENTER);
 		contact_1.setBounds(35, 334, 207, 73);
-		contact_1.setFont(new Font("UTM Conestoga", Font.PLAIN, 23));
+		contact_1.setFont(new Font("UTM Trajan Pro Bold", Font.PLAIN, 16));
 
 		pan_1 = new JPanel();
 		pan_1.setForeground(new Color(0, 0, 0));
@@ -62,7 +62,7 @@ public class GuiMain extends JFrame {
 		website_1.setBorder(UIManager.getBorder("DesktopIcon.border"));
 		website_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		website_1.setForeground(new Color(0, 0, 0));
-		website_1.setFont(new Font("UTM Conestoga", Font.PLAIN, 23));
+		website_1.setFont(new Font("UTM Trajan Pro Bold", Font.PLAIN, 16));
 		website_1.setBounds(35, 126, 207, 73);
 
 		website = new JLabel();
@@ -70,15 +70,15 @@ public class GuiMain extends JFrame {
 		website.setHorizontalTextPosition(SwingConstants.CENTER);
 		website.setHorizontalAlignment(SwingConstants.CENTER);
 		website.setBounds(35, 233, 207, 73);
-		website.setFont(new Font("UTM Conestoga", Font.PLAIN, 26));
+		website.setFont(new Font("UTM Trajan Pro Bold", Font.PLAIN, 16));
 
-		contact_1.setText("<html> <a href=\"\">ATHOR</a></html>");
+		contact_1.setText("Nh\u00F3m t\u00E1c gi\u1EA3");
 		contact_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		website_1.setText("COURESE");
+		website_1.setText("H\u1ECDc tr\u1EF1c tuy\u1EBFn");
 		website_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		website.setText("<html> <a href=\"\">SV.UT</a></html>");
+		website.setText("Trang SV");
 		website.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		pan_1.setLayout(null);
 
@@ -91,9 +91,9 @@ public class GuiMain extends JFrame {
 		goWebsite(website);
 		goWebsite_1(website_1);
 
-		lblNewLabel = new JLabel("CARROT");
-		lblNewLabel.setFont(new Font("UTM Americana EB", Font.PLAIN, 55));
-		lblNewLabel.setBounds(35, 11, 290, 90);
+		lblNewLabel = new JLabel("CARROT TEAM");
+		lblNewLabel.setFont(new Font("UTM Ambrose", Font.PLAIN, 40));
+		lblNewLabel.setBounds(35, 11, 355, 90);
 		pan_1.add(lblNewLabel);
 
 		MenuFirst = new JMenu("T\u00E0i kho\u1EA3n");

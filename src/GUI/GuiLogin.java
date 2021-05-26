@@ -65,7 +65,7 @@ public class GuiLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiLogin() {
-		setTitle("Login");
+		setTitle("LOGIN");
 		setName("Login");
 		final AccountList list = new AccountList();
 

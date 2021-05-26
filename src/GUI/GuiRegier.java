@@ -75,6 +75,7 @@ public class GuiRegier extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiRegier() {
+		setTitle("REGIER");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 842, 602);
 		contentPane = new JPanel();

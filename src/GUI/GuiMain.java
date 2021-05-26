@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
+import java.awt.Dimension;
 
 public class GuiMain extends JFrame {
 	/**
@@ -110,6 +111,7 @@ public class GuiMain extends JFrame {
 		pan_1.add(MenuFirst);
 
 		buttonDNmain = new JButton("\u0110\u0103ng nh\u1EADp");
+		buttonDNmain.setBackground(Color.WHITE);
 		buttonDNmain.setForeground(Color.PINK);
 		buttonDNmain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,7 +123,11 @@ public class GuiMain extends JFrame {
 
 		MenuFirst.add(buttonDNmain);
 
-		buttonDKmain = new JButton("  \u0110\u0103ng k\u00FD  ");
+		buttonDKmain = new JButton("\u0110\u0103ng k\u00FD");
+		buttonDKmain.setBackground(Color.WHITE);
+		buttonDKmain.setPreferredSize(new Dimension(85, 23));
+		buttonDKmain.setMinimumSize(new Dimension(100, 23));
+		buttonDKmain.setMaximumSize(new Dimension(100, 23));
 		buttonDKmain.setForeground(Color.PINK);
 		buttonDKmain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

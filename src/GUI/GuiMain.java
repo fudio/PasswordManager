@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -148,7 +149,7 @@ public class GuiMain extends JFrame {
 		
 		try {
 			BufferedImage image = ImageIO.read(new File("bg1.jpeg"));
-			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, image.SCALE_SMOOTH));
+			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, Image.SCALE_SMOOTH));
 			lb.setIcon(icon);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -10,8 +10,13 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.SwingConstants;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.awt.event.ActionEvent;
@@ -54,7 +59,7 @@ public class GuiProfile extends JFrame {
 	 * @param login
 	 */
 	public GuiProfile(Account login) {
-		this.setTitle("NMT");
+		this.setTitle("PROFILE");
 		this.setSize(946, 550);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -67,16 +72,19 @@ public class GuiProfile extends JFrame {
 		this.setContentPane(pan_1);
 
 		JLabel lblNewLabel = new JLabel("Th\u00F4ng tin c\u1EE7a b\u1EA1n");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(SystemColor.text);
 		lblNewLabel
 				.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.RED, Color.ORANGE, Color.CYAN, Color.YELLOW));
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("SVN-The Voice Heavy", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("UTM Windsor BT", Font.PLAIN, 33));
 		lblNewLabel.setBounds(10, 11, 354, 51);
 		pan_1.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("H\u1ECD v\u00E0 t\u00EAn");
-		lblNewLabel_1.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1.setBorder(null);
 		lblNewLabel_1.setBounds(10, 73, 150, 36);
 		pan_1.add(lblNewLabel_1);
@@ -92,43 +100,50 @@ public class GuiProfile extends JFrame {
 		fullname.setColumns(10);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Ng\u00E0y sinh");
-		lblNewLabel_1_1.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_1.setBorder(null);
 		lblNewLabel_1_1.setBounds(10, 155, 150, 36);
 		pan_1.add(lblNewLabel_1_1);
 
 		JLabel lblNewLabel_1_2 = new JLabel("Gi\u1EDBi t\u00EDnh");
-		lblNewLabel_1_2.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_2.setForeground(Color.WHITE);
+		lblNewLabel_1_2.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_2.setBorder(null);
 		lblNewLabel_1_2.setBounds(10, 237, 150, 36);
 		pan_1.add(lblNewLabel_1_2);
 
 		JLabel lblNewLabel_1_3 = new JLabel("C\u00F4ng vi\u1EC7c");
-		lblNewLabel_1_3.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_3.setForeground(Color.WHITE);
+		lblNewLabel_1_3.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_3.setBorder(null);
 		lblNewLabel_1_3.setBounds(10, 319, 150, 36);
 		pan_1.add(lblNewLabel_1_3);
 
 		JLabel lblNewLabel_1_4 = new JLabel("\u0110\u1ECBa ch\u1EC9");
-		lblNewLabel_1_4.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_4.setForeground(Color.WHITE);
+		lblNewLabel_1_4.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_4.setBorder(null);
 		lblNewLabel_1_4.setBounds(10, 401, 150, 36);
 		pan_1.add(lblNewLabel_1_4);
 
 		JLabel lblNewLabel_1_5 = new JLabel("S\u0110T");
-		lblNewLabel_1_5.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_5.setForeground(Color.WHITE);
+		lblNewLabel_1_5.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_5.setBorder(null);
 		lblNewLabel_1_5.setBounds(399, 73, 150, 36);
 		pan_1.add(lblNewLabel_1_5);
 
 		JLabel lblNewLabel_1_6 = new JLabel("Email");
-		lblNewLabel_1_6.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_6.setForeground(Color.WHITE);
+		lblNewLabel_1_6.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_6.setBorder(null);
 		lblNewLabel_1_6.setBounds(399, 155, 150, 36);
 		pan_1.add(lblNewLabel_1_6);
 
 		JLabel lblNewLabel_1_7 = new JLabel("FB");
-		lblNewLabel_1_7.setFont(new Font("SVN-Sofia", Font.PLAIN, 20));
+		lblNewLabel_1_7.setForeground(Color.WHITE);
+		lblNewLabel_1_7.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_7.setBorder(null);
 		lblNewLabel_1_7.setBounds(399, 237, 150, 36);
 		pan_1.add(lblNewLabel_1_7);
@@ -199,6 +214,7 @@ public class GuiProfile extends JFrame {
 		pan_1.add(fb_link);
 
 		mnNewMenu = new JMenu("Ch\u00E0o " + login.getUsername());
+		mnNewMenu.setForeground(Color.WHITE);
 		mnNewMenu.setDelay(0);
 		mnNewMenu.setBounds(805, 11, 115, 26);
 		pan_1.add(mnNewMenu);
@@ -254,11 +270,30 @@ public class GuiProfile extends JFrame {
 		mnNewMenu.add(PrbuttonThoat);
 
 		lblNewLabel_2 = new JLabel("Carrot team - 2021");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("SVN-Rocker", Font.PLAIN, 16));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(682, 474, 248, 26);
 		pan_1.add(lblNewLabel_2);
 		this.setVisible(true);
+		
+		JLabel lb = new JLabel("");
+		lb.setBounds(1, 1, 1026, 673);
+		lb.setHorizontalTextPosition(SwingConstants.CENTER);
+		lb.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane();
+		getContentPane().add(lb);
+		System.out.print("x:" + lb.getSize().width + "y: " + lb.getSize().height);
+		
+		try {
+			BufferedImage image = ImageIO.read(new File("bg5.jpeg"));
+			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, image.SCALE_SMOOTH));
+			lb.setIcon(icon);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pan_1.add(lb);
 
 	}
 

@@ -81,6 +81,7 @@ public class GuiRegier extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, 2001);
 		cal.set(Calendar.MONTH, 0);

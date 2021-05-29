@@ -145,6 +145,22 @@ public class AccountList implements Serializable {
 		return true;
 	}
 
+	public boolean editAccount(Account a) {
+		String t = a.getUsername();
+		List<Account> list = new ArrayList<Account>(this.accountList);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUsername().equals(t)) {
+				list.remove(i);
+				list.add(a);
+				this.accountList = new LinkedList<Account>(list);
+				this.sortQueue();
+				this.writeFile(this.path);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	protected Account findAccount(String username) {
 		for (Account i : this.accountList)
 			if (i.getUsername().equals(username))
@@ -161,8 +177,8 @@ public class AccountList implements Serializable {
 			// If the element is present at the middle itself
 			if (rs == 0)
 				return a;
-			// If element is smaller than mid, then it can only be 
-			//present in left subarray
+			// If element is smaller than mid, then it can only be
+			// present in left subarray
 			if (rs > 0)
 				return accountSearch(x, mid - 1, s);
 			// Else the element can only be present in right subarray
@@ -188,4 +204,5 @@ public class AccountList implements Serializable {
 		a.writeFile(a.path);
 		System.out.println(a.getAccountList());
 	}
+
 }

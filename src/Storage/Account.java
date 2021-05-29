@@ -141,7 +141,7 @@ public class Account {
 	public LocalDate getBirthday_() {
 		return birthday;
 	}
-	
+
 	public String getBirthday() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
 		return this.birthday.format(formatter);
@@ -204,5 +204,17 @@ public class Account {
 
 	public String getPhoneNum() {
 		return this.phoneNum;
+	}
+
+	public void setFullName(String text) {
+		this.fullName = text;
+	}
+
+	public void setBirthday(LocalDate date) {
+		this.birthday = date;
+	}
+
+	public void setPhoneNum(String text) {
+		this.phoneNum = text;
 	}
 }

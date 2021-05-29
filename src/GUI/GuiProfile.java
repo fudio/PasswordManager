@@ -18,14 +18,22 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.border.SoftBevelBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import Storage.Account;
+import Storage.AccountList;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
@@ -53,13 +61,15 @@ public class GuiProfile extends JFrame {
 	private JButton PrbuttonDX;
 	private JButton PrbuttonThoat;
 	private JLabel lblNewLabel_2;
+	private JButton cancelButton;
+	private JButton editProfileButton;
 
 	/**
 	 * Creates new form JLabelLink
 	 * 
 	 * @param login
 	 */
-	public GuiProfile(Account login) {
+	public GuiProfile(final Account login) {
 		this.setTitle("PROFILE");
 		this.setSize(946, 550);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -158,6 +168,19 @@ public class GuiProfile extends JFrame {
 				new Color(102, 255, 255), new Color(255, 255, 153)));
 		birthday.setBounds(10, 190, 354, 36);
 		pan_1.add(birthday);
+
+		Date date = new Date();
+
+		final JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		dateChooser.getCalendarButton().setBackground(SystemColor.controlHighlight);
+		dateChooser.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 0, 102), new Color(255, 51, 51),
+				new Color(102, 255, 255), new Color(255, 255, 153)));
+		dateChooser.setBounds(10, 190, 354, 36);
+		pan_1.add(dateChooser);
+		dateChooser.setDate(date);
+		dateChooser.setDateFormatString("dd/MM/YYYY");
+		dateChooser.setVisible(false);
 
 		sex = new JTextField();
 		sex.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -270,6 +293,82 @@ public class GuiProfile extends JFrame {
 		});
 		mnNewMenu.add(PrbuttonThoat);
 
+		editProfileButton = new JButton("Chỉnh sửa");
+		editProfileButton.setPreferredSize(new Dimension(100, 23));
+		editProfileButton.setMinimumSize(new Dimension(100, 23));
+		editProfileButton.setMaximumSize(new Dimension(100, 23));
+		editProfileButton.setBackground(SystemColor.controlHighlight);
+		editProfileButton.setBounds(658, 446, 95, 23);
+		pan_1.add(editProfileButton);
+
+		final JButton agreeButton = new JButton("Đồng ý");
+		agreeButton.setMinimumSize(new Dimension(100, 23));
+		agreeButton.setMaximumSize(new Dimension(100, 23));
+		agreeButton.setPreferredSize(new Dimension(100, 23));
+		agreeButton.setBackground(SystemColor.controlHighlight);
+		agreeButton.setBounds(664, 446, 89, 23);
+		pan_1.add(agreeButton);
+		agreeButton.setVisible(false);
+
+		cancelButton = new JButton("Huỷ");
+		cancelButton.setBackground(SystemColor.controlHighlight);
+		cancelButton.setBounds(766, 446, 89, 23);
+		pan_1.add(cancelButton);
+		cancelButton.setVisible(false);
+
+		editProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agreeButton.setVisible(true);
+				cancelButton.setVisible(true);
+				editProfileButton.setVisible(false);
+				fullname.setEditable(true);
+				phone.setEditable(true);
+				birthday.setVisible(false);
+				dateChooser.setVisible(true);
+			}
+		});
+
+		agreeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agreeButton.setVisible(false);
+				cancelButton.setVisible(false);
+				editProfileButton.setVisible(true);
+				fullname.setEditable(false);
+				phone.setEditable(false);
+				birthday.setVisible(true);
+				dateChooser.setVisible(false);
+				String fullName = fullname.getText();
+				String phone_ = phone.getText();
+				Date birthday_ = dateChooser.getCalendar().getTime();
+				if (!isValidPhone(phone_))
+					JOptionPane.showMessageDialog(agreeButton,
+							"Số điện thoại bạn nhập không phải của nhà mạng Việt Nam", "InvalidPhoneNumberError",
+							JOptionPane.WARNING_MESSAGE);
+				else {
+					if (fullName != login.getFullName())
+						login.setFullName(fullName);
+					if (birthday_ != new Date())
+						login.setBirthday(convertToLocalDateViaMilisecond(birthday_));
+					if (phone_ != login.getPhoneNum())
+						login.setPhoneNum(phone_);
+					AccountList a = new AccountList();
+					a.editAccount(login);
+				}
+			}
+		});
+
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agreeButton.setVisible(false);
+				cancelButton.setVisible(false);
+				editProfileButton.setVisible(true);
+				fullname.setEditable(false);
+				phone.setEditable(false);
+				birthday.setVisible(true);
+				dateChooser.setVisible(false);
+			}
+		});
+
 		lblNewLabel_2 = new JLabel("Carrot team - 2021");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("SVN-Rocker", Font.PLAIN, 16));
@@ -277,15 +376,15 @@ public class GuiProfile extends JFrame {
 		lblNewLabel_2.setBounds(682, 474, 248, 26);
 		pan_1.add(lblNewLabel_2);
 		this.setVisible(true);
-		
+
 		JLabel lb = new JLabel("");
-		lb.setBounds(1, 1, 1026, 673);
+		lb.setBounds(-57, 11, 1026, 673);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();
 		getContentPane().add(lb);
 		System.out.print("x:" + lb.getSize().width + "y: " + lb.getSize().height);
-		
+
 		try {
 			BufferedImage image = ImageIO.read(new File("bg5.jpeg"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, Image.SCALE_SMOOTH));
@@ -312,4 +411,14 @@ public class GuiProfile extends JFrame {
 		});
 	}
 
+	private boolean isValidPhone(String phoneNum) {
+		String regex = "(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(phoneNum);
+		return m.matches();
+	}
+
+	public LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
+		return Instant.ofEpochMilli(dateToConvert.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+	}
 }

@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Month;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
+import Storage.Account;
 import Storage.AccountList;
 
 public class GuiAdmin {
@@ -21,22 +25,31 @@ public class GuiAdmin {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	GuiAdmin() {
+	public GuiAdmin(Account login) {
 		f = new JFrame();
 		f.setLocation(new Point(300, 300));
 		f.setTitle("ADMIN");
 
-		String data[][] = { { " ", " ", " ", " ", " ", " ", " ", " " } };
-		String column[] = { "Tên đăng nhập", "Họ tên", "Ngày sinh", "Giới tính", "Công việc", "SĐT", "Email",
-				"Mạng xã hội" };
+//		String data[][] = { { " ", " ", " ", " ", " ", " ", " ", " " } };
+//		String column[] = { "Tên đăng nhập", "Họ tên", "Ngày sinh", "Giới tính", "Công việc", "SĐT", "Email",
+//				"Mạng xã hội" };
 		f.getContentPane().setLayout(null);
 
-		JTable jt = new JTable(data, column);
+		final JTable jt = new JTable(new DefaultTableModel(new Object[] { "Tên đăng nhập", "Họ tên", "Ngày sinh",
+				"Giới tính", "Công việc", "SĐT", "Email", "Mạng xã hội" }, 0));
 		jt.setBounds(30, 40, 200, 300);
 
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setBounds(0, 166, 849, 317);
 		f.getContentPane().add(sp);
+
+		final DefaultTableModel model = (DefaultTableModel) jt.getModel();
+		AccountList a = new AccountList();
+		for (Account i : a.getAccountList()) {
+			if (!i.getUsername().equals(login.getUsername()))
+				model.addRow(new Object[] { i.getUsername(), i.getFullName(), i.getBirthday(), "", "", i.getPhoneNum(),
+						"", "" });
+		}
 
 		JLabel lblNewLabel = new JLabel("Quản lý tài khoản");
 		lblNewLabel.setFont(new Font("UTM Times", Font.PLAIN, 22));
@@ -77,6 +90,10 @@ public class GuiAdmin {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AccountList a = new AccountList();
+				int index = jt.getSelectedRow();
+				String choice = (String) jt.getValueAt(index, 0);
+				a.delete(choice);
+				model.removeRow(index);
 			}
 		});
 		btnNewButton_3.setBorder(UIManager.getBorder("CheckBox.border"));
@@ -91,6 +108,8 @@ public class GuiAdmin {
 	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
-		new GuiAdmin();
+		Account a = new Account("fudio101", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
+				LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+		new GuiAdmin(a);
 	}
 }

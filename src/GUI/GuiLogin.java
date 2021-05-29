@@ -212,9 +212,15 @@ public class GuiLogin extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(DNbuttonDN, "Đăng nhập thành công", "Success",
 							JOptionPane.INFORMATION_MESSAGE);
-					GuiProfile frm1 = new GuiProfile(login);
-					frm1.setVisible(true);
-					dispose();
+					if (login.getRank() == 0) {
+						GuiAdmin admin = new GuiAdmin(login);
+						// admin.setVisible(true);
+						dispose();
+					} else {
+						GuiProfile frm1 = new GuiProfile(login);
+						frm1.setVisible(true);
+						dispose();
+					}
 				}
 			else
 				JOptionPane.showMessageDialog(DNbuttonDN, "Sai Tên đăng nhập hoặc Mật khẩu", "VerifycationError",

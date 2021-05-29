@@ -34,20 +34,39 @@ public class Account {
 	private String phoneNum;
 
 	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
-		this.username = un;
-		this.rank = this.username.contains("_admin007") ? 0 : 1;
+		this.username = un.replace("_admin007", "");
+		this.rank = un.contains("_admin007") ? 0 : 1;
 		this.fullName = fN;
 		this.birthday = bd;
 		this.phoneNum = pN;
 		String BCryptHash = BCryptHash(pw);
+
 		try {
 			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
 					AESUtil.readIv("paramFile"));
-		} catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
-				| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
-				| IOException e) {
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidAlgorithmParameterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	private byte[] getSalt() {
@@ -120,14 +139,37 @@ public class Account {
 	}
 
 	private String getHasedPw() {
-		try {
-			return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
-		} catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
-				| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
-				| IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+			try {
+				return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (NoSuchPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (InvalidAlgorithmParameterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (IllegalBlockSizeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 	}
 
 	public String getUsername() {

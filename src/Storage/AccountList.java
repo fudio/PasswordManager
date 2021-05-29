@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -124,7 +125,7 @@ public class AccountList implements Serializable {
 		return conn;
 	}
 
-	protected Queue<Account> getAccountList() {
+	public Queue<Account> getAccountList() {
 		return accountList;
 	}
 
@@ -203,6 +204,32 @@ public class AccountList implements Serializable {
 		System.out.println(a.getAccountList());
 		a.writeFile(a.path);
 		System.out.println(a.getAccountList());
+	}
+
+	public boolean delete(String choice) {
+		List<Account> list = new ArrayList<Account>(this.accountList);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUsername().equals(choice)) {
+				list.remove(i);
+				this.accountList = new LinkedList<Account>(list);
+				this.sortQueue();
+				this.deleteAllOfDatabase(this.path);
+				this.writeFile(this.path);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void deleteAllOfDatabase(String path) {
+		String sql = "DELETE FROM Account";
+		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

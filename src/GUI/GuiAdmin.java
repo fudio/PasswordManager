@@ -85,7 +85,7 @@ public class GuiAdmin {
         btnNewButton_3.setBorder(UIManager.getBorder("CheckBox.border"));
         btnNewButton_3.setBounds(594, 132, 89, 23);
         f.getContentPane().add(btnNewButton_3);
- 
+ //test
         f.setSize(865, 522);
         f.setVisible(true);
     }

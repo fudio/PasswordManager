@@ -304,7 +304,6 @@ public class GuiProfile extends JFrame {
 		 */
 		EventQueue.invokeLater(new Runnable() {
 
-			@Override
 			public void run() {
 				Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
 						LocalDate.of(2001, Month.JANUARY, 1), "0337202484");

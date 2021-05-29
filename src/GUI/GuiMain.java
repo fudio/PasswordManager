@@ -165,7 +165,6 @@ public class GuiMain extends JFrame {
 		 */
 		EventQueue.invokeLater(new Runnable() {
 
-			@Override
 			public void run() {
 				new GuiMain().setVisible(true);
 			}

@@ -65,7 +65,8 @@ public class Account {
 
 	private String BCryptHash(String pw) {
 		byte[] sha256Hash = sha256(pw);
-		byte[] BCryptHash = BCrypt.withDefaults().hash(12, this.getSalt(), sha256Hash);
+		int cost = 12;
+		byte[] BCryptHash = BCrypt.withDefaults().hash(cost, this.getSalt(), sha256Hash);
 		return new String(BCryptHash, StandardCharsets.UTF_8);
 	}
 

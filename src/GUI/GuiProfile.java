@@ -142,7 +142,7 @@ public class GuiProfile extends JFrame {
 		lblNewLabel_1_6.setBounds(399, 155, 150, 36);
 		pan_1.add(lblNewLabel_1_6);
 
-		JLabel lblNewLabel_1_7 = new JLabel("FB");
+		JLabel lblNewLabel_1_7 = new JLabel("Mạng xã hội");
 		lblNewLabel_1_7.setForeground(Color.WHITE);
 		lblNewLabel_1_7.setFont(new Font("UTM Nyala", Font.PLAIN, 27));
 		lblNewLabel_1_7.setBorder(null);

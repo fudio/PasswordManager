@@ -149,6 +149,7 @@ public class GuiRegier extends JFrame {
 		usernameField.setColumns(10);
 
 		passwordField = new JPasswordField();
+		passwordField.setEchoChar('*');
 		passwordField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
 		passwordField.setBounds(204, 122, 171, 22);
 		panel_1.add(passwordField);
@@ -164,6 +165,7 @@ public class GuiRegier extends JFrame {
 		lblNewLabel_3.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
 
 		passwordField_2 = new JPasswordField();
+		passwordField_2.setEchoChar('*');
 		passwordField_2.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
 		passwordField_2.setBounds(204, 160, 171, 22);
 		panel_1.add(passwordField_2);

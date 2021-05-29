@@ -160,6 +160,7 @@ public class GuiLogin extends JFrame {
 		panel_3.setLayout(null);
 
 		passwordField = new JPasswordField();
+		passwordField.setEchoChar('*');
 		passwordField.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
 		passwordField.setBackground(SystemColor.control);
 		passwordField.setBorder(null);

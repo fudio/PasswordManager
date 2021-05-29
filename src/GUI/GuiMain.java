@@ -202,7 +202,7 @@ public class GuiMain extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Desktop.getDesktop().browse(new URI("https://www.facebook.com/Thach.Huynh.ZoneNop/"));
+					Desktop.getDesktop().browse(new URI("https://github.com/fudio/PasswordManager"));
 				} catch (URISyntaxException | IOException ex) {
 					// It looks like there's a problem
 				}

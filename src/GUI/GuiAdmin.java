@@ -57,8 +57,8 @@ public class GuiAdmin {
 				int output = JOptionPane.showConfirmDialog(ADbuttonDX, "Bạn có muốn đăng xuất", "Logout",
 						JOptionPane.YES_NO_OPTION);
 				if (output == 0) {
-					GuiMain frm1 = new GuiMain();
-					frm1.setVisible(true);
+					GuiMain frm12 = new GuiMain();
+					frm12.setVisible(true);
 					//dispose();
 				}
 			}

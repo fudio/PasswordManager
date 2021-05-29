@@ -52,14 +52,13 @@ public class AccountList implements Serializable {
 		this.sortQueue();
 	}
 
+	// Returns the index of the smallest value on queue
 	public int minIndex(int sortIndex) {
 		int min_index = -1;
 		Account min_value = new Account("zzzzzzzzzzzzzzzz");
 		int s = this.accountList.size();
 		for (int i = 0; i < s; i++) {
-			Account current = this.accountList.peek();
-
-			this.accountList.poll();
+			Account current = this.accountList.poll();
 
 			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
 				min_index = i;
@@ -70,12 +69,13 @@ public class AccountList implements Serializable {
 		return min_index;
 	}
 
+	// Compare 2 String, return 0 if they equal, return a positive number if str1 is
+	// greater than str2 and return a negative number if str1 is less than str 2
 	public static int stringCompare(String str1, String str2) {
 
 		int l1 = str1.length();
 		int l2 = str2.length();
 		int lmin = Math.min(l1, l2);
-
 		for (int i = 0; i < lmin; i++) {
 			int str1_ch = (int) str1.charAt(i);
 			int str2_ch = (int) str2.charAt(i);
@@ -84,22 +84,19 @@ public class AccountList implements Serializable {
 				return str1_ch - str2_ch;
 			}
 		}
-
 		if (l1 != l2) {
 			return l1 - l2;
-		}
-
-		else {
+		} else {
 			return 0;
 		}
 	}
 
+	// Bring the smallest value to the end
 	public void insertMinToRear(int min_index) {
 		Account min_value = new Account("");
 		int s = this.accountList.size();
 		for (int i = 0; i < s; i++) {
-			Account current = this.accountList.peek();
-			this.accountList.poll();
+			Account current = this.accountList.poll();
 			if (i != min_index)
 				this.accountList.add(current);
 			else
@@ -161,23 +158,17 @@ public class AccountList implements Serializable {
 			int mid = x + (y - x) / 2;
 			Account a = (Account) t.get(mid);
 			int rs = AccountList.stringCompare(a.getUsername(), s);
-			// If the element is present at the
-			// middle itself
+			// If the element is present at the middle itself
 			if (rs == 0)
 				return a;
-
-			// If element is smaller than mid, then
-			// it can only be present in left subarray
+			// If element is smaller than mid, then it can only be 
+			//present in left subarray
 			if (rs > 0)
 				return accountSearch(x, mid - 1, s);
-
-			// Else the element can only be present
-			// in right subarray
+			// Else the element can only be present in right subarray
 			return accountSearch(mid + 1, y, s);
 		}
-
-		// We reach here when element is not present
-		// in array
+		// We reach here when element is not present in array
 		return null;
 	}
 

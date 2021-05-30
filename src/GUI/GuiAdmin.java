@@ -46,7 +46,7 @@ public class GuiAdmin {
 		final DefaultTableModel model = (DefaultTableModel) jt.getModel();
 		AccountList a = new AccountList();
 		for (Account i : a.getAccountList()) {
-			if (!i.getUsername().equals(login.getUsername()))
+			if (i.getRank() != 0)
 				model.addRow(new Object[] { i.getUsername(), i.getFullName(), i.getBirthday(), "", "", i.getPhoneNum(),
 						"", "" });
 		}

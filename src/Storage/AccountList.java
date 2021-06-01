@@ -73,7 +73,6 @@ public class AccountList implements Serializable {
 	// Compare 2 String, return 0 if they equal, return a positive number if str1 is
 	// greater than str2 and return a negative number if str1 is less than str 2
 	public static int stringCompare(String str1, String str2) {
-
 		int l1 = str1.length();
 		int l2 = str2.length();
 		int lmin = Math.min(l1, l2);

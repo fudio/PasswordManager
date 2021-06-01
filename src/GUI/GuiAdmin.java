@@ -91,6 +91,8 @@ public class GuiAdmin {
 			public void actionPerformed(ActionEvent e) {
 				AccountList a = new AccountList();
 				int index = jt.getSelectedRow();
+				if (index == -1)
+					return;
 				String choice = (String) jt.getValueAt(index, 0);
 				a.delete(choice);
 				model.removeRow(index);

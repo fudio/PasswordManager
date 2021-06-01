@@ -33,6 +33,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import java.awt.Component;
 import javax.swing.SwingConstants;
+import java.awt.Point;
 
 public class GuiRegier extends JFrame {
 
@@ -79,6 +80,7 @@ public class GuiRegier extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

@@ -27,12 +27,9 @@ public class GuiAdmin {
 	 */
 	public GuiAdmin(Account login) {
 		f = new JFrame();
-		f.setLocation(new Point(300, 300));
+		f.setLocation(new Point(500, 200));
 		f.setTitle("ADMIN");
 
-//		String data[][] = { { " ", " ", " ", " ", " ", " ", " ", " " } };
-//		String column[] = { "Tên đăng nhập", "Họ tên", "Ngày sinh", "Giới tính", "Công việc", "SĐT", "Email",
-//				"Mạng xã hội" };
 		f.getContentPane().setLayout(null);
 
 		final JTable jt = new JTable(new DefaultTableModel(new Object[] { "Tên đăng nhập", "Họ tên", "Ngày sinh",

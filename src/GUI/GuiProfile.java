@@ -259,6 +259,7 @@ public class GuiProfile extends JFrame {
 		PrbuttonCaidat.setMaximumSize(new Dimension(100, 23));
 		PrbuttonCaidat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		mnNewMenu.add(PrbuttonCaidat);
@@ -378,7 +379,7 @@ public class GuiProfile extends JFrame {
 		this.setVisible(true);
 
 		JLabel lb = new JLabel("");
-		lb.setBounds(-57, 11, 1026, 673);
+		lb.setBounds(-30, -40, 1026, 673);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();

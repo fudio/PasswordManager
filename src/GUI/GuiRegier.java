@@ -33,7 +33,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import java.awt.Component;
 import javax.swing.SwingConstants;
-import java.awt.Point;
 
 public class GuiRegier extends JFrame {
 

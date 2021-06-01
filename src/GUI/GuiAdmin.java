@@ -26,6 +26,8 @@ public class GuiAdmin {
 	 * @wbp.parser.entryPoint
 	 */
 	public GuiAdmin(Account login) {
+		if (login.getRank() != 0)
+			return;
 		f = new JFrame();
 		f.setLocation(new Point(500, 200));
 		f.setTitle("ADMIN");
@@ -107,7 +109,7 @@ public class GuiAdmin {
 	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
-		Account a = new Account("fudio101", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
+		Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
 				LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
 		new GuiAdmin(a);
 	}

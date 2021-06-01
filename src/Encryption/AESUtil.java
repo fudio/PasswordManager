@@ -172,12 +172,12 @@ public class AESUtil {
 		return new SecretKeySpec(fileData, "AES");
 	}
 
-	private static void saveIv(IvParameterSpec ivspec, String path) throws IOException {
-		FileOutputStream fs = new FileOutputStream(new File(path));
-		BufferedOutputStream bos = new BufferedOutputStream(fs);
-		bos.write(ivspec.getIV());
-		bos.close();
-	}
+//	private static void saveIv(IvParameterSpec ivspec, String path) throws IOException {
+//		FileOutputStream fs = new FileOutputStream(new File(path));
+//		BufferedOutputStream bos = new BufferedOutputStream(fs);
+//		bos.write(ivspec.getIV());
+//		bos.close();
+//	}
 
 	public static IvParameterSpec readIv(String path) throws IOException {
 		byte[] fileData = new byte[16];

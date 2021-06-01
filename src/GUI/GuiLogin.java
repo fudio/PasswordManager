@@ -216,8 +216,8 @@ public class GuiLogin extends JFrame {
 					JOptionPane.showMessageDialog(DNbuttonDN, "Đăng nhập thành công", "Success",
 							JOptionPane.INFORMATION_MESSAGE);
 					if (login.getRank() == 0) {
-						GuiAdmin admin = new GuiAdmin(login);
-						// admin.setVisible(true);
+						new GuiAdmin(login);
+//						admin.setVisible(true);
 						dispose();
 					} else {
 						GuiProfile frm1 = new GuiProfile(login);

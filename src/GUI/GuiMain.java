@@ -140,7 +140,7 @@ public class GuiMain extends JFrame {
 		MenuFirst.add(buttonDKmain);
 		
 		JLabel lb = new JLabel("");
-		lb.setBounds(-117, -16, 1026, 673);
+		lb.setBounds(0, 0, 779, 512);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();
@@ -148,7 +148,7 @@ public class GuiMain extends JFrame {
 		System.out.print("x:" + lb.getSize().width + "y: " + lb.getSize().height);
 		
 		try {
-			BufferedImage image = ImageIO.read(new File("bg1.jpeg"));
+			BufferedImage image = ImageIO.read(new File("bg1.jpg"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, Image.SCALE_SMOOTH));
 			lb.setIcon(icon);
 		} catch (IOException e) {

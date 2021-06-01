@@ -295,46 +295,6 @@ public class GuiRegier extends JFrame {
 
 	public static boolean isValidPassword(char[] password) {
 		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,30}$";
-//		^ asserts position at start of a line
-		// Positive Lookahead (?=.[a-z])
-		// Assert that the Regex below matches
-		// . matches any character (except for line terminators)
-		// * matches the previous token between zero and unlimited times, as many times
-		// as possible, giving back as needed (greedy)
-		// Match a single character present in the list below [a-z]
-		// a-z matches a single character in the range between a (index 97) and z (index
-		// 122) (case sensitive)
-		// Positive Lookahead (?=.[A-Z])
-		// Assert that the Regex below matches
-		// . matches any character (except for line terminators)
-		// * matches the previous token between zero and unlimited times, as many times
-		// as possible, giving back as needed (greedy)
-		// Match a single character present in the list below [A-Z]
-		// A-Z matches a single character in the range between A (index 65) and Z (index
-		// 90) (case sensitive)
-		// Positive Lookahead (?=.\d)
-		// Assert that the Regex below matches
-		// . matches any character (except for line terminators)
-		// * matches the previous token between zero and unlimited times, as many times
-		// as possible, giving back as needed (greedy)
-		// \d matches a digit (equivalent to [0-9])
-		// Positive Lookahead (?=.[@$!%*?&])
-		// Assert that the Regex below matches
-		// . matches any character (except for line terminators)
-		// * matches the previous token between zero and unlimited times, as many times
-		// as possible, giving back as needed (greedy)
-		// Match a single character present in the list below [@$!%*?&]
-		// @$!%*?& matches a single character in the list @$!%*?& (case sensitive)
-		// Match a single character present in the list below [A-Za-z\d@$!%*?&]
-		// {8,30} matches the previous token between 8 and 30 times, as many times as
-		// possible, giving back as needed (greedy)
-		// A-Z matches a single character in the range between A (index 65) and Z (index
-		// 90) (case sensitive)
-		// a-z matches a single character in the range between a (index 97) and z (index
-		// 122) (case sensitive)
-		// \d matches a digit (equivalent to [0-9])
-		// @$!%*?& matches a single character in the list @$!%*?& (case sensitive)
-//		$ asserts position at the end of a line
 		Pattern p = Pattern.compile(regex);
 
 		Matcher m = p.matcher(new String(password));

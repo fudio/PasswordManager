@@ -379,7 +379,7 @@ public class GuiProfile extends JFrame {
 		this.setVisible(true);
 
 		JLabel lb = new JLabel("");
-		lb.setBounds(-30, -40, 1026, 673);
+		lb.setBounds(0, 0, 930, 511);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();
@@ -387,7 +387,7 @@ public class GuiProfile extends JFrame {
 		System.out.print("x:" + lb.getSize().width + "y: " + lb.getSize().height);
 
 		try {
-			BufferedImage image = ImageIO.read(new File("bg5.jpeg"));
+			BufferedImage image = ImageIO.read(new File("bg5.jpg"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(1019, 669, Image.SCALE_SMOOTH));
 			lb.setIcon(icon);
 		} catch (IOException e) {

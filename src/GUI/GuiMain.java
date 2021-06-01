@@ -140,7 +140,7 @@ public class GuiMain extends JFrame {
 		MenuFirst.add(buttonDKmain);
 		
 		JLabel lb = new JLabel("");
-		lb.setBounds(1, 1, 1026, 673);
+		lb.setBounds(-117, -16, 1026, 673);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();

@@ -27,6 +27,7 @@ import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import java.awt.Point;
 
 public class GuiLogin extends JFrame {
 
@@ -58,6 +59,7 @@ public class GuiLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiLogin() {
+		setLocation(new Point(500, 200));
 		setTitle("LOGIN");
 		setName("Login");
 		final AccountList list = new AccountList();
@@ -65,6 +67,7 @@ public class GuiLogin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 842, 602);
 		contentPane = new JPanel();
+		this.setLocationRelativeTo(null);
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setForeground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -35,7 +35,16 @@ public class GuiAdmin {
 		f.getContentPane().setLayout(null);
 
 		final JTable jt = new JTable(new DefaultTableModel(new Object[] { "Tên đăng nhập", "Họ tên", "Ngày sinh",
-				"Giới tính", "Công việc", "SĐT", "Email", "Mạng xã hội" }, 0));
+				"Giới tính", "Công việc", "SĐT", "Email", "Mạng xã hội" }, 0)) {
+			/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1855268773107793891L;
+
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		jt.setBounds(30, 40, 200, 300);
 
 		JScrollPane sp = new JScrollPane(jt);

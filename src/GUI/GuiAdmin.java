@@ -34,8 +34,8 @@ public class GuiAdmin {
 
 		f.getContentPane().setLayout(null);
 
-		final JTable jt = new JTable(new DefaultTableModel(new Object[] { "Tên đăng nhập", "H�? tên", "Ng�y sinh",
-				"Giới tính", "Công việc", "S�?T", "Email", "Mạng xã hội" }, 0)) {
+		final JTable jt = new JTable(new DefaultTableModel(new Object[] { "Tên đăng nhập", "Họ tên", "Ngày sinh",
+				"Giới tính", "Công việc", "SĐT", "Email", "Mạng xã hội" }, 0)) {
 			/**
 					 * 
 					 */
@@ -64,7 +64,7 @@ public class GuiAdmin {
 		lblNewLabel.setBounds(10, 11, 177, 33);
 		f.getContentPane().add(lblNewLabel);
 
-		final JButton ADbuttonDX = new JButton("�?ăng xuất");
+		final JButton ADbuttonDX = new JButton("�?ăng xuất");
 		ADbuttonDX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int output = JOptionPane.showConfirmDialog(ADbuttonDX, "Bạn có muốn đăng xuất", "Logout",
@@ -118,7 +118,7 @@ public class GuiAdmin {
 	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
-		Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyễn �?ỗ Thế Nguyên",
+		Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên",
 				LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
 		new GuiAdmin(a);
 	}

@@ -35,12 +35,13 @@ public class GuiLogin extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 8856436166317004678L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
+     * @param args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,7 +50,6 @@ public class GuiLogin extends JFrame {
 					GuiLogin frame = new GuiLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 				}
 			}
 		});
@@ -95,7 +95,7 @@ public class GuiLogin extends JFrame {
 			}
 		});
 
-		final JButton DNbuttonDN = new JButton("ĐĂNG NHẬP");
+		final JButton DNbuttonDN = new JButton("Đăng nhập");
 		DNbuttonDN.setBorder(UIManager.getBorder("CheckBox.border"));
 		DNbuttonDN.setBounds(60, 268, 315, 37);
 		DNbuttonDN.setForeground(Color.BLACK);
@@ -176,20 +176,20 @@ public class GuiLogin extends JFrame {
 		panel_3.add(lblNewLabel_2);
 		lblNewLabel_2.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 13));
 
-		JButton DNđangkyDN = new JButton("Chưa có tài khoản? Đăng ký");
-		DNđangkyDN.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
-		DNđangkyDN.addActionListener(new ActionListener() {
+		JButton registerBtn = new JButton("Chưa có tài khoản? Đăng ký");
+		registerBtn.setFont(new Font("SVN-Trebuchets", Font.PLAIN, 12));
+		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiRegier frm1 = new GuiRegier();
 				frm1.setVisible(true);
 				dispose();
 			}
 		});
-		DNđangkyDN.setBorderPainted(false);
-		DNđangkyDN.setBackground(SystemColor.control);
-		DNđangkyDN.setBorder(UIManager.getBorder("CheckBox.border"));
-		DNđangkyDN.setBounds(219, 236, 211, 23);
-		panel.add(DNđangkyDN);
+		registerBtn.setBorderPainted(false);
+		registerBtn.setBackground(SystemColor.control);
+		registerBtn.setBorder(UIManager.getBorder("CheckBox.border"));
+		registerBtn.setBounds(219, 236, 211, 23);
+		panel.add(registerBtn);
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

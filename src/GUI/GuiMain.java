@@ -141,6 +141,7 @@ public class GuiMain extends JFrame {
 		
 		JLabel lb = new JLabel("");
 		lb.setBounds(0, 0, 779, 512);
+		lb.setBounds(-117, -16, 795, 551);
 		lb.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane();

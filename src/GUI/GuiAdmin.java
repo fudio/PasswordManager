@@ -10,14 +10,17 @@ import java.time.Month;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import Storage.Account;
 import Storage.AccountList;
+import javax.swing.ImageIcon;
 
 public class GuiAdmin {
 	JFrame f;
@@ -80,19 +83,20 @@ public class GuiAdmin {
 		ADbuttonDX.setBounds(720, 0, 129, 23);
 		f.getContentPane().add(ADbuttonDX);
 
-//		JMenu mnNewMenu = new JMenu("Xem thông tin theo");
-//		mnNewMenu.setDelay(0);
-//		mnNewMenu.setHorizontalTextPosition(SwingConstants.LEFT);
-//		mnNewMenu.setHorizontalAlignment(SwingConstants.LEFT);
-//		mnNewMenu.setVerticalAlignment(SwingConstants.TOP);
-//		mnNewMenu.setBounds(691, 130, 148, 26);
-//		f.getContentPane().add(mnNewMenu);
+		JMenu mnNewMenu = new JMenu("Xem thông tin theo");
+		mnNewMenu.setIcon(new ImageIcon(GuiAdmin.class.getResource("/com/toedter/components/images/JSpinFieldColor32.gif")));
+		mnNewMenu.setVerticalAlignment(SwingConstants.TOP);
+		mnNewMenu.setDelay(0);
+		mnNewMenu.setHorizontalTextPosition(SwingConstants.LEFT);
+		mnNewMenu.setHorizontalAlignment(SwingConstants.LEFT);
+		mnNewMenu.setBounds(691, 130, 148, 26);
+		f.getContentPane().add(mnNewMenu);
 
-//		JButton btnNewButton_1 = new JButton("Tên A-Z");
-//		mnNewMenu.add(btnNewButton_1);
-//
-//		JButton btnNewButton_2 = new JButton("Tên Z-A");
-//		mnNewMenu.add(btnNewButton_2);
+		JButton btnNewButton_1 = new JButton("Tên A-Z");
+		mnNewMenu.add(btnNewButton_1);
+
+		JButton btnNewButton_2 = new JButton("Tên Z-A");
+		mnNewMenu.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Xóa TK");
 		btnNewButton_3.addActionListener(new ActionListener() {

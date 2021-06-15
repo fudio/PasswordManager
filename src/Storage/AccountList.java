@@ -112,9 +112,9 @@ public class AccountList implements Serializable {
 		}
 	}
 
-	private Connection connect(String path2) {
+	private Connection connect(String path_) {
 		// SQLite connection string
-		String url = "jdbc:sqlite:" + path;
+		String url = "jdbc:sqlite:" + path_;
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);

@@ -27,11 +27,11 @@ public class AccountList implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6967904973869758331L;
-	private String path = "Account.db";
+	private final String path = "Account.db";
 	private Queue<Account> accountList;
 
 	public AccountList() {
-		accountList = new LinkedList<>();
+		accountList = new LinkedList<Account>();
 		readFile(this.path);
 	}
 

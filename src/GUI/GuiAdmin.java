@@ -67,7 +67,7 @@ public class GuiAdmin {
 		lblNewLabel.setBounds(10, 11, 177, 33);
 		f.getContentPane().add(lblNewLabel);
 
-		final JButton ADbuttonDX = new JButton("�?ăng xuất");
+		final JButton ADbuttonDX = new JButton("Đăng xuất");
 		ADbuttonDX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int output = JOptionPane.showConfirmDialog(ADbuttonDX, "Bạn có muốn đăng xuất", "Logout",

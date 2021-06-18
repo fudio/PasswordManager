@@ -129,16 +129,30 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         pnOption = new javax.swing.JPanel();
         statisticsByLabel1 = new javax.swing.JLabel();
         allTimeButton = new javax.swing.JRadioButton();
-        betweenButton = new javax.swing.JRadioButton();
-        chartStyleLabel = new javax.swing.JLabel();
-        barChartButton = new javax.swing.JRadioButton();
-        lineChartButton = new javax.swing.JRadioButton();
-        showButton = new javax.swing.JButton();
+        dayButton = new javax.swing.JRadioButton();
+        monthButton = new javax.swing.JRadioButton();
+        yearButton = new javax.swing.JRadioButton();
+        pnYear = new javax.swing.JPanel();
+        fromLabel1 = new javax.swing.JLabel();
+        toLabel1 = new javax.swing.JLabel();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jYearChooser2 = new com.toedter.calendar.JYearChooser();
         pnDay = new javax.swing.JPanel();
         fromLabel = new javax.swing.JLabel();
         jDateChooser = new com.toedter.calendar.JDateChooser();
         toLabel = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        pnMonth = new javax.swing.JPanel();
+        fromLabel2 = new javax.swing.JLabel();
+        toLabel2 = new javax.swing.JLabel();
+        jYearChooser3 = new com.toedter.calendar.JYearChooser();
+        jYearChooser4 = new com.toedter.calendar.JYearChooser();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jMonthChooser2 = new com.toedter.calendar.JMonthChooser();
+        chartStyleLabel = new javax.swing.JLabel();
+        barChartButton = new javax.swing.JRadioButton();
+        lineChartButton = new javax.swing.JRadioButton();
+        showButton = new javax.swing.JButton();
         pnChart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,7 +162,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         statisticsByLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         statisticsByLabel1.setText("Statistics by:");
         statisticsByLabel1.setToolTipText("");
-        pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         statisticsBy.add(allTimeButton);
         allTimeButton.setSelected(true);
@@ -158,50 +172,54 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 allTimeButtonActionPerformed(evt);
             }
         });
-        pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        statisticsBy.add(betweenButton);
-        betweenButton.setText("Between");
-        betweenButton.addActionListener(new java.awt.event.ActionListener() {
+        statisticsBy.add(dayButton);
+        dayButton.setText("Day");
+        dayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                betweenButtonActionPerformed(evt);
+                dayButtonActionPerformed(evt);
             }
         });
-        pnOption.add(betweenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-        statisticsBy.add(betweenButton);
+        pnOption.add(dayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        statisticsBy.add(dayButton);
 
-        chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        chartStyleLabel.setText("Chart style:");
-        chartStyleLabel.setToolTipText("");
-        pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
-
-        barChartButton.setSelected(true);
-        barChartButton.setText("Bar chart");
-        barChartButton.addActionListener(new java.awt.event.ActionListener() {
+        statisticsBy.add(monthButton);
+        monthButton.setText("Month");
+        monthButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                barChartButtonActionPerformed(evt);
+                monthButtonActionPerformed(evt);
             }
         });
-        pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-        chartStyle.add(barChartButton);
+        pnOption.add(monthButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        statisticsBy.add(dayButton);
 
-        lineChartButton.setText("Line chart");
-        lineChartButton.addActionListener(new java.awt.event.ActionListener() {
+        statisticsBy.add(yearButton);
+        yearButton.setText("Year");
+        yearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lineChartButtonActionPerformed(evt);
+                yearButtonActionPerformed(evt);
             }
         });
-        pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-        statisticsBy.add(betweenButton);
-        chartStyle.add(lineChartButton);
+        pnOption.add(yearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        statisticsBy.add(dayButton);
 
-        showButton.setText("Show");
-        showButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showButtonActionPerformed(evt);
-            }
-        });
-        pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        pnYear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fromLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel1.setText("From");
+        fromLabel1.setToolTipText("");
+        pnYear.add(fromLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        toLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel1.setText("to");
+        toLabel1.setToolTipText("");
+        pnYear.add(toLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnYear.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
+        pnYear.add(jYearChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, -1));
+
+        pnOption.add(pnYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
+        pnYear.setVisible(false);
 
         pnDay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -221,8 +239,60 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         jDateChooser1.setDate(now);
         pnDay.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 110, -1));
 
-        pnOption.add(pnDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 140, 120));
+        pnOption.add(pnDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
         pnDay.setVisible(false);
+
+        pnMonth.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fromLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel2.setText("From");
+        fromLabel2.setToolTipText("");
+        pnMonth.add(fromLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        toLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel2.setText("to");
+        toLabel2.setToolTipText("");
+        pnMonth.add(toLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        pnMonth.add(jYearChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
+        pnMonth.add(jYearChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, -1));
+        pnMonth.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnMonth.add(jMonthChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        pnOption.add(pnMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 170));
+        pnMonth.setVisible(false);
+
+        chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chartStyleLabel.setText("Chart style:");
+        chartStyleLabel.setToolTipText("");
+        pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+
+        barChartButton.setSelected(true);
+        barChartButton.setText("Bar chart");
+        barChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        chartStyle.add(barChartButton);
+
+        lineChartButton.setText("Line chart");
+        lineChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lineChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        statisticsBy.add(dayButton);
+        chartStyle.add(lineChartButton);
+
+        showButton.setText("Show");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
         javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
         pnChart.setLayout(pnChartLayout);
@@ -232,7 +302,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         );
         pnChartLayout.setVerticalGroup(
             pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
@@ -246,7 +316,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         );
         pnRootLayout.setVerticalGroup(
             pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
             .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -264,12 +334,28 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void yearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearButtonActionPerformed
+        pnDay.setVisible(false);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(true);
+    }//GEN-LAST:event_yearButtonActionPerformed
+
+    private void monthButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthButtonActionPerformed
+        pnDay.setVisible(false);
+        pnMonth.setVisible(true);
+        pnYear.setVisible(false);
+    }//GEN-LAST:event_monthButtonActionPerformed
+
     private void allTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allTimeButtonActionPerformed
         pnDay.setVisible(false);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(false);
     }// GEN-LAST:event_allTimeButtonActionPerformed
 
-    private void betweenButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
+    private void dayButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
         pnDay.setVisible(true);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(false);
     }// GEN-LAST:event_betweenButtonActionPerformed
 
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
@@ -358,19 +444,33 @@ public class guiStatisticalChart extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton allTimeButton;
     private javax.swing.JRadioButton barChartButton;
-    private javax.swing.JRadioButton betweenButton;
     private javax.swing.JLabel chartStyleLabel;
+    private javax.swing.JRadioButton dayButton;
     private javax.swing.JLabel fromLabel;
+    private javax.swing.JLabel fromLabel1;
+    private javax.swing.JLabel fromLabel2;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser2;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private com.toedter.calendar.JYearChooser jYearChooser2;
+    private com.toedter.calendar.JYearChooser jYearChooser3;
+    private com.toedter.calendar.JYearChooser jYearChooser4;
     private javax.swing.JRadioButton lineChartButton;
+    private javax.swing.JRadioButton monthButton;
     private javax.swing.JPanel pnChart;
     private javax.swing.JPanel pnDay;
+    private javax.swing.JPanel pnMonth;
     private javax.swing.JPanel pnOption;
     private javax.swing.JPanel pnRoot;
+    private javax.swing.JPanel pnYear;
     private javax.swing.JButton showButton;
     private javax.swing.JLabel statisticsByLabel1;
     private javax.swing.JLabel toLabel;
+    private javax.swing.JLabel toLabel1;
+    private javax.swing.JLabel toLabel2;
+    private javax.swing.JRadioButton yearButton;
     // End of variables declaration//GEN-END:variables
 
     private void setAllTime() {
@@ -384,16 +484,15 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         for (Statistics i : listItem) {
             Date t = i.getCreateDate();
             long time = t.getTime();
-            long time1 = getTime_(jDateChooser).getTime();
-            System.out.println(jDateChooser.getDate());
-            long time2 = getTime_(jDateChooser1).getTime();
+            long time1 = getTime1(jDateChooser).getTime();
+            long time2 = getTime2(jDateChooser1).getTime();
             if (time >= time1 && time <= time2) {
                 dataset.addValue(i.getCount(), "", t);
             }
         }
     }
 
-    private Date getTime_(com.toedter.calendar.JDateChooser jDateChooser) {
+    private Date getTime1(com.toedter.calendar.JDateChooser jDateChooser) {
         Date value;
         Calendar cal = Calendar.getInstance();
         Date temp = jDateChooser.getDate();
@@ -409,4 +508,19 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         return value;
     }
 
+    private Date getTime2(com.toedter.calendar.JDateChooser jDateChooser) {
+        Date value;
+        Calendar cal = Calendar.getInstance();
+        Date temp = jDateChooser.getDate();
+        if (temp == null) {
+            return null;
+        }
+        cal.setTime(temp);
+        cal.set(Calendar.HOUR_OF_DAY, 24);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 99);
+        value = cal.getTime();
+        return value;
+    }
 }

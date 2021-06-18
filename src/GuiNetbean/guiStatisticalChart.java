@@ -127,11 +127,6 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 
         pnRoot = new javax.swing.JPanel();
         pnOption = new javax.swing.JPanel();
-        pnDay = new javax.swing.JPanel();
-        fromLabel = new javax.swing.JLabel();
-        jDateChooser = new com.toedter.calendar.JDateChooser();
-        toLabel = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         statisticsByLabel1 = new javax.swing.JLabel();
         allTimeButton = new javax.swing.JRadioButton();
         betweenButton = new javax.swing.JRadioButton();
@@ -139,57 +134,21 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         barChartButton = new javax.swing.JRadioButton();
         lineChartButton = new javax.swing.JRadioButton();
         showButton = new javax.swing.JButton();
+        pnDay = new javax.swing.JPanel();
+        fromLabel = new javax.swing.JLabel();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        toLabel = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         pnChart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fromLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fromLabel.setText("From");
-        fromLabel.setToolTipText("");
-
-        jDateChooser.setDate(now);
-
-        toLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        toLabel.setText("to");
-        toLabel.setToolTipText("");
-
-        jDateChooser1.setDate(now);
-
-        javax.swing.GroupLayout pnDayLayout = new javax.swing.GroupLayout(pnDay);
-        pnDay.setLayout(pnDayLayout);
-        pnDayLayout.setHorizontalGroup(
-            pnDayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnDayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnDayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fromLabel)
-                    .addComponent(toLabel))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        pnDayLayout.setVerticalGroup(
-            pnDayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnDayLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(fromLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(toLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
-        jDateChooser.setVisible(false);
-        jDateChooser1.setVisible(false);
-        fromLabel.setVisible(false);
-        toLabel.setVisible(false);
+        pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         statisticsByLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         statisticsByLabel1.setText("Statistics by:");
         statisticsByLabel1.setToolTipText("");
+        pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         statisticsBy.add(allTimeButton);
         allTimeButton.setSelected(true);
@@ -199,6 +158,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 allTimeButtonActionPerformed(evt);
             }
         });
+        pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         statisticsBy.add(betweenButton);
         betweenButton.setText("Between");
@@ -207,10 +167,13 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 betweenButtonActionPerformed(evt);
             }
         });
+        pnOption.add(betweenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        statisticsBy.add(betweenButton);
 
         chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chartStyleLabel.setText("Chart style:");
         chartStyleLabel.setToolTipText("");
+        pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         barChartButton.setSelected(true);
         barChartButton.setText("Bar chart");
@@ -219,6 +182,8 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 barChartButtonActionPerformed(evt);
             }
         });
+        pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        chartStyle.add(barChartButton);
 
         lineChartButton.setText("Line chart");
         lineChartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +191,9 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 lineChartButtonActionPerformed(evt);
             }
         });
+        pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        statisticsBy.add(betweenButton);
+        chartStyle.add(lineChartButton);
 
         showButton.setText("Show");
         showButton.addActionListener(new java.awt.event.ActionListener() {
@@ -233,49 +201,28 @@ public class guiStatisticalChart extends javax.swing.JFrame {
                 showButtonActionPerformed(evt);
             }
         });
+        pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
-        javax.swing.GroupLayout pnOptionLayout = new javax.swing.GroupLayout(pnOption);
-        pnOption.setLayout(pnOptionLayout);
-        pnOptionLayout.setHorizontalGroup(
-            pnOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(pnOptionLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(statisticsByLabel1)
-                    .addComponent(allTimeButton)
-                    .addComponent(betweenButton)
-                    .addComponent(chartStyleLabel)
-                    .addComponent(barChartButton)
-                    .addComponent(lineChartButton)
-                    .addComponent(showButton)))
-        );
-        pnOptionLayout.setVerticalGroup(
-            pnOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnOptionLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(statisticsByLabel1)
-                .addGap(13, 13, 13)
-                .addComponent(allTimeButton)
-                .addGap(7, 7, 7)
-                .addGroup(pnOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnOptionLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(pnDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(betweenButton))
-                .addComponent(chartStyleLabel)
-                .addGap(13, 13, 13)
-                .addComponent(barChartButton)
-                .addGap(7, 7, 7)
-                .addComponent(lineChartButton)
-                .addGap(27, 27, 27)
-                .addComponent(showButton))
-        );
+        pnDay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        statisticsBy.add(betweenButton);
-        chartStyle.add(barChartButton);
-        statisticsBy.add(betweenButton);
-        chartStyle.add(lineChartButton);
+        fromLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel.setText("From");
+        fromLabel.setToolTipText("");
+        pnDay.add(fromLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jDateChooser.setDate(now);
+        pnDay.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, -1));
+
+        toLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel.setText("to");
+        toLabel.setToolTipText("");
+        pnDay.add(toLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        jDateChooser1.setDate(now);
+        pnDay.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 110, -1));
+
+        pnOption.add(pnDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 140, 120));
+        pnDay.setVisible(false);
 
         javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
         pnChart.setLayout(pnChartLayout);
@@ -299,7 +246,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         );
         pnRootLayout.setVerticalGroup(
             pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
             .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -318,17 +265,11 @@ public class guiStatisticalChart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void allTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allTimeButtonActionPerformed
-        jDateChooser.setVisible(false);
-//        jDateChooser1.setVisible(false);
-        fromLabel.setVisible(false);
-        toLabel.setVisible(false);
+        pnDay.setVisible(false);
     }// GEN-LAST:event_allTimeButtonActionPerformed
 
     private void betweenButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
-        jDateChooser.setVisible(true);
-//        jDateChooser1.setVisible(true);
-        fromLabel.setVisible(true);
-        toLabel.setVisible(true);
+        pnDay.setVisible(true);
     }// GEN-LAST:event_betweenButtonActionPerformed
 
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
@@ -445,18 +386,20 @@ public class guiStatisticalChart extends javax.swing.JFrame {
             long time = t.getTime();
             long time1 = getTime_(jDateChooser).getTime();
             System.out.println(jDateChooser.getDate());
-//            long time2 = getTime_(jDateChooser1).getTime();
-            if (time >= time1 ) {
+            long time2 = getTime_(jDateChooser1).getTime();
+            if (time >= time1 && time <= time2) {
                 dataset.addValue(i.getCount(), "", t);
             }
         }
     }
-    private Date getTime_(com.toedter.calendar.JDateChooser jDateChooser){
+
+    private Date getTime_(com.toedter.calendar.JDateChooser jDateChooser) {
         Date value;
         Calendar cal = Calendar.getInstance();
         Date temp = jDateChooser.getDate();
-        if (temp==null)
-        	return null;
+        if (temp == null) {
+            return null;
+        }
         cal.setTime(temp);
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);

@@ -245,9 +245,12 @@
                       <Connection code="now" type="code"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jDateChooser.setDateFormatString(&quot;dd/MM/yyyy&quot;);&#xa;jDateChooser1.setDateFormatString(&quot;dd/MM/yyyy&quot;);"/>
+                  </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="30" width="110" height="-1"/>
+                      <AbsoluteConstraints x="10" y="30" width="120" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -273,7 +276,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="80" width="110" height="-1"/>
+                      <AbsoluteConstraints x="10" y="80" width="120" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

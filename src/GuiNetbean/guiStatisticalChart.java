@@ -5,8 +5,14 @@
  */
 package GuiNetbean;
 
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
+import javax.swing.ButtonGroup;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -14,6 +20,12 @@ import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import Storage.AccountList;
+import Storage.Statistics;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
@@ -30,59 +42,74 @@ public class guiStatisticalChart extends javax.swing.JFrame {
      * Creates new form guiStatisticalChart
      */
     public guiStatisticalChart() {
+        statisticsBy = new ButtonGroup();
+        chartStyle = new ButtonGroup();
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        now = cal.getTime();
+
         initComponents();
-
-        // Create dataset
-        DefaultCategoryDataset dataset = createDataset();
-        // Create chart
-//        JFreeChart chart = ChartFactory.createLineChart(
-//                "Statistical Chart", // Chart title  
-//                "Date", // X-Axis Label  
-//                "Number of Register", // Y-Axis Label  
-//                dataset, PlotOrientation.VERTICAL, false, true, true
-//        );
-//        CategoryPlot plot = (CategoryPlot) chart.getPlot();
-//        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-//        renderer.setDefaultShapesVisible(true);
-//        DecimalFormat decimalformat1 = new DecimalFormat("##");
-//        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", decimalformat1));
-//        renderer.setDefaultItemLabelsVisible(true);
-//        renderer.setSeriesVisible(true);
-
-        JFreeChart chart = ChartFactory.createBarChart("Statistical Chart",
-                "Date",
-                "Number of Register",
-                dataset, PlotOrientation.VERTICAL, false, true, true);
-        CategoryItemRenderer renderer = ((CategoryPlot)chart.getPlot()).getRenderer();
-        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-        renderer.setDefaultItemLabelsVisible(true);
-        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, 
-                TextAnchor.TOP_CENTER);
-        renderer.setDefaultPositiveItemLabelPosition(position);
-        ChartPanel panel = new ChartPanel(chart);
-        setContentPane(panel);
+        createDataset();
+        initBarChart(pnChart);
     }
 
-    private DefaultCategoryDataset createDataset() {
+    private void initBarChart(javax.swing.JPanel chartPanel) {
+        // Create barChart
+        barChart = ChartFactory.createBarChart("Statistical Chart", "Time", "Number of Register", dataset,
+                PlotOrientation.VERTICAL, false, true, true);
 
-        String series1 = "2020";
+        CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        renderer.setDefaultItemLabelsVisible(true);
+        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.TOP_CENTER);
+        renderer.setDefaultPositiveItemLabelPosition(position);
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        ChartPanel panel = new ChartPanel(barChart);
+        panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
 
-        dataset.addValue(200, series1, "1");
-        dataset.addValue(150, series1, "2");
-        dataset.addValue(100, series1, "3");
-        dataset.addValue(0, series1, "4");
-        dataset.addValue(240, series1, "5");
-        dataset.addValue(195, series1, "6");
-        dataset.addValue(245, series1, "7");
-        dataset.addValue(200, series1, "8");
-        dataset.addValue(0, series1, "9");
-        dataset.addValue(100, series1, "10");
-        dataset.addValue(210, series1, "11");
-        dataset.addValue(240, series1, "12");
+        chartPanel.removeAll();
+        chartPanel.setLayout(new CardLayout());
+        chartPanel.add(panel);
+        chartPanel.validate();
+        chartPanel.repaint();
+    }
 
-        return dataset;
+    private void initLineChart(javax.swing.JPanel chartPanel) {
+        // Create lineChart
+        lineChart = ChartFactory.createLineChart("Statistical Chart", // Chart title
+                "Time", // X-Axis Label
+                "Number of Register", // Y-Axis Label
+                dataset, PlotOrientation.VERTICAL, false, true, true);
+
+        CategoryPlot plot = (CategoryPlot) lineChart.getPlot();
+
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setDefaultShapesVisible(true);
+        DecimalFormat decimalformat1 = new DecimalFormat("##");
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", decimalformat1));
+        renderer.setDefaultItemLabelsVisible(true);
+        renderer.setDefaultSeriesVisible(true);
+
+        ChartPanel panel = new ChartPanel(lineChart);
+        panel.setPreferredSize(new Dimension(840, 450));
+        panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
+
+        chartPanel.removeAll();
+        chartPanel.setLayout(new CardLayout());
+        chartPanel.add(panel);
+        chartPanel.validate();
+        chartPanel.repaint();
+    }
+
+    private void createDataset() {
+        AccountList list = new AccountList();
+        listItem = list.getStatitical();
+        dataset = new DefaultCategoryDataset();
     }
 
     /**
@@ -92,15 +119,177 @@ public class guiStatisticalChart extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(950, 520));
-		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnRoot = new javax.swing.JPanel();
+        pnOption = new javax.swing.JPanel();
+        statisticsByLabel1 = new javax.swing.JLabel();
+        allTimeButton = new javax.swing.JRadioButton();
+        betweenButton = new javax.swing.JRadioButton();
+        fromLabel = new javax.swing.JLabel();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        toLabel = new javax.swing.JLabel();
+        chartStyleLabel = new javax.swing.JLabel();
+        barChartButton = new javax.swing.JRadioButton();
+        lineChartButton = new javax.swing.JRadioButton();
+        showButton = new javax.swing.JButton();
+        pnChart = new javax.swing.JPanel();
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        statisticsByLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        statisticsByLabel1.setText("Statistics by:");
+        statisticsByLabel1.setToolTipText("");
+        pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        statisticsBy.add(allTimeButton);
+        allTimeButton.setSelected(true);
+        allTimeButton.setText("All time");
+        allTimeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allTimeButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        statisticsBy.add(betweenButton);
+        betweenButton.setText("Between");
+        betweenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                betweenButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(betweenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        statisticsBy.add(betweenButton);
+
+        fromLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel.setText("From");
+        fromLabel.setToolTipText("");
+        pnOption.add(fromLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jDateChooser.setVisible(false);
+        fromLabel.setVisible(false);
+        toLabel.setVisible(false);
+
+        jDateChooser.setDate(now);
+        pnOption.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
+
+        toLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel.setText("to");
+        toLabel.setToolTipText("");
+        pnOption.add(toLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chartStyleLabel.setText("Chart style:");
+        chartStyleLabel.setToolTipText("");
+        pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        barChartButton.setSelected(true);
+        barChartButton.setText("Bar chart");
+        barChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        chartStyle.add(barChartButton);
+
+        lineChartButton.setText("Line chart");
+        lineChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lineChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        statisticsBy.add(betweenButton);
+        chartStyle.add(lineChartButton);
+
+        showButton.setText("Show");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
+        pnRoot.setLayout(pnRootLayout);
+        pnRootLayout.setHorizontalGroup(
+            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnRootLayout.createSequentialGroup()
+                .addComponent(pnOption, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))
+        );
+        pnRootLayout.setVerticalGroup(
+            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void allTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allTimeButtonActionPerformed
+        jDateChooser.setVisible(false);
+//        jDateChooser1.setVisible(false);
+        fromLabel.setVisible(false);
+        toLabel.setVisible(false);
+    }// GEN-LAST:event_allTimeButtonActionPerformed
+
+    private void betweenButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
+        jDateChooser.setVisible(true);
+//        jDateChooser1.setVisible(true);
+        fromLabel.setVisible(true);
+        toLabel.setVisible(true);
+    }// GEN-LAST:event_betweenButtonActionPerformed
+
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
+        String select = getSelectedStatisticsBy(statisticsBy);
+        switch (select) {
+            case "All time":
+                setAllTime();
+                break;
+            case "Between":
+                setBetweenTime();
+                break;
+        }
+    }// GEN-LAST:event_showButtonActionPerformed
+
+    public String getSelectedStatisticsBy(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
+
+    private void lineChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_lineChartButtonActionPerformed
+        initLineChart(pnChart);
+    }// GEN-LAST:event_lineChartButtonActionPerformed
+
+    private void barChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_barChartButtonActionPerformed
+        initBarChart(pnChart);
+    }// GEN-LAST:event_barChartButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,14 +330,67 @@ public class guiStatisticalChart extends javax.swing.JFrame {
             public void run() {
 //                new guiStatisticalChart().setVisible(true);
                 guiStatisticalChart example = new guiStatisticalChart();
-                example.setAlwaysOnTop(true);
-                example.pack();
-                example.setSize(950, 520);
+//                example.setAlwaysOnTop(true);
                 example.setVisible(true);
             }
         });
     }
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	// End of variables declaration//GEN-END:variables
+    private JFreeChart barChart;
+    private JFreeChart lineChart;
+    private final ButtonGroup statisticsBy;
+    private final ButtonGroup chartStyle;
+    DefaultCategoryDataset dataset;
+    List<Statistics> listItem;
+    private final Date now;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton allTimeButton;
+    private javax.swing.JRadioButton barChartButton;
+    private javax.swing.JRadioButton betweenButton;
+    private javax.swing.JLabel chartStyleLabel;
+    private javax.swing.JLabel fromLabel;
+    private com.toedter.calendar.JDateChooser jDateChooser;
+    private javax.swing.JRadioButton lineChartButton;
+    private javax.swing.JPanel pnChart;
+    private javax.swing.JPanel pnOption;
+    private javax.swing.JPanel pnRoot;
+    private javax.swing.JButton showButton;
+    private javax.swing.JLabel statisticsByLabel1;
+    private javax.swing.JLabel toLabel;
+    // End of variables declaration//GEN-END:variables
+
+    private void setAllTime() {
+        for (Statistics i : listItem) {
+            dataset.addValue(i.getCount(), "", i.getCreateDate());
+        }
+    }
+
+    private void setBetweenTime() {
+        dataset.clear();
+        for (Statistics i : listItem) {
+            Date t = i.getCreateDate();
+            long time = t.getTime();
+            long time1 = getTime_(jDateChooser).getTime();
+            System.out.println(jDateChooser.getDate());
+//            long time2 = getTime_(jDateChooser1).getTime();
+            if (time >= time1 ) {
+                dataset.addValue(i.getCount(), "", t);
+            }
+        }
+    }
+    private Date getTime_(com.toedter.calendar.JDateChooser jDateChooser){
+        Date value;
+        Calendar cal = Calendar.getInstance();
+        Date temp = jDateChooser.getDate();
+        if (temp==null)
+        	return null;
+        cal.setTime(temp);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        value = cal.getTime();
+        return value;
+    }
+
 }

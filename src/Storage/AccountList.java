@@ -28,23 +28,23 @@ public class AccountList implements Serializable {
 	 */
 	private static final long serialVersionUID = -6967904973869758331L;
 	private final String path = "Account.db";
-	private Queue<Account> accountList;
+	private Queue<Account> list;
 
 	public AccountList() {
-		accountList = new LinkedList<Account>();
-		readFile(this.path);
+		list = new LinkedList<Account>();
+		readFile();
 	}
 
-	protected void readFile(String path) {
+	protected void readFile() {
 		String sql = "SELECT * FROM Account";
 
-		try (Connection conn = this.connect(path);
+		try (Connection conn = this.connect(this.path);
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
 
 			// loop through the result set
 			while (rs.next()) {
-				this.accountList.add(new Account(rs));
+				this.list.add(new Account(rs));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -57,15 +57,15 @@ public class AccountList implements Serializable {
 	public int minIndex(int sortIndex) {
 		int min_index = -1;
 		Account min_value = new Account("zzzzzzzzzzzzzzzz");
-		int s = this.accountList.size();
+		int s = this.list.size();
 		for (int i = 0; i < s; i++) {
-			Account current = this.accountList.poll();
+			Account current = this.list.poll();
 
 			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
 				min_index = i;
 				min_value = current;
 			}
-			this.accountList.add(current);
+			this.list.add(current);
 		}
 		return min_index;
 	}
@@ -94,20 +94,20 @@ public class AccountList implements Serializable {
 	// Bring the smallest value to the end
 	public void insertMinToRear(int min_index) {
 		Account min_value = new Account("");
-		int s = this.accountList.size();
+		int s = this.list.size();
 		for (int i = 0; i < s; i++) {
-			Account current = this.accountList.poll();
+			Account current = this.list.poll();
 			if (i != min_index)
-				this.accountList.add(current);
+				this.list.add(current);
 			else
 				min_value = current;
 		}
-		this.accountList.add(min_value);
+		this.list.add(min_value);
 	}
 
 	public void sortQueue() {
-		for (int i = 1; i <= this.accountList.size(); i++) {
-			int min_index = minIndex(this.accountList.size() - i);
+		for (int i = 1; i <= this.list.size(); i++) {
+			int min_index = minIndex(this.list.size() - i);
 			insertMinToRear(min_index);
 		}
 	}
@@ -125,34 +125,34 @@ public class AccountList implements Serializable {
 	}
 
 	public Queue<Account> getAccountList() {
-		return accountList;
+		return list;
 	}
 
 	protected void writeFile(String path) {
-		while (!this.accountList.isEmpty()) {
-			this.accountList.poll().insert("Account.db");
+		while (!this.list.isEmpty()) {
+			this.list.poll().insert("Account.db");
 		}
 	}
 
 	public boolean addAccount(Account a) {
 		String t = a.getUsername();
-		for (Account i : this.accountList) {
+		for (Account i : this.list) {
 			if (i.getUsername().equals(t))
 				return false;
 		}
-		this.accountList.add(a);
+		this.list.add(a);
 		this.writeFile(this.path);
 		return true;
 	}
 
 	public boolean editAccount(Account a) {
 		String t = a.getUsername();
-		List<Account> list = new ArrayList<Account>(this.accountList);
+		List<Account> list = new ArrayList<Account>(this.list);
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getUsername().equals(t)) {
 				list.remove(i);
 				list.add(a);
-				this.accountList = new LinkedList<Account>(list);
+				this.list = new LinkedList<Account>(list);
 				this.sortQueue();
 				this.writeFile(this.path);
 				return true;
@@ -162,14 +162,14 @@ public class AccountList implements Serializable {
 	}
 
 	protected Account findAccount(String username) {
-		for (Account i : this.accountList)
+		for (Account i : this.list)
 			if (i.getUsername().equals(username))
 				return i;
 		return null;
 	}
 
 	public Account accountSearch(int x, int y, String s) {
-		List<Account> t = new ArrayList<Account>(this.accountList);
+		List<Account> t = new ArrayList<Account>(this.list);
 		if (y >= x) {
 			int mid = x + (y - x) / 2;
 			Account a = (Account) t.get(mid);
@@ -189,7 +189,7 @@ public class AccountList implements Serializable {
 	}
 
 	public Account accountSearch(String s) {
-		return this.accountSearch(0, this.accountList.size() - 1, s);
+		return this.accountSearch(0, this.list.size() - 1, s);
 	}
 
 	public static void main(String[] args)
@@ -197,8 +197,10 @@ public class AccountList implements Serializable {
 			NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
 		// https://stackoverflow.com/questions/60705536/task-not-serializable-error-while-calling-udf-to-spark-dataframe
 		AccountList a = new AccountList();
-		a.addAccount(new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484"));
-		a.addAccount(new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484"));
+		Account t = new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+		a.addAccount(t);
+		t = new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+		a.addAccount(t);
 		System.out.println(a.accountSearch("fudio"));
 		System.out.println(a.getAccountList());
 		a.writeFile(a.path);
@@ -206,11 +208,11 @@ public class AccountList implements Serializable {
 	}
 
 	public boolean delete(String choice) {
-		List<Account> list = new ArrayList<Account>(this.accountList);
+		List<Account> list = new ArrayList<Account>(this.list);
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getUsername().equals(choice)) {
 				list.remove(i);
-				this.accountList = new LinkedList<Account>(list);
+				this.list = new LinkedList<Account>(list);
 				this.sortQueue();
 				this.deleteAllOfDatabase(this.path);
 				this.writeFile(this.path);
@@ -231,4 +233,21 @@ public class AccountList implements Serializable {
 
 	}
 
+	public List<Statistics> getStatitical() {
+		String sql = "SELECT createDate, count(*) FROM Account GROUP BY createDate";
+		List<Statistics> list_ = new ArrayList<Statistics>();
+		try (Connection conn = this.connect(this.path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				list_.add(new Statistics(rs.getDate("createDate"),rs.getInt("count(*)")));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return list_;
+	}
 }

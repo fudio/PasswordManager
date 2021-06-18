@@ -32,6 +32,7 @@ public class Account {
 	private LocalDate birthday;
 	private String fullName;
 	private String phoneNum;
+	private Date createDate;
 
 	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
 		this.username = un.replace("_admin007", "");
@@ -39,6 +40,7 @@ public class Account {
 		this.fullName = fN;
 		this.birthday = bd;
 		this.phoneNum = pN;
+		this.createDate = Date.valueOf(LocalDate.now());
 		String BCryptHash = BCryptHash(pw);
 
 		try {
@@ -102,6 +104,7 @@ public class Account {
 			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
 			this.fullName = rs.getString("fullname");
 			this.phoneNum = rs.getString("phoneNumber");
+			this.createDate = rs.getDate("createDate");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -139,37 +142,37 @@ public class Account {
 	}
 
 	private String getHasedPw() {
-			try {
-				return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
-			} catch (InvalidKeyException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (NoSuchPaddingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (InvalidAlgorithmParameterException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (BadPaddingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (IllegalBlockSizeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
+		try {
+			return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (InvalidAlgorithmParameterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public String getUsername() {
@@ -206,7 +209,7 @@ public class Account {
 	}
 
 	public void insert(String path) {
-		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, phoneNumber) VALUES(?,?,?,?,?,?)";
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, phoneNumber, createDate) VALUES(?,?,?,?,?,?,?)";
 
 		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, this.username);
@@ -215,11 +218,16 @@ public class Account {
 			pstmt.setDate(4, this.getBirthdayDate());
 			pstmt.setString(5, this.fullName);
 			pstmt.setString(6, this.phoneNum);
+			pstmt.setDate(7, this.createDate);
 			pstmt.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public Date getCreateDate() {
+		return createDate;
 	}
 
 	private Date getBirthdayDate() {
@@ -237,7 +245,7 @@ public class Account {
 			while (rs.next()) {
 				System.out.println(rs.getString("username") + "\t" + rs.getString("password") + "\t" + rs.getInt("rank")
 						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname") + "\t"
-						+ rs.getString("phoneNumber"));
+						+ rs.getString("phoneNumber") + "\t" + rs.getDate("createDate"));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

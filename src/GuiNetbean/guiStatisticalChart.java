@@ -23,6 +23,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import Storage.AccountList;
 import Storage.Statistics;
+import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -363,6 +364,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 			setDayTime();
 			break;
 		case "Month":
+			setMonthTime();
 			break;
 		case "Year":
 			setYearTime();
@@ -482,65 +484,213 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 
 	private void setDayTime() {
 		dataset.clear();
-		List<Statistics> day = new ArrayList<Statistics>();
-		long time1 = getTime1(jDateChooser).getTime();
-		long time2 = getTime2(jDateChooser1).getTime();
+		List<Statistics> dayList = new ArrayList<Statistics>();
+		int year1 = getYear(jDateChooser.getDate());
+		int month1 = getMonth(jDateChooser.getDate());
+		int day1 = getDay(jDateChooser.getDate());
+		int year2 = getYear(jDateChooser1.getDate());
+		int month2 = getMonth(jDateChooser1.getDate());
+		int day2 = getDay(jDateChooser1.getDate());
 		for (Statistics i : listItem) {
 			Date t = i.getCreateDate();
-			long time = t.getTime();
-			if (time >= time1 && time <= time2) {
-//				dataset.addValue(i.getCount(), "", t);
-				i.setDate();
-				day.add(i);
+			int year = getYear(t);
+			int month = getMonth(t);
+			int day = getDay(t);
+			if (year >= year1 && month >= month1 && day >= day1 && year <= year2 && month <= month2 && day <= day2) {
+				if (!dayList.contains(i)) {
+					i.setI(2);
+					dayList.add(i);
+				} else {
+					int index = dayList.indexOf(i);
+					Statistics newEle = dayList.get(index);
+					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 2);
+					newEle.add(i.getCount());
+					dayList.remove(index);
+					dayList.add(newEle);
+				}
 			}
 		}
-		while (time1 <= time2) {
-			java.sql.Date t = new java.sql.Date(time1);
-			Statistics s = new Statistics(t, 0);
-			if (!day.contains(s)) {
-				day.add(s);
+		while (year1 <= year2 && month1 <= month2 && day1 <= day2) {
+			java.sql.Date t = setDay(day1, month1, year1);
+			Statistics s = new Statistics(t, 0, 2);
+			if (!dayList.contains(s)) {
+				dayList.add(s);
 			}
-			time1 += 86400000;
+			t = addDay(t);
+			day1 = getDay(t);
+			month1 = getMonth(t);
+			year1 = getYear(t);
 		}
-		Collections.sort(day);
-		for(Statistics i : day) {
-			dataset.addValue(i.getCount(), "", i.getCreateDate());
+		Collections.sort(dayList);
+		for (Statistics i : dayList) {
+			java.sql.Date temp = i.getCreateDate();
+			dataset.addValue(i.getCount(), "",
+					"" + getDay(temp) + "/" + ((int) getMonth(temp) + (int) 1) + "/" + getYear(temp));
 		}
 	}
 
-	private Date getTime1(com.toedter.calendar.JDateChooser jDateChooser) {
-		Date value;
+	private java.sql.Date addDay(java.sql.Date t) {
 		Calendar cal = Calendar.getInstance();
-		Date temp = jDateChooser.getDate();
-		if (temp == null) {
-			return null;
-		}
-		cal.setTime(temp);
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
-		value = cal.getTime();
-		return value;
-	}
-
-	private Date getTime2(com.toedter.calendar.JDateChooser jDateChooser) {
 		Date value;
-		Calendar cal = Calendar.getInstance();
-		Date temp = jDateChooser.getDate();
-		if (temp == null) {
-			return null;
-		}
-		cal.setTime(temp);
-		cal.set(Calendar.HOUR_OF_DAY, 23);
-		cal.set(Calendar.MINUTE, 59);
-		cal.set(Calendar.SECOND, 59);
-		cal.set(Calendar.MILLISECOND, 99);
+		cal.set(Calendar.DAY_OF_MONTH, getDay(t) + 1);
 		value = cal.getTime();
-		return value;
+		return new java.sql.Date(value.getTime());
 	}
 
+	private java.sql.Date setDay(int day, int month, int year) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month);
+		cal.set(Calendar.DAY_OF_MONTH, day);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
+	}
+
+	private int getDay(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.DAY_OF_MONTH);
+	}
+
+	/*
+	 * Version 1
+	 * 
+	 * private void setDayTime() { dataset.clear(); List<Statistics> day = new
+	 * ArrayList<Statistics>(); long time1 = getDay1(jDateChooser).getTime(); long
+	 * time2 = getDay2(jDateChooser1).getTime(); for (Statistics i : listItem) {
+	 * Date t = i.getCreateDate(); long time = t.getTime(); if (time >= time1 &&
+	 * time <= time2) { i.setDate(); day.add(i); } } while (time1 <= time2) {
+	 * java.sql.Date t = new java.sql.Date(time1); Statistics s = new Statistics(t,
+	 * 0, 2); if (!day.contains(s)) { day.add(s); } time1 += 86400000; }
+	 * Collections.sort(day); for (Statistics i : day) {
+	 * dataset.addValue(i.getCount(), "", i.getCreateDate()); } }
+	 * 
+	 * private Date getDay1(com.toedter.calendar.JDateChooser jDateChooser) { Date
+	 * value; Calendar cal = Calendar.getInstance(); Date temp =
+	 * jDateChooser.getDate(); if (temp == null) { return null; } cal.setTime(temp);
+	 * cal.set(Calendar.HOUR_OF_DAY, 0); cal.set(Calendar.MINUTE, 0);
+	 * cal.set(Calendar.SECOND, 0); cal.set(Calendar.MILLISECOND, 0); value =
+	 * cal.getTime(); return value; }
+	 * 
+	 * private Date getDay2(com.toedter.calendar.JDateChooser jDateChooser) { Date
+	 * value; Calendar cal = Calendar.getInstance(); Date temp =
+	 * jDateChooser.getDate(); if (temp == null) { return null; } cal.setTime(temp);
+	 * cal.set(Calendar.HOUR_OF_DAY, 23); cal.set(Calendar.MINUTE, 59);
+	 * cal.set(Calendar.SECOND, 59); cal.set(Calendar.MILLISECOND, 99); value =
+	 * cal.getTime(); return value; }
+	 */
 	private void setYearTime() {
+		dataset.clear();
+		List<Statistics> yearList = new ArrayList<Statistics>();
+		int year1 = jYearChooser1.getYear();
+		int year2 = jYearChooser2.getYear();
+		for (Statistics i : listItem) {
+			Date t = i.getCreateDate();
+			int year = getYear(t);
+			if (year >= year1 && year <= year2) {
+				if (!yearList.contains(i)) {
+					yearList.add(i);
+				} else {
+					int index = yearList.indexOf(i);
+					Statistics newEle = yearList.get(index);
+					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount());
+					newEle.add(i.getCount());
+					yearList.remove(index);
+					yearList.add(newEle);
+				}
+			}
+		}
+		while (year1 <= year2) {
+			java.sql.Date t = setYear(year1);
+			Statistics s = new Statistics(t, 0, 0);
+			if (!yearList.contains(s)) {
+				yearList.add(s);
+			}
+			year1 += 1;
+		}
+		Collections.sort(yearList);
+		for (Statistics i : yearList) {
+			dataset.addValue(i.getCount(), "", "" + getYear(i.getCreateDate()));
+		}
+	}
 
+	private java.sql.Date setYear(int year) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.YEAR, year);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
+	}
+
+	private int getYear(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.YEAR);
+	}
+
+	private void setMonthTime() {
+		dataset.clear();
+		List<Statistics> monthList = new ArrayList<Statistics>();
+		int year1 = jYearChooser3.getYear();
+		int month1 = jMonthChooser1.getMonth();
+		int year2 = jYearChooser4.getYear();
+		int month2 = jMonthChooser2.getMonth();
+		for (Statistics i : listItem) {
+			Date t = i.getCreateDate();
+			int year = getYear(t);
+			int month = getMonth(t);
+			if (year >= year1 && month >= month1 && year <= year2 && month <= month2) {
+				if (!monthList.contains(i)) {
+					i.setI(1);
+					monthList.add(i);
+				} else {
+					int index = monthList.indexOf(i);
+					Statistics newEle = monthList.get(index);
+					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 1);
+					newEle.add(i.getCount());
+					monthList.remove(index);
+					monthList.add(newEle);
+				}
+			}
+		}
+		while (year1 <= year2 && month1 <= month2) {
+			java.sql.Date t = setMonth(month1, year1);
+			Statistics s = new Statistics(t, 0, 1);
+			if (!monthList.contains(s)) {
+				monthList.add(s);
+			}
+			t = addMonth(t);
+			month1 = getMonth(t);
+			year1 = getYear(t);
+		}
+		Collections.sort(monthList);
+		for (Statistics i : monthList) {
+			java.sql.Date temp = i.getCreateDate();
+			dataset.addValue(i.getCount(), "", "" + ((int) getMonth(temp) + (int) 1) + "/" + getYear(temp));
+		}
+	}
+
+	private java.sql.Date addMonth(java.sql.Date t) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.MONTH, getMonth(t) + 1);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
+	}
+
+	private int getMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.MONTH);
+	}
+
+	private java.sql.Date setMonth(int month, int year) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
 	}
 }

@@ -482,6 +482,133 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 		}
 	}
 
+	private void setYearTime() {
+		dataset.clear();
+		List<Statistics> yearList = new ArrayList<Statistics>();
+		int year1 = jYearChooser1.getYear();
+		int year2 = jYearChooser2.getYear();
+		for (Statistics i : listItem) {
+			Date t = i.getCreateDate();
+			int year = getYear(t);
+			if (year >= year1 && year <= year2) {
+				if (!yearList.contains(i)) {
+					yearList.add(i);
+				} else {
+					int index = yearList.indexOf(i);
+					Statistics newEle = yearList.get(index);
+					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount());
+					newEle.add(i.getCount());
+					yearList.remove(index);
+					yearList.add(newEle);
+				}
+			}
+		}
+		while (year1 <= year2) {
+			java.sql.Date t = setYear(year1);
+			Statistics s = new Statistics(t, 0, 0);
+			if (!yearList.contains(s)) {
+				yearList.add(s);
+			}
+			year1 += 1;
+		}
+		Collections.sort(yearList);
+		for (Statistics i : yearList) {
+			dataset.addValue(i.getCount(), "", "" + i.getYear());
+		}
+	}
+
+	private java.sql.Date setYear(int year) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.YEAR, year);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
+	}
+
+	private int getYear(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.YEAR);
+	}
+
+	private void setMonthTime() {
+		dataset.clear();
+		List<Statistics> monthList = new ArrayList<Statistics>();
+		int year1 = jYearChooser3.getYear();
+		int month1 = jMonthChooser1.getMonth();
+		int year2 = jYearChooser4.getYear();
+		int month2 = jMonthChooser2.getMonth();
+		for (Statistics i : listItem) {
+			Date t = i.getCreateDate();
+			int year = getYear(t);
+			int month = getMonth(t);
+			if (year >= year1 && month >= month1 && year <= year2 && month <= month2) {
+				if (!monthList.contains(i)) {
+					i.setI(1);
+					monthList.add(i);
+				} else {
+					int index = monthList.indexOf(i);
+					Statistics newEle = monthList.get(index);
+					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 1);
+					newEle.add(i.getCount());
+					monthList.remove(index);
+					monthList.add(newEle);
+				}
+			}
+		}
+		while (compareMonth(year1, month1, year2, month2)) {
+			java.sql.Date t = setMonth(month1, year1);
+			Statistics s = new Statistics(t, 0, 1);
+			if (!monthList.contains(s)) {
+				monthList.add(s);
+			}
+			t = addMonth(t);
+			month1 = getMonth(t);
+			year1 = getYear(t);
+		}
+		Collections.sort(monthList);
+		year1 = -1;
+		for (Statistics i : monthList) {
+			year2 = i.getYear();
+			dataset.addValue(i.getCount(), "",
+					"" + ((int) i.getMonth() + (int) 1) + (year1 == year2 ? "" : ("/" + year2)));
+			year1 = year2;
+		}
+	}
+
+	private boolean compareMonth(int year1, int month1, int year2, int month2) {
+		if (year1 < year2)
+			return true;
+		if (year1 == year2) {
+			if (month1 <= month2)
+				return true;
+			return false;
+		}
+		return false;
+	}
+
+	private java.sql.Date addMonth(java.sql.Date t) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(t);
+		cal.set(Calendar.MONTH, getMonth(t) + 1);
+		return new java.sql.Date(cal.getTime().getTime());
+	}
+
+	private int getMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.MONTH);
+	}
+
+	private java.sql.Date setMonth(int month, int year) {
+		Calendar cal = Calendar.getInstance();
+		Date value;
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month);
+		value = cal.getTime();
+		return new java.sql.Date(value.getTime());
+	}
+
 	private void setDayTime() {
 		dataset.clear();
 		List<Statistics> dayList = new ArrayList<Statistics>();
@@ -510,7 +637,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 				}
 			}
 		}
-		while (year1 <= year2 && month1 <= month2 && day1 <= day2) {
+		while (compareDay(year1, month1, day1, year2, month2, day2)) {
 			java.sql.Date t = setDay(day1, month1, year1);
 			Statistics s = new Statistics(t, 0, 2);
 			if (!dayList.contains(s)) {
@@ -522,19 +649,38 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 			year1 = getYear(t);
 		}
 		Collections.sort(dayList);
+		year1 = month1 = -1;
 		for (Statistics i : dayList) {
-			java.sql.Date temp = i.getCreateDate();
-			dataset.addValue(i.getCount(), "",
-					"" + getDay(temp) + "/" + ((int) getMonth(temp) + (int) 1) + "/" + getYear(temp));
+			year2 = i.getYear();
+			month2 = i.getMonth();
+			dataset.addValue(i.getCount(), "", "" + i.getDay() + (month1 == month2 ? ""
+					: ("/" + ((int) month2 + (int) 1) + (year1 == year2 ? "" : ("/" + year2)))));
+			month1 = month2;
+			year1 = year2;
 		}
+	}
+
+	private boolean compareDay(int year1, int month1, int day1, int year2, int month2, int day2) {
+		if (year1 < year2)
+			return true;
+		if (year1 == year2) {
+			if (month1 < month2)
+				return true;
+			if (month1 == month2) {
+				if (day1 < day2)
+					return true;
+				return false;
+			}
+			return false;
+		}
+		return false;
 	}
 
 	private java.sql.Date addDay(java.sql.Date t) {
 		Calendar cal = Calendar.getInstance();
-		Date value;
+		cal.setTime(t);
 		cal.set(Calendar.DAY_OF_MONTH, getDay(t) + 1);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
+		return new java.sql.Date(cal.getTime().getTime());
 	}
 
 	private java.sql.Date setDay(int day, int month, int year) {
@@ -580,117 +726,4 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 	 * cal.set(Calendar.SECOND, 59); cal.set(Calendar.MILLISECOND, 99); value =
 	 * cal.getTime(); return value; }
 	 */
-	private void setYearTime() {
-		dataset.clear();
-		List<Statistics> yearList = new ArrayList<Statistics>();
-		int year1 = jYearChooser1.getYear();
-		int year2 = jYearChooser2.getYear();
-		for (Statistics i : listItem) {
-			Date t = i.getCreateDate();
-			int year = getYear(t);
-			if (year >= year1 && year <= year2) {
-				if (!yearList.contains(i)) {
-					yearList.add(i);
-				} else {
-					int index = yearList.indexOf(i);
-					Statistics newEle = yearList.get(index);
-					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount());
-					newEle.add(i.getCount());
-					yearList.remove(index);
-					yearList.add(newEle);
-				}
-			}
-		}
-		while (year1 <= year2) {
-			java.sql.Date t = setYear(year1);
-			Statistics s = new Statistics(t, 0, 0);
-			if (!yearList.contains(s)) {
-				yearList.add(s);
-			}
-			year1 += 1;
-		}
-		Collections.sort(yearList);
-		for (Statistics i : yearList) {
-			dataset.addValue(i.getCount(), "", "" + getYear(i.getCreateDate()));
-		}
-	}
-
-	private java.sql.Date setYear(int year) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.YEAR, year);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
-
-	private int getYear(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.YEAR);
-	}
-
-	private void setMonthTime() {
-		dataset.clear();
-		List<Statistics> monthList = new ArrayList<Statistics>();
-		int year1 = jYearChooser3.getYear();
-		int month1 = jMonthChooser1.getMonth();
-		int year2 = jYearChooser4.getYear();
-		int month2 = jMonthChooser2.getMonth();
-		for (Statistics i : listItem) {
-			Date t = i.getCreateDate();
-			int year = getYear(t);
-			int month = getMonth(t);
-			if (year >= year1 && month >= month1 && year <= year2 && month <= month2) {
-				if (!monthList.contains(i)) {
-					i.setI(1);
-					monthList.add(i);
-				} else {
-					int index = monthList.indexOf(i);
-					Statistics newEle = monthList.get(index);
-					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 1);
-					newEle.add(i.getCount());
-					monthList.remove(index);
-					monthList.add(newEle);
-				}
-			}
-		}
-		while (year1 <= year2 && month1 <= month2) {
-			java.sql.Date t = setMonth(month1, year1);
-			Statistics s = new Statistics(t, 0, 1);
-			if (!monthList.contains(s)) {
-				monthList.add(s);
-			}
-			t = addMonth(t);
-			month1 = getMonth(t);
-			year1 = getYear(t);
-		}
-		Collections.sort(monthList);
-		for (Statistics i : monthList) {
-			java.sql.Date temp = i.getCreateDate();
-			dataset.addValue(i.getCount(), "", "" + ((int) getMonth(temp) + (int) 1) + "/" + getYear(temp));
-		}
-	}
-
-	private java.sql.Date addMonth(java.sql.Date t) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.MONTH, getMonth(t) + 1);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
-
-	private int getMonth(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.MONTH);
-	}
-
-	private java.sql.Date setMonth(int month, int year) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.MONTH, month);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
 }

@@ -5,6 +5,9 @@
  */
 package GuiNetbean;
 
+import Storage.Account;
+import Storage.AccountList;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Admin
@@ -14,7 +17,7 @@ public class guiAdmin extends javax.swing.JFrame {
     /**
      * Creates new form guiAdmin
      */
-    public guiAdmin() {
+    public guiAdmin(Account login) {
         initComponents();
     }
 
@@ -27,40 +30,21 @@ public class guiAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jtfSearch = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        jpnView = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(650, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "User name", "Name", "Date of birth", "Sex", "Work", "Phone", "Email", "FB"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
-        }
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 247, 950, 275));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 640, 230));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,31 +55,40 @@ public class guiAdmin extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 11, 285, 54));
         jLabel1.getAccessibleContext().setAccessibleName("");
 
-        jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 11, 95, -1));
-        jButton1.getAccessibleContext().setAccessibleName("ButtonDX");
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 11, 95, -1));
+        logout.getAccessibleContext().setAccessibleName("ButtonDX");
 
-        jButton2.setText("Delete");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 213, -1, -1));
+        delete.setText("Delete");
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 213, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Sorted by");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 217, 62, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
+        jtfSearch.setText("search");
+        getContentPane().add(jtfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 190, -1));
+
+        btnAdd.setText("add");
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+
+        jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
+        getContentPane().add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        guiMain f1 = new guiMain();
+        f1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,11 +126,12 @@ public class guiAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jpnView;
+    private javax.swing.JTextField jtfSearch;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
 }

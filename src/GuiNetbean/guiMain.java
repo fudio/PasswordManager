@@ -27,65 +27,74 @@ public class guiMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jPopupMenu2 = new javax.swing.JPopupMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jPopupMenu3 = new javax.swing.JPopupMenu();
-        jDialog1 = new javax.swing.JDialog();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-
-        jMenuItem3.setText("jMenuItem3");
-
-        jMenuItem4.setText("jMenuItem4");
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        jMenuItem5.setText("jMenuItem5");
-
-        jMenuItem6.setText("jMenuItem6");
-
-        jMenu3.setText("jMenu3");
-
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
-
-        jMenu4.setText("jMenu4");
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(650, 250));
         setSize(new java.awt.Dimension(650, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/5172658.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 520));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel2.setText("WELLCOM TO");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 310, 60));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel3.setText("CARROT");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 190, -1));
+
+        jLabel1.setText("Carrot team - 2021 @");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
+
+        jMenu2.setText("Account");
+
+        jMenuItem3.setText("Login");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem1.setText("Sign up");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem4.setText("Exit");
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar2.add(jMenu2);
+
+        setJMenuBar(jMenuBar2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        guiLogin d1 = new guiLogin();
+        d1.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        guiRegister d2 = new guiRegister();
+        d2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,20 +133,13 @@ public class guiMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JPopupMenu jPopupMenu2;
-    private javax.swing.JPopupMenu jPopupMenu3;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

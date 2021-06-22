@@ -37,8 +37,8 @@ public class Avatar {
 
 	public static void main(String[] args) {
 		Avatar.updatePicture("fudio", "testPic.jpg");
-		Avatar.readPictureToFile("fudio", "output.jpg");
-		ImageIcon a = new ImageIcon(Avatar.readPicture("fudio"), "description");
+		Avatar.readPictureToFile("fudi", "output.jpg");
+//		ImageIcon a = new ImageIcon(Avatar.readPicture("fudi"), "description");
 	}
 
 	/**
@@ -65,28 +65,48 @@ public class Avatar {
 		return bos != null ? bos.toByteArray() : null;
 	}
 
-	/**
-	 * Update picture for a specific material
-	 *
-	 * @param username
-	 * @param filename
-	 */
-	public static void updatePicture(String username, String filename) {
+	public static Image readPicture(String username) {
+		Image image = null;
 		// update sql
-		String updateSQL = "UPDATE Account " + "SET avatar = ? " + "WHERE username=?";
+		String selectSQL = "SELECT avatar FROM Account WHERE username=?";
+		ResultSet rs = null;
+		FileOutputStream fos = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 
-		try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement(selectSQL);
+			pstmt.setString(1, username);
+			rs = pstmt.executeQuery();
 
-			// set parameters
-			pstmt.setBytes(1, readFile(filename));
-			pstmt.setString(2, username);
-
-			pstmt.executeUpdate();
-//			System.out.println("Stored the file in the BLOB column.");
-
-		} catch (SQLException e) {
+			InputStream input = rs.getBinaryStream("avatar");
+			if (input != null) {
+				image = ImageIO.read(input);
+			}
+		} catch (SQLException | IOException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+				if (fos != null) {
+					fos.close();
+				}
+
+			} catch (SQLException | IOException e) {
+				System.out.println(e.getMessage());
+			}
 		}
+		return image;
 	}
 
 	/**
@@ -116,9 +136,11 @@ public class Avatar {
 //			System.out.println("Writing BLOB to file " + file.getAbsolutePath());
 			while (rs.next()) {
 				InputStream input = rs.getBinaryStream("avatar");
-				byte[] buffer = new byte[1024];
-				while (input.read(buffer) > 0) {
-					fos.write(buffer);
+				if (input != null) {
+					byte[] buffer = new byte[1024];
+					while (input.read(buffer) > 0) {
+						fos.write(buffer);
+					}
 				}
 			}
 		} catch (SQLException | IOException e) {
@@ -145,46 +167,28 @@ public class Avatar {
 		}
 	}
 
-	public static Image readPicture(String username) {
-		Image image = null;
+	/**
+	 * Update picture for a specific material
+	 *
+	 * @param username
+	 * @param filename
+	 */
+	public static void updatePicture(String username, String filename) {
 		// update sql
-		String selectSQL = "SELECT avatar FROM Account WHERE username=?";
-		ResultSet rs = null;
-		FileOutputStream fos = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		String updateSQL = "UPDATE Account " + "SET avatar = ? " + "WHERE username=?";
 
-		try {
-			conn = connect();
-			pstmt = conn.prepareStatement(selectSQL);
-			pstmt.setString(1, username);
-			rs = pstmt.executeQuery();
+		try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
 
-			InputStream input = rs.getBinaryStream("avatar");
-			image = ImageIO.read(input);
-		} catch (SQLException | IOException e) {
+			// set parameters
+			pstmt.setBytes(1, readFile(filename));
+			pstmt.setString(2, username);
+
+			pstmt.executeUpdate();
+//			System.out.println("Stored the file in the BLOB column.");
+
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-
-				if (conn != null) {
-					conn.close();
-				}
-				if (fos != null) {
-					fos.close();
-				}
-
-			} catch (SQLException | IOException e) {
-				System.out.println(e.getMessage());
-			}
 		}
-		return image;
 	}
 
 	public Avatar() {

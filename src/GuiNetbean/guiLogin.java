@@ -25,6 +25,7 @@ public class guiLogin extends javax.swing.JFrame {
      */
     public guiLogin() {
         initComponents();
+        list = new AccountList();
     }
 
     /**
@@ -47,13 +48,13 @@ public class guiLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        usernamePn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ousername = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        passwordPn = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         opassword = new javax.swing.JPasswordField();
-        login1 = new javax.swing.JButton();
+        login = new javax.swing.JButton();
         signup = new javax.swing.JButton();
         fogotpassword = new javax.swing.JButton();
         back = new javax.swing.JButton();
@@ -162,7 +163,7 @@ public class guiLogin extends javax.swing.JFrame {
         jLabel3.setText("Login");
         jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        usernamePn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("UTM Alberta Heavy", 0, 24)); // NOI18N
         jLabel1.setText("Username");
@@ -173,63 +174,69 @@ public class guiLogin extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout usernamePnLayout = new javax.swing.GroupLayout(usernamePn);
+        usernamePn.setLayout(usernamePnLayout);
+        usernamePnLayout.setHorizontalGroup(
+            usernamePnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usernamePnLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ousername, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        usernamePnLayout.setVerticalGroup(
+            usernamePnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usernamePnLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(usernamePnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ousername, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        passwordPn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setFont(new java.awt.Font("UTM Alberta Heavy", 0, 24)); // NOI18N
         jLabel4.setText("Password");
 
+        opassword.setEchoChar('\u2022');
         opassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opasswordActionPerformed(evt);
             }
         });
+        opassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                opasswordKeyPressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout passwordPnLayout = new javax.swing.GroupLayout(passwordPn);
+        passwordPn.setLayout(passwordPnLayout);
+        passwordPnLayout.setHorizontalGroup(
+            passwordPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(passwordPnLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(opassword, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        passwordPnLayout.setVerticalGroup(
+            passwordPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(passwordPnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(passwordPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(opassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        login1.setText("Login");
-        login1.addActionListener(new java.awt.event.ActionListener() {
+        login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login1ActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
 
@@ -257,9 +264,9 @@ public class guiLogin extends javax.swing.JFrame {
         });
 
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(login1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(usernamePn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(passwordPn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(login, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(signup, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(fogotpassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -273,9 +280,9 @@ public class guiLogin extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernamePn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
@@ -296,13 +303,13 @@ public class guiLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernamePn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordPn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showpassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
@@ -348,10 +355,10 @@ public class guiLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_login1ActionPerformed
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        login(list, login, ousername, opassword);
+
+    }//GEN-LAST:event_loginActionPerformed
 
     private void ousernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ousernameActionPerformed
         // TODO add your handling code here:
@@ -362,7 +369,7 @@ public class guiLogin extends javax.swing.JFrame {
         if (showpassword.isSelected()) {
             opassword.setEchoChar((char) 0);
         } else {
-            opassword.setEchoChar('*');
+            opassword.setEchoChar('•');
         }
     }//GEN-LAST:event_showpasswordActionPerformed
 
@@ -384,36 +391,44 @@ public class guiLogin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_signupActionPerformed
 
-        private void login(AccountList list,JButton login1, JTextField usernameField, JPasswordField passwordField) {
-		String username = usernameField.getText();
-		char[] password = passwordField.getPassword();
-		if (username.equals("") || (new String(password)).equals(""))
-			JOptionPane.showMessageDialog(login1, "Please enter username and password", "NullError",
-					JOptionPane.WARNING_MESSAGE);
-		else {
-			Account login = list.accountSearch(username);
-			if (login != null)
-				if (!login.check(new String(password)))
-					JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
-							JOptionPane.WARNING_MESSAGE);
-				else {
-					JOptionPane.showMessageDialog(login1, "Logged in successfully", "Success",
-							JOptionPane.INFORMATION_MESSAGE);
-					if (login.getRank() == 0) {
-						new guiAdmin(login);
+    private void opasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_opasswordKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            login(list, login, ousername, opassword);
+        }
+    }//GEN-LAST:event_opasswordKeyPressed
+
+    private void login(AccountList list, JButton login1, JTextField usernameField, JPasswordField passwordField) {
+        String username = usernameField.getText();
+        char[] password = passwordField.getPassword();
+        if (username.equals("") || (new String(password)).equals("")) {
+            JOptionPane.showMessageDialog(login1, "Please enter username and password", "NullError",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            Account login = list.accountSearch(username);
+            if (login != null) {
+                if (!login.check(new String(password))) {
+                    JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
+                            JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(login1, "Logged in successfully", "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    if (login.getRank() == 0) {
+                        new guiAdmin(login);
 //						admin.setVisible(true);
-						dispose();
-					} else {
-						guiProfile frm1 = new guiProfile(login);
-						frm1.setVisible(true);
-						dispose();
-					}
-				}
-			else
-				JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
-						JOptionPane.WARNING_MESSAGE);
-		}
-	}
+                        dispose();
+                    } else {
+                        guiProfile frm1 = new guiProfile(login);
+                        frm1.setVisible(true);
+                        dispose();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -449,7 +464,7 @@ public class guiLogin extends javax.swing.JFrame {
         });
     }
 
-
+    private AccountList list;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JButton fogotpassword;
@@ -466,12 +481,12 @@ public class guiLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton login1;
+    private javax.swing.JButton login;
     private javax.swing.JPasswordField opassword;
     private javax.swing.JTextField ousername;
+    private javax.swing.JPanel passwordPn;
     private javax.swing.JRadioButton showpassword;
     private javax.swing.JButton signup;
+    private javax.swing.JPanel usernamePn;
     // End of variables declaration//GEN-END:variables
 }

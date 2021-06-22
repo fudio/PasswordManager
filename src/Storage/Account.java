@@ -26,89 +26,14 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class Account {
 
-	private String username;
-	private String password;
-	private int rank;
-	private LocalDate birthday;
-	private String fullName;
-	private String phoneNum;
-	private Date createDate;
-
-	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
-		this.username = un.replace("_admin007", "");
-		this.rank = un.contains("_admin007") ? 0 : 1;
-		this.fullName = fN;
-		this.birthday = bd;
-		this.phoneNum = pN;
-		this.createDate = Date.valueOf(LocalDate.now());
-		String BCryptHash = BCryptHash(pw);
-
-		try {
-			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
-					AESUtil.readIv("paramFile"));
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	private byte[] getSalt() {
-		String tempt = this.username;
-		while (tempt.length() < 32) {
-			tempt += tempt;
-		}
-		byte[] data = new byte[16];
-		for (int i = 0; i < 32; i += 2) {
-			data[i / 2] = (byte) (((float) (Character.digit(tempt.charAt(i), 36)) * (-Math.PI * Math.PI))
-					+ ((float) Character.digit(tempt.charAt(i + 1), 36)) * (Math.PI * Math.PI));
-		}
-		return data;
-	}
-
-	private String BCryptHash(String pw) {
-		byte[] sha256Hash = sha256(pw);
-		int cost = 12;
-		byte[] BCryptHash = BCrypt.withDefaults().hash(cost, this.getSalt(), sha256Hash);
-		return new String(BCryptHash, StandardCharsets.UTF_8);
-	}
-
-	public Account(String un) {
-		this.username = un.toLowerCase();
-	}
-
-	public Account(ResultSet rs) {
-		// username, password, rank, birthday, fullname, salt, phoneNumber
-		try {
-			this.username = rs.getString("username");
-			this.password = rs.getString("password");
-			this.rank = rs.getInt("rank");
-			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
-			this.fullName = rs.getString("fullname");
-			this.phoneNum = rs.getString("phoneNumber");
-			this.createDate = rs.getDate("createDate");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+	public static void main(String[] args) throws IOException {
+		Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1),
+				"0337202484");
+		System.out.println(a);
+		System.out.println(a.getHasedPw());
+		System.out.println(a.check("Ng01637202484"));
+		a.insert("Account.db");
+		a.selectAll("Account.db");
 	}
 
 	private static byte[] sha256(String value) {
@@ -124,14 +49,82 @@ public class Account {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1),
-				"0337202484");
-		System.out.println(a);
-		System.out.println(a.getHasedPw());
-		System.out.println(a.check("Ng01637202484"));
-		a.insert("Account.db");
-		a.selectAll("Account.db");
+	private String username;
+	private String password;
+	private int rank;
+	private LocalDate birthday;
+	private String fullName;
+	private String phoneNum;
+	private Date createDate;
+	private String email;
+	private Boolean sex;
+	private String facebook;
+	private String work;
+	private String address;
+
+	public Account(ResultSet rs) {
+		// username, password, rank, birthday, fullname, salt, phoneNumber
+		try {
+			this.username = rs.getString("username");
+			this.password = rs.getString("password");
+			this.rank = rs.getInt("rank");
+			this.birthday = new java.sql.Date(rs.getDate("birthday").getTime()).toLocalDate();
+			this.fullName = rs.getString("fullname");
+			this.phoneNum = rs.getString("phoneNumber");
+			this.createDate = rs.getDate("createDate");
+			this.email = rs.getString("email");
+			this.sex = rs.getBoolean("sex");
+			this.facebook = rs.getString("facebook");
+			this.work = rs.getString("work");
+			this.address = rs.getString("address");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public Account(String un) {
+		this.username = un.toLowerCase();
+		this.createDate = Date.valueOf(LocalDate.now());
+		this.sex = true;
+	}
+
+	public Account(String un, String pw, String fN, LocalDate bd, String pN) {
+		this.username = un.replace("_admin007", "").toLowerCase();
+		this.rank = un.contains("_admin007") ? 0 : 1;
+		this.fullName = fN;
+		this.birthday = bd;
+		this.phoneNum = pN;
+		this.createDate = Date.valueOf(LocalDate.now());
+		this.sex = true;
+		String BCryptHash = BCryptHash(pw);
+
+		try {
+			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
+					AESUtil.readIv("paramFile"));
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (InvalidAlgorithmParameterException e) {
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private String BCryptHash(String pw) {
+		byte[] sha256Hash = sha256(pw);
+		int cost = 12;
+		byte[] BCryptHash = BCrypt.withDefaults().hash(cost, this.getSalt(), sha256Hash);
+		return new String(BCryptHash, StandardCharsets.UTF_8);
 	}
 
 	public boolean check(String password) {
@@ -139,61 +132,6 @@ public class Account {
 		sha256Hash = sha256(password);
 		return BCrypt.verifyer().verify(sha256Hash, this.getHasedPw().getBytes(StandardCharsets.UTF_8)).verified;
 
-	}
-
-	private String getHasedPw() {
-		try {
-			return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public LocalDate getBirthday_() {
-		return birthday;
-	}
-
-	public String getBirthday() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
-		return this.birthday.format(formatter);
-	}
-
-	public String getFullName() {
-		return fullName;
 	}
 
 	private Connection connect(String path) {
@@ -208,8 +146,81 @@ public class Account {
 		return conn;
 	}
 
+	public String getBirthday() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
+		return this.birthday.format(formatter);
+	}
+
+	public LocalDate getBirthday_() {
+		return birthday;
+	}
+
+	private Date getBirthdayDate() {
+		return Date.valueOf(birthday);
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	private String getHasedPw() {
+		try {
+			return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		} catch (InvalidAlgorithmParameterException e) {
+			e.printStackTrace();
+			return null;
+		} catch (BadPaddingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IllegalBlockSizeException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String getPhoneNum() {
+		return this.phoneNum;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	private byte[] getSalt() {
+		String tempt = this.username;
+		while (tempt.length() < 32) {
+			tempt += tempt;
+		}
+		byte[] data = new byte[16];
+		for (int i = 0; i < 32; i += 2) {
+			data[i / 2] = (byte) (((float) (Character.digit(tempt.charAt(i), 36)) * (-Math.PI * Math.PI))
+					+ ((float) Character.digit(tempt.charAt(i + 1), 36)) * (Math.PI * Math.PI));
+		}
+		return data;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
 	public void insert(String path) {
-		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, phoneNumber, createDate) VALUES(?,?,?,?,?,?,?)";
+		String sql = "REPLACE INTO Account(username, password, rank, birthday, fullname, phoneNumber, createDate, email, sex, facebook, work, address) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try (Connection conn = this.connect(path); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, this.username);
@@ -219,19 +230,16 @@ public class Account {
 			pstmt.setString(5, this.fullName);
 			pstmt.setString(6, this.phoneNum);
 			pstmt.setDate(7, this.createDate);
+			pstmt.setString(8, this.email);
+			pstmt.setBoolean(9, this.sex);
+			pstmt.setString(10, this.facebook);
+			pstmt.setString(11, this.work);
+			pstmt.setString(12, this.address);
 			pstmt.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	private Date getBirthdayDate() {
-		return Date.valueOf(birthday);
 	}
 
 	private void selectAll(String path) {
@@ -245,23 +253,19 @@ public class Account {
 			while (rs.next()) {
 				System.out.println(rs.getString("username") + "\t" + rs.getString("password") + "\t" + rs.getInt("rank")
 						+ "\t" + rs.getDate("birthday") + "\t" + rs.getString("fullname") + "\t"
-						+ rs.getString("phoneNumber") + "\t" + rs.getDate("createDate"));
+						+ rs.getString("phoneNumber") + "\t" + rs.getDate("createDate") + "\t" + rs.getBoolean("sex"));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public String getPhoneNum() {
-		return this.phoneNum;
+	public void setBirthday(LocalDate date) {
+		this.birthday = date;
 	}
 
 	public void setFullName(String text) {
 		this.fullName = text;
-	}
-
-	public void setBirthday(LocalDate date) {
-		this.birthday = date;
 	}
 
 	public void setPhoneNum(String text) {

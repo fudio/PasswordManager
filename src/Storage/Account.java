@@ -35,6 +35,7 @@ public class Account {
 		a.insert("Account.db");
 		a.selectAll("Account.db");
 	}
+	
 
 	private static byte[] sha256(String value) {
 		MessageDigest digest;
@@ -48,6 +49,9 @@ public class Account {
 		return hash;
 
 	}
+
+	static final boolean MALE = true;
+	static final boolean FEMALE = false;
 
 	private String username;
 	private String password;

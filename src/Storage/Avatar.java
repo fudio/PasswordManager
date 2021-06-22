@@ -37,8 +37,8 @@ public class Avatar {
 
 	public static void main(String[] args) {
 		Avatar.updatePicture("fudio", "testPic.jpg");
-		Avatar.readPictureToFile("fudi", "output.jpg");
-//		ImageIcon a = new ImageIcon(Avatar.readPicture("fudi"), "description");
+		Avatar.readPictureToFile("fudio", "output.jpg");
+		ImageIcon a = new ImageIcon(Avatar.readPicture("fudi"), "description");
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Avatar {
 	/**
 	 * read the picture file and insert into the material master table
 	 *
-	 * @param materialId
+	 * @param username
 	 * @param filename
 	 */
 	public static void readPictureToFile(String username, String filename) {

@@ -191,23 +191,23 @@ public class guiProfile extends javax.swing.JFrame {
         String fullName = fullname.getText();
         String phone_ = phone.getText();
         Date birthday_ = dateChooser.getCalendar().getTime();
-        if (!isValidPhone(phone_)) {
-            JOptionPane.showMessageDialog(agreeButton,
-                    "S? ?i?n tho?i b?n nh?p không ph?i c?a nhà m?ng Vi?t Nam", "InvalidPhoneNumberError",
-                    JOptionPane.WARNING_MESSAGE);
-        } else {
-            if (fullName != login.getFullname()) {
-                login.setFullName(fullName);
-            }
-            if (birthday_ != new Date()) {
-                login.setBirthday(convertToLocalDateViaMilisecond(birthday_));
-            }
-            if (phone_ != login.getPhoneNum()) {
-                login.setPhoneNum(phone_);
-            }
-            AccountList a = new AccountList();
-            a.editAccount(login);
-        }
+//        if (!isValidPhone(phone_)) {
+//            JOptionPane.showMessageDialog(agreeButton,
+//                    "S? ?i?n tho?i b?n nh?p không ph?i c?a nhà m?ng Vi?t Nam", "InvalidPhoneNumberError",
+//                    JOptionPane.WARNING_MESSAGE);
+//        } else {
+//            if (fullName != login.getFullname()) {
+//                login.setFullName(fullName);
+//            }
+//            if (birthday_ != new Date()) {
+//                login.setBirthday(convertToLocalDateViaMilisecond(birthday_));
+//            }
+//            if (phone_ != login.getPhoneNum()) {
+//                login.setPhoneNum(phone_);
+//            }
+//            AccountList a = new AccountList();
+//            a.editAccount(login);
+//        }
     }//GEN-LAST:event_agreeButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

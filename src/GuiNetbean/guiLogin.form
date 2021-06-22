@@ -219,9 +219,9 @@
                       <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="jLabel3" alignment="2" min="-2" pref="315" max="-2" attributes="0"/>
-                          <Component id="jPanel2" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel3" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="login1" alignment="2" min="-2" pref="355" max="-2" attributes="0"/>
+                          <Component id="usernamePn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="passwordPn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="login" alignment="2" min="-2" pref="355" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="80" max="32767" attributes="0"/>
                   </Group>
@@ -247,13 +247,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="65" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="usernamePn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel3" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="passwordPn" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="showpassword" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="login1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="login" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="back" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -280,7 +280,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="usernamePn">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -330,7 +330,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="passwordPn">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -345,7 +345,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="opassword" min="-2" pref="210" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -374,18 +374,22 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="opassword">
+                  <Properties>
+                    <Property name="echoChar" type="char" value="&#x2022;"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opasswordActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="opasswordKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="login1">
+            <Component class="javax.swing.JButton" name="login">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="signup">

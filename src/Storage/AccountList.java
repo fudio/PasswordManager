@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,47 +25,22 @@ public class AccountList implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6967904973869758331L;
-	private final String path = "Account.db";
-	private Queue<Account> list;
 
-	public AccountList() {
-		list = new LinkedList<Account>();
-		readFile();
-	}
-
-	protected void readFile() {
-		String sql = "SELECT * FROM Account";
-
-		try (Connection conn = this.connect(this.path);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)) {
-
-			// loop through the result set
-			while (rs.next()) {
-				this.list.add(new Account(rs));
-			}
-			conn.close();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		this.sortQueue();
-	}
-
-	// Returns the index of the smallest value on queue
-	public int minIndex(int sortIndex) {
-		int min_index = -1;
-		Account min_value = new Account("zzzzzzzzzzzzzzzz");
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Account current = this.list.poll();
-
-			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
-				min_index = i;
-				min_value = current;
-			}
-			this.list.add(current);
-		}
-		return min_index;
+	public static void main(String[] args)
+			throws InvalidAlgorithmParameterException, InvalidKeyException, NoSuchPaddingException,
+			NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
+		// https://stackoverflow.com/questions/60705536/task-not-serializable-error-while-calling-udf-to-spark-dataframe
+		AccountList a = new AccountList();
+//		Account t = new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+//		a.addAccount(t);
+//		t = new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+//		a.addAccount(t);
+//		System.out.println(a.accountSearch("fudio"));
+//		System.out.println(a.getAccountList());
+//		a.writeFile(a.path);
+//		System.out.println(a.getAccountList());
+		a.searchByUsernameSort("fdi");
+		a.searchByFullNameSort("Nguyên");
 	}
 
 	// Compare 2 String, return 0 if they equal, return a positive number if str1 is
@@ -91,81 +64,19 @@ public class AccountList implements Serializable {
 		}
 	}
 
-	// Bring the smallest value to the end
-	public void insertMinToRear(int min_index) {
-		Account min_value = new Account("");
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Account current = this.list.poll();
-			if (i != min_index)
-				this.list.add(current);
-			else
-				min_value = current;
-		}
-		this.list.add(min_value);
-	}
+	private Queue<Float> compareList;
 
-	public void sortQueue() {
-		for (int i = 1; i <= this.list.size(); i++) {
-			int min_index = minIndex(this.list.size() - i);
-			insertMinToRear(min_index);
-		}
-	}
+	private Queue<Account> list;
 
-	private Connection connect(String path_) {
-		// SQLite connection string
-		String url = "jdbc:sqlite:" + path_;
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return conn;
-	}
+	private final String path = "Account.db";
 
-	public Queue<Account> getAccountList() {
-		return list;
-	}
+	private Queue<Account> searchList;
 
-	protected void writeFile(String path) {
-		while (!this.list.isEmpty()) {
-			this.list.poll().insert("Account.db");
-		}
-	}
-
-	public boolean addAccount(Account a) {
-		String t = a.getUsername();
-		for (Account i : this.list) {
-			if (i.getUsername().equals(t))
-				return false;
-		}
-		this.list.add(a);
-		this.writeFile(this.path);
-		return true;
-	}
-
-	public boolean editAccount(Account a) {
-		String t = a.getUsername();
-		List<Account> list = new ArrayList<Account>(this.list);
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getUsername().equals(t)) {
-				list.remove(i);
-				list.add(a);
-				this.list = new LinkedList<Account>(list);
-				this.sortQueue();
-				this.writeFile(this.path);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	protected Account findAccount(String username) {
-		for (Account i : this.list)
-			if (i.getUsername().equals(username))
-				return i;
-		return null;
+	public AccountList() {
+		list = new LinkedList<Account>();
+		searchList = new LinkedList<Account>();
+		compareList = new LinkedList<Float>();
+		readFile();
 	}
 
 	public Account accountSearch(int x, int y, String s) {
@@ -192,19 +103,40 @@ public class AccountList implements Serializable {
 		return this.accountSearch(0, this.list.size() - 1, s);
 	}
 
-	public static void main(String[] args)
-			throws InvalidAlgorithmParameterException, InvalidKeyException, NoSuchPaddingException,
-			NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
-		// https://stackoverflow.com/questions/60705536/task-not-serializable-error-while-calling-udf-to-spark-dataframe
-		AccountList a = new AccountList();
-		Account t = new Account("fudio", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-		a.addAccount(t);
-		t = new Account("fudi", "fudio", "A", LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-		a.addAccount(t);
-		System.out.println(a.accountSearch("fudio"));
-		System.out.println(a.getAccountList());
-		a.writeFile(a.path);
-		System.out.println(a.getAccountList());
+	public boolean addAccount(Account a) {
+		String t = a.getUsername();
+		for (Account i : this.list) {
+			if (i.getUsername().equals(t))
+				return false;
+		}
+		this.list.add(a);
+		this.writeFile(this.path);
+		return true;
+	}
+
+	private Connection connect(String path_) {
+		// SQLite connection string
+		String url = "jdbc:sqlite:" + path_;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
+	}
+
+	private void createSearchList() {
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Float currentCompare = this.compareList.poll();
+			Account current = this.list.poll();
+			if (!currentCompare.equals(Float.valueOf(0))) {
+				this.searchList.add(current);
+			}
+			this.compareList.add(currentCompare);
+			this.list.add(current);
+		}
 	}
 
 	public boolean delete(String choice) {
@@ -233,6 +165,33 @@ public class AccountList implements Serializable {
 
 	}
 
+	public boolean editAccount(Account a) {
+		String t = a.getUsername();
+		List<Account> list = new ArrayList<Account>(this.list);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUsername().equals(t)) {
+				list.remove(i);
+				list.add(a);
+				this.list = new LinkedList<Account>(list);
+				this.sortQueue();
+				this.writeFile(this.path);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected Account findAccount(String username) {
+		for (Account i : this.list)
+			if (i.getUsername().equals(username))
+				return i;
+		return null;
+	}
+
+	public Queue<Account> getAccountList() {
+		return list;
+	}
+
 	public List<Statistics> getStatitical() {
 		String sql = "SELECT createDate, count(*) FROM Account GROUP BY createDate";
 		List<Statistics> list_ = new ArrayList<Statistics>();
@@ -242,7 +201,7 @@ public class AccountList implements Serializable {
 
 			// loop through the result set
 			while (rs.next()) {
-				list_.add(new Statistics(rs.getDate("createDate"),rs.getInt("count(*)")));
+				list_.add(new Statistics(rs.getDate("createDate"), rs.getInt("count(*)")));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -250,4 +209,216 @@ public class AccountList implements Serializable {
 		}
 		return list_;
 	}
+
+	private void insertMaxToRearSearchList(int max_index) {
+		Account max_value = new Account("");
+		Float max_compare = Float.valueOf(0);
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+			Float current_ = this.compareList.poll();
+			if (i != max_index) {
+				this.list.add(current);
+				this.compareList.add(current_);
+			} else {
+				max_value = current;
+				max_compare = current_;
+			}
+		}
+		this.list.add(max_value);
+		this.compareList.add(max_compare);
+	}
+
+	// Bring the smallest value to the end
+	public void insertMinToRear(int min_index) {
+		Account min_value = new Account("");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+			if (i != min_index)
+				this.list.add(current);
+			else
+				min_value = current;
+		}
+		this.list.add(min_value);
+	}
+
+	private int lenghtOfLcs(String X, String Y) {
+		int m = X.length(), n = Y.length();
+		int[][] L = new int[m + 1][n + 1];
+
+		for (int i = 0; i <= m; i++) {
+			for (int j = 0; j <= n; j++) {
+				if (i == 0 || j == 0)
+					L[i][j] = 0;
+				else if (X.charAt(i - 1) == Y.charAt(j - 1))
+					L[i][j] = L[i - 1][j - 1] + 1;
+				else
+					L[i][j] = Math.max(L[i - 1][j], L[i][j - 1]);
+			}
+		}
+
+		return L[m][n];
+	}
+
+	private int maxIndexSearchList(int sortIndex) {
+		int max_index = -1;
+		Float max_value = Float.valueOf(0);
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Float current = this.compareList.poll();
+
+			if (Float.compare(max_value, current) <= 0 && i <= sortIndex) {
+				max_index = i;
+				max_value = current;
+			}
+			this.compareList.add(current);
+		}
+		return max_index;
+	}
+
+	// Returns the index of the smallest value on queue
+	public int minIndex(int sortIndex) {
+		int min_index = -1;
+		Account min_value = new Account("zzzzzzzzzzzzzzzz");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+
+			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
+				min_index = i;
+				min_value = current;
+			}
+			this.list.add(current);
+		}
+		return min_index;
+	}
+
+	protected void readFile() {
+		String sql = "SELECT * FROM Account";
+
+		try (Connection conn = this.connect(this.path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				this.list.add(new Account(rs));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.sortQueue();
+	}
+
+	public void searchByFullNameSort(String fullName) {
+		this.compareList.clear();
+		this.searchList.clear();
+		Account temp;
+		String tempFN;
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			temp = this.list.poll();
+			tempFN = temp.getFullName();
+			Float rank = Integer.valueOf(lenghtOfLcs(fullName, tempFN)).floatValue();
+			this.compareList.add(rank / tempFN.length());
+			this.list.add(temp);
+		}
+		sortBySearch();
+		createSearchList();
+	}
+
+	public void searchByUsernameSort(String username) {
+		this.compareList.clear();
+		this.searchList.clear();
+		Account temp;
+		String tempU;
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			temp = this.list.poll();
+			tempU = temp.getUsername();
+			this.compareList.add(Integer.valueOf(lenghtOfLcs(username, tempU)).floatValue() / tempU.length());
+			this.list.add(temp);
+		}
+		sortBySearch();
+		createSearchList();
+	}
+
+	private void sortBySearch() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int max_index = maxIndexSearchList(this.list.size() - i);
+			insertMaxToRearSearchList(max_index);
+		}
+	}
+
+	public void sortQueue() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int min_index = minIndex(this.list.size() - i);
+			insertMinToRear(min_index);
+		}
+	}
+
+	protected void writeFile(String path) {
+		sortQueue();
+		while (!this.list.isEmpty()) {
+			this.list.poll().insert("Account.db");
+		}
+	}
+
+//		// Returns length of LCS for X[0..m-1], Y[0..n-1]
+//	static void lcs(String X, String Y, int m, int n) {
+//		int[][] L = new int[m + 1][n + 1];
+//
+//		// Following steps build L[m+1][n+1] in bottom up fashion. Note
+//		// that L[i][j] contains length of LCS of X[0..i-1] and Y[0..j-1]
+//		for (int i = 0; i <= m; i++) {
+//			for (int j = 0; j <= n; j++) {
+//				if (i == 0 || j == 0)
+//					L[i][j] = 0;
+//				else if (X.charAt(i - 1) == Y.charAt(j - 1))
+//					L[i][j] = L[i - 1][j - 1] + 1;
+//				else
+//					L[i][j] = Math.max(L[i - 1][j], L[i][j - 1]);
+//			}
+//		}
+//
+//		// Following code is used to print LCS
+//		int index = L[m][n];
+//		int temp = index;
+//
+//		// Create a character array to store the lcs string
+//		char[] lcs = new char[index + 1];
+//		lcs[index] = '\u0000'; // Set the terminating character
+//
+//		// Start from the right-most-bottom-most corner and
+//		// one by one store characters in lcs[]
+//		int i = m;
+//		int j = n;
+//		while (i > 0 && j > 0) {
+//			// If current character in X[] and Y are same, then
+//			// current character is part of LCS
+//			if (X.charAt(i - 1) == Y.charAt(j - 1)) {
+//				// Put current character in result
+//				lcs[index - 1] = X.charAt(i - 1);
+//
+//				// reduce values of i, j and index
+//				i--;
+//				j--;
+//				index--;
+//			}
+//
+//			// If not same, then find the larger of two and
+//			// go in the direction of larger value
+//			else if (L[i - 1][j] > L[i][j - 1])
+//				i--;
+//			else
+//				j--;
+//		}
+//
+//		// Print the lcs
+//		System.out.print("LCS of " + X + " and " + Y + " is ");
+//		for (int k = 0; k <= temp; k++)
+//			System.out.print(lcs[k]);
+//	}
 }

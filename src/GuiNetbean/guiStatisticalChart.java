@@ -542,7 +542,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 			Date t = i.getCreateDate();
 			int year = getYear(t);
 			int month = getMonth(t);
-			if (year >= year1 && month >= month1 && year <= year2 && month <= month2) {
+			if (compareMonth(year1, month1, year, month) && compareMonth(year, month, year2, month2)) {
 				if (!monthList.contains(i)) {
 					i.setI(1);
 					monthList.add(i);
@@ -623,7 +623,8 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 			int year = getYear(t);
 			int month = getMonth(t);
 			int day = getDay(t);
-			if (year >= year1 && month >= month1 && day >= day1 && year <= year2 && month <= month2 && day <= day2) {
+			if (compareDay(year1, month1, day1, year, month, day)
+					&& compareDay(year, month, day, year2, month2, day2)) {
 				if (!dayList.contains(i)) {
 					i.setI(2);
 					dayList.add(i);

@@ -223,7 +223,7 @@
                           <Component id="passwordPn" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="login" alignment="2" min="-2" pref="355" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
@@ -260,7 +260,7 @@
                           <Component id="signup" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fogotpassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

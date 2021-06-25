@@ -2,10 +2,13 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */ 
 package GuiNetbean;
 
 import Encryption.ChuyenManHinhController;
+import Encryption.DanhmucBean;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,6 +24,13 @@ public class guiAccountManager extends javax.swing.JFrame {
 
         ChuyenManHinhController controller = new ChuyenManHinhController(panelView);
         controller.setView(AccountManager, lbAccount);
+        
+        List <DanhmucBean> listItem = new ArrayList<DanhmucBean>();
+        listItem.add(new DanhmucBean("AccountManager", AccountManager, lbAccount));
+        listItem.add(new DanhmucBean("StacticChart", StaticChart, lbStatic));
+        
+        controller.setEvent(listItem);  
+        
     }
 
     /**

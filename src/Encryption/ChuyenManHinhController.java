@@ -7,6 +7,7 @@ package Encryption;
 
 import GuiNetbean.guiAdmin;
 import Encryption.DanhmucBean;
+import GuiNetbean.guiRegister;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;
 import Storage.AccountList;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Queue;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import static sun.security.jgss.GSSUtil.login;
 
 /**
  *
@@ -42,7 +44,7 @@ public class ChuyenManHinhController {
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new guiAdmin());
+//        root.add(new guiAdmin(login));
         root.validate();
         root.repaint();
 
@@ -72,10 +74,10 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "AccountManager":
-                    node = new guiAdmin();
+               //     node = new guiAdmin();      
                     break;
                 case "StatisChart":
-                    node = new guiStatisticalChart();
+                //    node = new guiStatisticalChart();
                     break;
 
                 default:

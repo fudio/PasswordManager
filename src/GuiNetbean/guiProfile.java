@@ -17,6 +17,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import GuiNetbean.guiLogin;
+import static sun.security.jgss.GSSUtil.login;
 /**
  *
  * @author Admin
@@ -72,14 +74,11 @@ public class guiProfile extends javax.swing.JFrame {
 
         sex.setText("sex");
         getContentPane().add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 280, -1));
-
-        birthday.setText(login.getBirthday());
         getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
 
         address.setText("address");
         getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 280, -1));
 
-        phone.setText(login.getPhoneNum());
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneActionPerformed(evt);

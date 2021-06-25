@@ -22,14 +22,18 @@ import javax.swing.table.DefaultTableModel;
 public class guiAdmin extends javax.swing.JFrame {
 
     JFrame f;
+
     /**
      * Creates new form guiAdmin
      */
-    public guiAdmin() {
+    public guiAdmin(Account login) {
         initComponents();
 
         setTitle("Admin");
 
+
+        
+        
 //        final DefaultTableModel model = (DefaultTableModel) jt.getModel();
 //        AccountList a = new AccountList();
 //        for (Account i : a.getAccountList()) {
@@ -38,8 +42,6 @@ public class guiAdmin extends javax.swing.JFrame {
 //                    "", ""});
 //            }
 //        }
-
-
     }
 
     /**
@@ -176,7 +178,7 @@ public class guiAdmin extends javax.swing.JFrame {
             public void run() {
                 Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
                         LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-                new guiAdmin();
+                new guiAdmin(a);
             }
         });
     }

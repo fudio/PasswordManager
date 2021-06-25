@@ -23,7 +23,6 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import Storage.AccountList;
 import Storage.Statistics;
-import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;

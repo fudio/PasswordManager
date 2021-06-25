@@ -39,109 +39,125 @@ public class guiProfile extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		jLabel1 = new javax.swing.JLabel();
-		jLabel2 = new javax.swing.JLabel();
-		fullname = new javax.swing.JTextField();
-		sex = new javax.swing.JTextField();
-		birthday = new javax.swing.JTextField();
-		address = new javax.swing.JTextField();
-		phone = new javax.swing.JTextField();
-		email = new javax.swing.JTextField();
-		jLabel3 = new javax.swing.JLabel();
-		editProfileButton = new javax.swing.JButton();
-		agreeButton = new javax.swing.JButton();
-		cancelButton = new javax.swing.JButton();
-		dateChooser = new com.toedter.calendar.JDateChooser();
-		jMenuBar1 = new javax.swing.JMenuBar();
-		jMenu1 = new javax.swing.JMenu();
-		jMenuItem1 = new javax.swing.JMenuItem();
-		jMenuItem2 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        fullname = new javax.swing.JTextField();
+        sex = new javax.swing.JTextField();
+        birthday = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
+        phone = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        editProfileButton = new javax.swing.JButton();
+        agreeButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        email1 = new javax.swing.JTextField();
+        email2 = new javax.swing.JTextField();
+        email3 = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
-		jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setLocation(new java.awt.Point(600, 250));
-		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(600, 250));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		jLabel2.setFont(new java.awt.Font("UTM Americana EB", 0, 24)); // NOI18N
-		jLabel2.setText("PROFILE");
-		getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
+        jLabel2.setFont(new java.awt.Font("UTM Americana EB", 0, 24)); // NOI18N
+        jLabel2.setText("PROFILE");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
 
-		fullname.setText(login.getFullName());
-		getContentPane().add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 280, -1));
+        fullname.setText(login.getFullName());
+        fullname.setText("fullname");
+        getContentPane().add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 280, -1));
 
-		sex.setText("sex");
-		getContentPane().add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 280, -1));
-		getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
+        sex.setText("sex");
+        getContentPane().add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 280, -1));
 
-		address.setText("address");
-		getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 280, -1));
+        birthday.setText("birthday");
+        getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
 
-		phone.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				phoneActionPerformed(evt);
-			}
-		});
-		getContentPane().add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 280, -1));
+        address.setText("address");
+        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 280, -1));
 
-		email.setText("email");
-		getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 280, -1));
+        phone.setText("phone number");
+        phone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneActionPerformed(evt);
+            }
+        });
+        getContentPane().add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 280, -1));
 
-		jLabel3.setText("Carrot team @ 2021");
-		getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 490, -1, -1));
+        email.setText("fblink");
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 280, -1));
 
-		editProfileButton.setText("Edit profile");
-		editProfileButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				editProfileButtonActionPerformed(evt);
-			}
-		});
-		getContentPane().add(editProfileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, -1));
+        jLabel3.setText("Carrot team @ 2021");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 490, -1, -1));
 
-		agreeButton.setText("Agree");
-		agreeButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				agreeButtonActionPerformed(evt);
-			}
-		});
-		getContentPane().add(agreeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
+        editProfileButton.setText("Edit profile");
+        editProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProfileButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(editProfileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, -1));
 
-		cancelButton.setText("Cancel");
-		cancelButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				cancelButtonActionPerformed(evt);
-			}
-		});
-		getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
-		getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
+        agreeButton.setText("Agree");
+        agreeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agreeButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agreeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
-		jMenu1.setText("File");
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
+        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 280, -1));
 
-		jMenuItem1.setText("Logout");
-		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem1ActionPerformed(evt);
-			}
-		});
-		jMenu1.add(jMenuItem1);
+        email1.setText("email");
+        getContentPane().add(email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 280, -1));
 
-		jMenuItem2.setText("Exit");
-		jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem2ActionPerformed(evt);
-			}
-		});
-		jMenu1.add(jMenuItem2);
+        email2.setText("word");
+        getContentPane().add(email2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 280, -1));
 
-		jMenuBar1.add(jMenu1);
+        email3.setText("address");
+        getContentPane().add(email3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 280, -1));
 
-		setJMenuBar(jMenuBar1);
+        jMenu1.setText("File");
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        jMenuItem1.setText("Logout");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
 	Date date = new Date();
 
@@ -278,23 +294,26 @@ public class guiProfile extends javax.swing.JFrame {
 	}
 
 	private Account login;
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JTextField address;
-	private javax.swing.JButton agreeButton;
-	private javax.swing.JTextField birthday;
-	private javax.swing.JButton cancelButton;
-	private com.toedter.calendar.JDateChooser dateChooser;
-	private javax.swing.JButton editProfileButton;
-	private javax.swing.JTextField email;
-	private javax.swing.JTextField fullname;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JMenu jMenu1;
-	private javax.swing.JMenuBar jMenuBar1;
-	private javax.swing.JMenuItem jMenuItem1;
-	private javax.swing.JMenuItem jMenuItem2;
-	private javax.swing.JTextField phone;
-	private javax.swing.JTextField sex;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address;
+    private javax.swing.JButton agreeButton;
+    private javax.swing.JTextField birthday;
+    private javax.swing.JButton cancelButton;
+    private com.toedter.calendar.JDateChooser dateChooser;
+    private javax.swing.JButton editProfileButton;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField email1;
+    private javax.swing.JTextField email2;
+    private javax.swing.JTextField email3;
+    private javax.swing.JTextField fullname;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JTextField phone;
+    private javax.swing.JTextField sex;
+    // End of variables declaration//GEN-END:variables
 }

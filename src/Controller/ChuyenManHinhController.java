@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Encryption;
+package Controller;
 
 import GuiNetbean.guiAdmin;
-import Encryption.DanhmucBean;
+import Controller.DanhmucBean;
 import GuiNetbean.guiRegister;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;

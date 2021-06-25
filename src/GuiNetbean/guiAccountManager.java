@@ -5,8 +5,8 @@
  */ 
 package GuiNetbean;
 
-import Encryption.ChuyenManHinhController;
-import Encryption.DanhmucBean;
+import Controller.ChuyenManHinhController;
+import Controller.DanhmucBean;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -5,7 +5,7 @@
  */
 package GuiNetbean;
 
-import Encryption.ChuyenManHinhController;
+import Controller.ChuyenManHinhController;
 import GUI.GuiAdmin;
 import Storage.Account;
 import Storage.AccountList;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class guiAdmin extends javax.swing.JFrame {
 
-    JFrame f;
+   // JFrame f;
 
     /**
      * Creates new form guiAdmin
@@ -58,16 +58,31 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
-        btnAdd = new javax.swing.JButton();
-        jtfSearch = new javax.swing.JTextField();
+        osearch = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
         logout = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        softaz = new javax.swing.JButton();
+        ofullname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jpnView = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        obirthday = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        ophonenum = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        oemail = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        osex = new javax.swing.JTextField();
+        osex1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        oaddress = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        ofb = new javax.swing.JTextField();
+        lbPicture = new javax.swing.JLabel();
+        softza = new javax.swing.JButton();
+        softaz1 = new javax.swing.JButton();
+        softaz2 = new javax.swing.JButton();
+        jpnView = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(650, 250));
@@ -75,18 +90,19 @@ public class guiAdmin extends javax.swing.JFrame {
 
         paneAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Admin");
         jLabel1.setToolTipText("");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        paneAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 11, 285, 54));
+        paneAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 54));
         jLabel1.getAccessibleContext().setAccessibleName("");
 
+        jLabel2.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Search");
-        paneAdmin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 62, -1));
+        paneAdmin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 62, -1));
 
         jt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,20 +116,19 @@ public class guiAdmin extends javax.swing.JFrame {
 
         paneAdmin.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 950, 300));
 
-        btnAdd.setText("add");
-        paneAdmin.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 390, -1, -1));
+        osearch.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        paneAdmin.add(osearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 190, -1));
 
-        jtfSearch.setText("search");
-        paneAdmin.add(jtfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 190, -1));
-
+        delete.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
-        paneAdmin.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, -1, -1));
+        paneAdmin.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 390, -1, -1));
 
+        logout.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         logout.setText("Logout");
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,29 +138,130 @@ public class guiAdmin extends javax.swing.JFrame {
         paneAdmin.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 95, -1));
         logout.getAccessibleContext().setAccessibleName("ButtonDX");
 
-        jButton1.setText("jButton1");
-        paneAdmin.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
+        softaz.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        softaz.setText("Sort by username A-Z");
+        paneAdmin.add(softaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 160, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ofullname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ofullnameActionPerformed(evt);
             }
         });
-        paneAdmin.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 200, -1));
+        paneAdmin.add(ofullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 200, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Name");
-        paneAdmin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 70, -1));
+        paneAdmin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 70, -1));
+
+        jLabel4.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Birthday");
+        paneAdmin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        obirthday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obirthdayActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(obirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Phone");
+        paneAdmin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
+
+        ophonenum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ophonenumActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(ophonenum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 200, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Email");
+        paneAdmin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 70, -1));
+
+        oemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oemailActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(oemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 200, -1));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Gender");
+        paneAdmin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 70, -1));
+
+        osex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                osexActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(osex, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 200, -1));
+
+        osex1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                osex1ActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(osex1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 200, -1));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Work");
+        paneAdmin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 70, -1));
+
+        oaddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oaddressActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(oaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 200, -1));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Address");
+        paneAdmin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 70, -1));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Facebook");
+        paneAdmin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 80, -1));
+
+        ofb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ofbActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(ofb, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 200, -1));
+
+        lbPicture.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        paneAdmin.add(lbPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 210, 200));
+
+        softza.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        softza.setText("Sort by name Z-A");
+        paneAdmin.add(softza, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 140, -1));
+
+        softaz1.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        softaz1.setText("Sort by username Z-A");
+        paneAdmin.add(softaz1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 160, -1));
+
+        softaz2.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        softaz2.setText("Sort by name A-Z");
+        paneAdmin.add(softaz2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 140, -1));
 
         jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
         paneAdmin.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
-
-        jLabel4.setText("jLabel4");
-        paneAdmin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
-
-        jTextField2.setText("jTextField2");
-        paneAdmin.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 200, -1));
 
         getContentPane().add(paneAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -172,9 +288,37 @@ public class guiAdmin extends javax.swing.JFrame {
 //        model.removeRow(index);
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void ofullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ofullnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_ofullnameActionPerformed
+
+    private void obirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obirthdayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_obirthdayActionPerformed
+
+    private void ophonenumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ophonenumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ophonenumActionPerformed
+
+    private void oemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oemailActionPerformed
+
+    private void osexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_osexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_osexActionPerformed
+
+    private void osex1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_osex1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_osex1ActionPerformed
+
+    private void oaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oaddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oaddressActionPerformed
+
+    private void ofbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ofbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ofbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,19 +358,34 @@ public class guiAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton delete;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jpnView;
     private javax.swing.JTable jt;
-    private javax.swing.JTextField jtfSearch;
+    private javax.swing.JLabel lbPicture;
     private javax.swing.JButton logout;
+    private javax.swing.JTextField oaddress;
+    private javax.swing.JTextField obirthday;
+    private javax.swing.JTextField oemail;
+    private javax.swing.JTextField ofb;
+    private javax.swing.JTextField ofullname;
+    private javax.swing.JTextField ophonenum;
+    private javax.swing.JTextField osearch;
+    private javax.swing.JTextField osex;
+    private javax.swing.JTextField osex1;
     private javax.swing.JPanel paneAdmin;
+    private javax.swing.JButton softaz;
+    private javax.swing.JButton softaz1;
+    private javax.swing.JButton softaz2;
+    private javax.swing.JButton softza;
     // End of variables declaration//GEN-END:variables
 }

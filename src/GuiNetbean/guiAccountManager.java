@@ -90,23 +90,21 @@ public class guiAccountManager extends javax.swing.JFrame {
 
         lbAccount.setFont(new java.awt.Font("UTM Androgyne", 1, 18)); // NOI18N
         lbAccount.setForeground(new java.awt.Color(255, 255, 255));
+        lbAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbAccount.setText("Account Management");
+        lbAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbAccount.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lbAccount.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout AccountManagerLayout = new javax.swing.GroupLayout(AccountManager);
         AccountManager.setLayout(AccountManagerLayout);
         AccountManagerLayout.setHorizontalGroup(
             AccountManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AccountManagerLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(lbAccount)
-                .addContainerGap(63, Short.MAX_VALUE))
+            .addComponent(lbAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         AccountManagerLayout.setVerticalGroup(
             AccountManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AccountManagerLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(lbAccount)
-                .addContainerGap(44, Short.MAX_VALUE))
+            .addComponent(lbAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
         panelMenu.add(AccountManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, 315, -1));
@@ -115,23 +113,19 @@ public class guiAccountManager extends javax.swing.JFrame {
 
         lbStatic.setFont(new java.awt.Font("UTM Androgyne", 1, 18)); // NOI18N
         lbStatic.setForeground(new java.awt.Color(255, 255, 255));
+        lbStatic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbStatic.setText("Statistical chart");
+        lbStatic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout StaticChartLayout = new javax.swing.GroupLayout(StaticChart);
         StaticChart.setLayout(StaticChartLayout);
         StaticChartLayout.setHorizontalGroup(
             StaticChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(StaticChartLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(lbStatic)
-                .addContainerGap(101, Short.MAX_VALUE))
+            .addComponent(lbStatic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         StaticChartLayout.setVerticalGroup(
             StaticChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(StaticChartLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(lbStatic)
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(lbStatic, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
         panelMenu.add(StaticChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 246, 315, -1));

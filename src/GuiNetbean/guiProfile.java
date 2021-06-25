@@ -5,6 +5,7 @@
  */
 package GuiNetbean;
 //a
+
 import Storage.Account;
 import Storage.AccountList;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import GuiNetbean.guiLogin;
 import static sun.security.jgss.GSSUtil.login;
+
 /**
  *
  * @author Admin
@@ -27,8 +29,10 @@ public class guiProfile extends javax.swing.JFrame {
 
     /**
      * Creates new form guiLogin
+     * @param login_
      */
-    public guiProfile(final Account login) {
+    public guiProfile(Account login_) {
+        this.login = login_;
         initComponents();
     }
 
@@ -277,6 +281,7 @@ public class guiProfile extends javax.swing.JFrame {
         return Instant.ofEpochMilli(dateToConvert.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
+    private Account login;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JButton agreeButton;

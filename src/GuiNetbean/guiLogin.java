@@ -198,7 +198,7 @@ public class guiLogin extends javax.swing.JFrame {
         passwordPn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setFont(new java.awt.Font("UTM Alberta Heavy", 0, 24)); // NOI18N
-        jLabel4.setText("Password");
+        jLabel4.setText("Password ");
 
         opassword.setEchoChar('\u2022');
         opassword.addActionListener(new java.awt.event.ActionListener() {

@@ -4,21 +4,42 @@
  * and open the template in the editor.
  */
 package GuiNetbean;
-//a
+
+import Encryption.ChuyenManHinhController;
+import GUI.GuiAdmin;
 import Storage.Account;
 import Storage.AccountList;
+import java.time.LocalDate;
+import java.time.Month;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
  */
 public class guiAdmin extends javax.swing.JFrame {
 
+    JFrame f;
     /**
      * Creates new form guiAdmin
      */
-    public guiAdmin(Account login) {
+    public guiAdmin() {
         initComponents();
+
+        setTitle("Admin");
+
+//        final DefaultTableModel model = (DefaultTableModel) jt.getModel();
+//        AccountList a = new AccountList();
+//        for (Account i : a.getAccountList()) {
+//            if (i.getRank() != 0) {
+//                model.addRow(new Object[]{i.getUsername(), i.getFullName(), i.getBirthday(), "", "", i.getPhoneNum(),
+//                    "", ""});
+//            }
+//        }
+
+
     }
 
     /**
@@ -30,21 +51,22 @@ public class guiAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        paneAdmin = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        logout = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jtfSearch = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
+        jtfSearch = new javax.swing.JTextField();
         jpnView = new javax.swing.JLabel();
+        delete = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(650, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 640, 230));
+        paneAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,8 +74,41 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 11, 285, 54));
+        paneAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 11, 285, 54));
         jLabel1.getAccessibleContext().setAccessibleName("");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Sorted by");
+        paneAdmin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 217, 62, -1));
+
+        jt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jt);
+
+        paneAdmin.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 750, 170));
+
+        btnAdd.setText("add");
+        paneAdmin.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+
+        jtfSearch.setText("search");
+        paneAdmin.add(jtfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 190, -1));
+
+        jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
+        paneAdmin.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
+
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        paneAdmin.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 213, -1, -1));
 
         logout.setText("Logout");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -61,24 +116,10 @@ public class guiAdmin extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 11, 95, -1));
+        paneAdmin.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 11, 95, -1));
         logout.getAccessibleContext().setAccessibleName("ButtonDX");
 
-        delete.setText("Delete");
-        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 213, -1, -1));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Sorted by");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 217, 62, -1));
-
-        jtfSearch.setText("search");
-        getContentPane().add(jtfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 190, -1));
-
-        btnAdd.setText("add");
-        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
-
-        jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
-        getContentPane().add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
+        getContentPane().add(paneAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,6 +130,19 @@ public class guiAdmin extends javax.swing.JFrame {
         f1.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+//        final DefaultTableModel model = (DefaultTableModel) jt.getModel();
+//        AccountList a = new AccountList();
+//        int index = jt.getSelectedRow();
+//        if (index == -1) {
+//            return;
+//        }
+//        String choice = (String) jt.getValueAt(index, 0);
+//        a.delete(choice);
+//        model.removeRow(index);
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +174,9 @@ public class guiAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new guiAdmin().setVisible(true);
+                Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
+                        LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+                new guiAdmin();
             }
         });
     }
@@ -129,9 +185,11 @@ public class guiAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jpnView;
+    private javax.swing.JTable jt;
     private javax.swing.JTextField jtfSearch;
     private javax.swing.JButton logout;
+    private javax.swing.JPanel paneAdmin;
     // End of variables declaration//GEN-END:variables
 }

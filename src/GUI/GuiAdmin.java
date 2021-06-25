@@ -23,7 +23,6 @@ import Storage.AccountList;
 import javax.swing.ImageIcon;
 
 public class GuiAdmin {
-	JFrame f;
 
 	/**
 	 * @wbp.parser.entryPoint

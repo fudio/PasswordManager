@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.Queue;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import static sun.security.jgss.GSSUtil.login;
@@ -59,7 +61,7 @@ public class ChuyenManHinhController {
 
     class LabelEvent implements MouseListener {
 
-        private JPanel node;
+        private JFrame node;
 
         private String kind;
         private JPanel paneItem;
@@ -74,10 +76,10 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "AccountManager":
-               //     node = new guiAdmin();      
+//                    node = new guiAdmin();      muốn chuyển qua trang đây phải đưa vào 1 account admin
                     break;
                 case "StatisChart":
-                //    node = new guiStatisticalChart();
+                    node = new guiStatisticalChart();
                     break;
 
                 default:

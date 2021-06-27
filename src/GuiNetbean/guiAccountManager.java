@@ -30,7 +30,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         listItem.add(new DanhmucBean("StacticChart", StaticChart, lbStatic));
         
         controller.setEvent(listItem);  
-        
+        //gaf
     }
 
     /**

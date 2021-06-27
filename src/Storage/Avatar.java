@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class Avatar {
+
 	/**
 	 * Connect to the test.db database
 	 *
@@ -38,12 +39,12 @@ public class Avatar {
 	public static void main(String[] args) {
 		Avatar.updatePicture("fudio", "testPic.jpg");
 		Avatar.readPictureToFile("fudio", "output.jpg");
-		ImageIcon a = new ImageIcon(Avatar.readPicture("fudi"), "description");
+//		ImageIcon a = new ImageIcon(Avatar.readPicture("fudi"), "description");
 	}
 
 	/**
 	 * Read the file and returns the byte array
-	 * 
+	 *
 	 * @param file
 	 * @return the bytes of the file
 	 */
@@ -68,7 +69,7 @@ public class Avatar {
 	public static Image readPicture(String username) {
 		Image image = null;
 		// update sql
-		String selectSQL = "SELECT avatar FROM Account WHERE username=?";
+		String selectSQL = "SELECT avatar FROM Avatar WHERE username=?";
 		ResultSet rs = null;
 		FileOutputStream fos = null;
 		Connection conn = null;
@@ -117,7 +118,7 @@ public class Avatar {
 	 */
 	public static void readPictureToFile(String username, String filename) {
 		// update sql
-		String selectSQL = "SELECT avatar FROM Account WHERE username=?";
+		String selectSQL = "SELECT avatar FROM Avatar WHERE username=?";
 		ResultSet rs = null;
 		FileOutputStream fos = null;
 		Connection conn = null;
@@ -175,19 +176,34 @@ public class Avatar {
 	 */
 	public static void updatePicture(String username, String filename) {
 		// update sql
-		String updateSQL = "UPDATE Account " + "SET avatar = ? " + "WHERE username=?";
+		String updateSQL = "INSERT OR replace INTO Avatar (username,avatar) VALUES (?,?)";
 
-		try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = connect();
+			pstmt = conn.prepareStatement(updateSQL);
 
 			// set parameters
-			pstmt.setBytes(1, readFile(filename));
-			pstmt.setString(2, username);
+			pstmt.setString(1, username);
+			pstmt.setBytes(2, readFile(filename));
 
 			pstmt.executeUpdate();
 //			System.out.println("Stored the file in the BLOB column.");
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 

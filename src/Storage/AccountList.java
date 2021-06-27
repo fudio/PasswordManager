@@ -11,18 +11,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.regex.Pattern;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class AccountList implements Serializable {
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6967904973869758331L;
 
@@ -40,7 +43,7 @@ public class AccountList implements Serializable {
 //		a.writeFile(a.path);
 //		System.out.println(a.getAccountList());
 		a.searchByUsernameSort("fdi");
-		a.searchByFullNameSort("Nguy�n");
+		a.searchByFullNameSort("Nguyên");
 	}
 
 	// Compare 2 String, return 0 if they equal, return a positive number if str1 is
@@ -86,12 +89,14 @@ public class AccountList implements Serializable {
 			Account a = (Account) t.get(mid);
 			int rs = AccountList.stringCompare(a.getUsername(), s);
 			// If the element is present at the middle itself
-			if (rs == 0)
+			if (rs == 0) {
 				return a;
+			}
 			// If element is smaller than mid, then it can only be
 			// present in left subarray
-			if (rs > 0)
+			if (rs > 0) {
 				return accountSearch(x, mid - 1, s);
+			}
 			// Else the element can only be present in right subarray
 			return accountSearch(mid + 1, y, s);
 		}
@@ -106,8 +111,9 @@ public class AccountList implements Serializable {
 	public boolean addAccount(Account a) {
 		String t = a.getUsername();
 		for (Account i : this.list) {
-			if (i.getUsername().equals(t))
+			if (i.getUsername().equals(t)) {
 				return false;
+			}
 		}
 		this.list.add(a);
 		this.writeFile(this.path);
@@ -182,9 +188,11 @@ public class AccountList implements Serializable {
 	}
 
 	protected Account findAccount(String username) {
-		for (Account i : this.list)
-			if (i.getUsername().equals(username))
+		for (Account i : this.list) {
+			if (i.getUsername().equals(username)) {
 				return i;
+			}
+		}
 		return null;
 	}
 
@@ -192,181 +200,7 @@ public class AccountList implements Serializable {
 		return list;
 	}
 
-	public List<Statistics> getStatitical() {
-		String sql = "SELECT createDate, count(*) FROM Account GROUP BY createDate";
-		List<Statistics> list_ = new ArrayList<Statistics>();
-		try (Connection conn = this.connect(this.path);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)) {
-
-			// loop through the result set
-			while (rs.next()) {
-				list_.add(new Statistics(rs.getDate("createDate"), rs.getInt("count(*)")));
-			}
-			conn.close();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return list_;
-	}
-
-	private void insertMaxToRearSearchList(int max_index) {
-		Account max_value = new Account("");
-		Float max_compare = Float.valueOf(0);
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Account current = this.list.poll();
-			Float current_ = this.compareList.poll();
-			if (i != max_index) {
-				this.list.add(current);
-				this.compareList.add(current_);
-			} else {
-				max_value = current;
-				max_compare = current_;
-			}
-		}
-		this.list.add(max_value);
-		this.compareList.add(max_compare);
-	}
-
-	// Bring the smallest value to the end
-	public void insertMinToRear(int min_index) {
-		Account min_value = new Account("");
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Account current = this.list.poll();
-			if (i != min_index)
-				this.list.add(current);
-			else
-				min_value = current;
-		}
-		this.list.add(min_value);
-	}
-
-	private int lenghtOfLcs(String X, String Y) {
-		int m = X.length(), n = Y.length();
-		int[][] L = new int[m + 1][n + 1];
-
-		for (int i = 0; i <= m; i++) {
-			for (int j = 0; j <= n; j++) {
-				if (i == 0 || j == 0)
-					L[i][j] = 0;
-				else if (X.charAt(i - 1) == Y.charAt(j - 1))
-					L[i][j] = L[i - 1][j - 1] + 1;
-				else
-					L[i][j] = Math.max(L[i - 1][j], L[i][j - 1]);
-			}
-		}
-
-		return L[m][n];
-	}
-
-	private int maxIndexSearchList(int sortIndex) {
-		int max_index = -1;
-		Float max_value = Float.valueOf(0);
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Float current = this.compareList.poll();
-
-			if (Float.compare(max_value, current) <= 0 && i <= sortIndex) {
-				max_index = i;
-				max_value = current;
-			}
-			this.compareList.add(current);
-		}
-		return max_index;
-	}
-
-	// Returns the index of the smallest value on queue
-	public int minIndex(int sortIndex) {
-		int min_index = -1;
-		Account min_value = new Account("zzzzzzzzzzzzzzzz");
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			Account current = this.list.poll();
-
-			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
-				min_index = i;
-				min_value = current;
-			}
-			this.list.add(current);
-		}
-		return min_index;
-	}
-
-	protected void readFile() {
-		String sql = "SELECT * FROM Account";
-
-		try (Connection conn = this.connect(this.path);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)) {
-
-			// loop through the result set
-			while (rs.next()) {
-				this.list.add(new Account(rs));
-			}
-			conn.close();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		this.sortQueue();
-	}
-
-	public void searchByFullNameSort(String fullName) {
-		this.compareList.clear();
-		this.searchList.clear();
-		Account temp;
-		String tempFN;
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			temp = this.list.poll();
-			tempFN = temp.getFullName();
-			Float rank = Integer.valueOf(lenghtOfLcs(fullName, tempFN)).floatValue();
-			this.compareList.add(rank / tempFN.length());
-			this.list.add(temp);
-		}
-		sortBySearch();
-		createSearchList();
-	}
-
-	public void searchByUsernameSort(String username) {
-		this.compareList.clear();
-		this.searchList.clear();
-		Account temp;
-		String tempU;
-		int s = this.list.size();
-		for (int i = 0; i < s; i++) {
-			temp = this.list.poll();
-			tempU = temp.getUsername();
-			this.compareList.add(Integer.valueOf(lenghtOfLcs(username, tempU)).floatValue() / tempU.length());
-			this.list.add(temp);
-		}
-		sortBySearch();
-		createSearchList();
-	}
-
-	private void sortBySearch() {
-		for (int i = 1; i <= this.list.size(); i++) {
-			int max_index = maxIndexSearchList(this.list.size() - i);
-			insertMaxToRearSearchList(max_index);
-		}
-	}
-
-	public void sortQueue() {
-		for (int i = 1; i <= this.list.size(); i++) {
-			int min_index = minIndex(this.list.size() - i);
-			insertMinToRear(min_index);
-		}
-	}
-
-	protected void writeFile(String path) {
-		sortQueue();
-		while (!this.list.isEmpty()) {
-			this.list.poll().insert("Account.db");
-		}
-	}
-
-//		// Returns length of LCS for X[0..m-1], Y[0..n-1]
+	// // Returns length of LCS for X[0..m-1], Y[0..n-1]
 //	static void lcs(String X, String Y, int m, int n) {
 //		int[][] L = new int[m + 1][n + 1];
 //
@@ -421,4 +255,268 @@ public class AccountList implements Serializable {
 //		for (int k = 0; k <= temp; k++)
 //			System.out.print(lcs[k]);
 //	}
+	public Queue<Account> getSearchList() {
+		return this.searchList;
+	}
+
+	public List<Statistics> getStatitical() {
+		String sql = "SELECT createDate, count(*) FROM Account GROUP BY createDate";
+		List<Statistics> list_ = new ArrayList<Statistics>();
+		try (Connection conn = this.connect(this.path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				list_.add(new Statistics(rs.getDate("createDate"), rs.getInt("count(*)")));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return list_;
+	}
+
+	// Bring the smallest value to the end
+	public void insertIndexToRear(int min_index) {
+		Account min_value = new Account("");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+			if (i != min_index) {
+				this.list.add(current);
+			} else {
+				min_value = current;
+			}
+		}
+		this.list.add(min_value);
+	}
+
+	private void insertMaxToRearSearchList(int max_index) {
+		Account max_value = new Account("");
+		Float max_compare = Float.valueOf(0);
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+			Float current_ = this.compareList.poll();
+			if (i != max_index) {
+				this.list.add(current);
+				this.compareList.add(current_);
+			} else {
+				max_value = current;
+				max_compare = current_;
+			}
+		}
+		this.list.add(max_value);
+		this.compareList.add(max_compare);
+	}
+
+	private int lenghtOfLcs(String X, String Y) {
+		int m = X.length(), n = Y.length();
+		int[][] L = new int[m + 1][n + 1];
+
+		for (int i = 0; i <= m; i++) {
+			for (int j = 0; j <= n; j++) {
+				if (i == 0 || j == 0) {
+					L[i][j] = 0;
+				} else if (X.charAt(i - 1) == Y.charAt(j - 1)) {
+					L[i][j] = L[i - 1][j - 1] + 1;
+				} else {
+					L[i][j] = Math.max(L[i - 1][j], L[i][j - 1]);
+				}
+			}
+		}
+
+		return L[m][n];
+	}
+
+	private int maxIndex(int sortIndex) {
+		int max_index = -1;
+		Account max_value = new Account("!");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+
+			if (stringCompare(current.getUsername(), max_value.getUsername()) >= 0 && i <= sortIndex) {
+				max_index = i;
+				max_value = current;
+			}
+			this.list.add(current);
+		}
+		return max_index;
+	}
+
+	private int maxIndexName(int sortIndex) {
+		int max_index = -1;
+		Account max_value = new Account("!", "!");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+
+			if (stringCompare(current.getName(), max_value.getName()) >= 0 && i <= sortIndex) {
+				max_index = i;
+				max_value = current;
+			}
+			this.list.add(current);
+		}
+		return max_index;
+	}
+
+	private int maxIndexSearchList(int sortIndex) {
+		int max_index = -1;
+		Float max_value = Float.valueOf(0);
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Float current = this.compareList.poll();
+
+			if (Float.compare(max_value, current) <= 0 && i <= sortIndex) {
+				max_index = i;
+				max_value = current;
+			}
+			this.compareList.add(current);
+		}
+		return max_index;
+	}
+
+	// Returns the index of the smallest value on queue
+	public int minIndex(int sortIndex) {
+		int min_index = -1;
+		Account min_value = new Account("zzzzzzzzzzzzzzzz");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+
+			if (stringCompare(current.getUsername(), min_value.getUsername()) <= 0 && i <= sortIndex) {
+				min_index = i;
+				min_value = current;
+			}
+			this.list.add(current);
+		}
+		return min_index;
+	}
+
+	private int minIndexName(int sortIndex) {
+		int min_index = -1;
+		Account min_value = new Account("", "zzzzzzzzzzzzzzzz");
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			Account current = this.list.poll();
+			String name1 = deAccent(current.getName());
+			String name2 = deAccent(min_value.getName());
+			if (stringCompare(name1, name2) <= 0 && i <= sortIndex) {
+				min_index = i;
+				min_value = current;
+			}
+			this.list.add(current);
+		}
+		return min_index;
+	}
+
+	private static String deAccent(String str) {
+		str = str.replaceAll("đ", "d");
+		str = str.replaceAll("Đ", "D");
+		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+		return pattern.matcher(nfdNormalizedString).replaceAll("");
+	}
+
+	protected void readFile() {
+		String sql = "SELECT * FROM Account";
+
+		try (Connection conn = this.connect(this.path);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+				this.list.add(new Account(rs));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.sortQueue();
+	}
+
+	public void searchByFullNameSort(String fullName) {
+		this.compareList.clear();
+		this.searchList.clear();
+		Account temp;
+		String tempFN;
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			temp = this.list.poll();
+			tempFN = temp.getFullName();
+			Float rank = Integer.valueOf(lenghtOfLcs(fullName, tempFN)).floatValue();
+			this.compareList.add(rank / tempFN.length());
+			this.list.add(temp);
+		}
+		sortBySearch();
+		createSearchList();
+	}
+
+	public void searchByUsernameSort(String username) {
+		this.compareList.clear();
+		this.searchList.clear();
+		Account temp;
+		String tempU;
+		int s = this.list.size();
+		for (int i = 0; i < s; i++) {
+			temp = this.list.poll();
+			tempU = temp.getUsername();
+			this.compareList.add(Integer.valueOf(lenghtOfLcs(username, tempU)).floatValue() / tempU.length());
+			this.list.add(temp);
+		}
+		sortBySearch();
+		createSearchList();
+	}
+
+	public void sortByNameAZ() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int min_index = minIndexName(this.list.size() - i);
+			insertIndexToRear(min_index);
+		}
+	}
+
+	public void sortByNameZA() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int max_index = maxIndexName(this.list.size() - i);
+			insertIndexToRear(max_index);
+		}
+	}
+
+	private void sortBySearch() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int max_index = maxIndexSearchList(this.list.size() - i);
+			insertMaxToRearSearchList(max_index);
+		}
+	}
+
+	public void sortByUsernameAZ() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int min_index = minIndex(this.list.size() - i);
+			insertIndexToRear(min_index);
+		}
+	}
+
+	public void sortByUsernameZA() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int max_index = maxIndex(this.list.size() - i);
+			insertIndexToRear(max_index);
+		}
+	}
+
+	public void sortQueue() {
+		for (int i = 1; i <= this.list.size(); i++) {
+			int min_index = minIndex(this.list.size() - i);
+			insertIndexToRear(min_index);
+		}
+	}
+
+	protected void writeFile(String path) {
+		sortQueue();
+		while (!this.list.isEmpty()) {
+			this.list.poll().insert("Account.db");
+		}
+	}
 }

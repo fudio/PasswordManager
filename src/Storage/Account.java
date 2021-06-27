@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 import javax.crypto.BadPaddingException;
@@ -27,15 +26,16 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 public class Account {
 
 	public static void main(String[] args) throws IOException {
-		Account a = new Account("fudio", "Ng01637202484", "Nguyễn Đỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1),
-				"0337202484");
-		System.out.println(a);
-		System.out.println(a.getHasedPw());
-		System.out.println(a.check("Ng01637202484"));
-		a.insert("Account.db");
-		a.selectAll("Account.db");
+//		Account a = new Account("fudio", "Ng01637202484", "Nguyễn �?ỗ Thế Nguyên", LocalDate.of(2001, Month.JANUARY, 1),
+//				"0337202484");
+//		System.out.println(a);
+//		System.out.println(a.getHasedPw());
+//		System.out.println(a.check("Ng01637202484"));
+//		a.insert("Account.db");
+//		a.selectAll("Account.db");
+//		String str = "�?ăng";
+//		System.out.println(Account.deAccent(str));
 	}
-	
 
 	private static byte[] sha256(String value) {
 		MessageDigest digest;
@@ -122,6 +122,13 @@ public class Account {
 			e.printStackTrace();
 		}
 
+	}
+
+	public Account(String un, String n) {
+		this.username = un.toLowerCase();
+		this.fullName = n;
+		this.createDate = Date.valueOf(LocalDate.now());
+		this.sex = true;
 	}
 
 	private String BCryptHash(String pw) {
@@ -275,4 +282,90 @@ public class Account {
 	public void setPhoneNum(String text) {
 		this.phoneNum = text;
 	}
+
+	public Boolean getSex() {
+		return this.sex;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getFb() {
+		return this.facebook;
+	}
+
+	public String getWork() {
+		return this.work;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public String getName() {
+		if (this.fullName != null) {
+			if (this.fullName.contains(" ")) {
+				return this.fullName.substring(this.fullName.lastIndexOf(" ") + 1);
+			}
+		}
+		return this.fullName;
+	}
+
+//	private static String deAccent(String str) {
+//		str = str.replaceAll("đ", "d");
+//		str = str.replaceAll("�?", "D");
+//		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+//		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+//		return pattern.matcher(nfdNormalizedString).replaceAll("");
+//	}
+//	private static String nonAccentVietnamese(String str) {
+//	    str = str.toLowerCase();
+//	    str = str.replace("à", "a");
+//	    str = str.replace("á", "a");
+//	    str = str.replace("ạ", "a");
+//	    str = str.replace("ả", "a");
+//	    str = str.replace("ã", "a");
+//	    str = str.replace("â", "a");
+//	    str = str.replace("ầ", "a");
+//	    str = str.replace("ấ", "a");
+//	    str = str.replace("ậ", "a");
+//	    str = str.replace("ẩ", "a");
+//	    str = str.replace("ẫ", "a");
+//	    str = str.replace("ă", "a");
+//	    str = str.replace("ằ", "a");
+//	    str = str.replace("ắ", "a");
+//	    str = str.replace("ặ", "a");
+//	    str = str.replace("ẳ", "a");
+//	    str = str.replace("ẵ", "a");
+//	    str = str.replace("è", "e");
+//	    str = str.replace("é", "e");
+//	    str = str.replace("ẹ", "e");
+//	    str = str.replace("ẻ", "e");
+//	    str = str.replace("ẽ", "e");
+//	    str = str.replace("ê", "e");
+//	    str = str.replace("�?", "e");
+//	    str = str.replace("ế", "e");
+//	    str = str.replace("ệ", "e");
+//	    str = str.replace("ể", "e");
+//	    str = str.replace("ễ", "e");
+//	    str = str.replace("ì"|"í"|"ị"|"ỉ"|"ĩ", "i");
+//	    str = str.replace(, "i");
+//	    str = str.replace(, "i");
+//	    str = str.replace(, "i");
+//	    str = str.replace(, "i");
+//	    str = str.replace("ò"|"ó"|"�?"|"�?"|"õ"|"ô"|"ồ"|"ố"|"ộ"|"ổ"|"ỗ"|"ơ"|"�?"|"ớ"|"ợ"|"ở"|"ỡ", "o");
+//	    str = str.replace(, "o");
+//	    str = str.replace("ù"|"ú"|"ụ"|"ủ"|"ũ"|"ư"|"ừ"|"ứ"|"ự"|"ử"|"ữ", "u");
+//	    str = str.replace("ỳ"|"ý"|"ỵ"|"ỷ"|"ỹ", "y");
+//	    str = str.replace("đ", "d");
+//	    // Some system encode vietnamese combining accent as individual utf-8 characters
+//	    str = str.replace("\u0300", ""); // Huy�?n sắc h�?i ngã nặng 
+//	    str = str.replace("\u0301","");
+//	    str = str.replace("\u0303","");
+//	    str = str.replace("\u0309","");
+//	    str = str.replace("\u0323","");
+//	    str = str.replace("\u02C6"|"\u0306"|"\u031B", ""); // Â, Ê, Ă, Ơ, Ư
+//	    return str;
+//	}
 }

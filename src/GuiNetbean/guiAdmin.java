@@ -10,6 +10,9 @@ import Storage.Avatar;
 import Storage.Account;
 import Storage.AccountList;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Queue;
@@ -72,6 +75,7 @@ public class guiAdmin extends javax.swing.JFrame {
         searchByUsername = new javax.swing.JButton();
         searchByName1 = new javax.swing.JButton();
         resetTable = new javax.swing.JButton();
+        copyModeBtn = new javax.swing.JRadioButton();
         jpnView = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
@@ -117,10 +121,10 @@ public class guiAdmin extends javax.swing.JFrame {
         panelAdmin.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 95, -1));
         logout.getAccessibleContext().setAccessibleName("ButtonDX");
 
-        ofullname.setEnabled(false);
-        ofullname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ofullnameActionPerformed(evt);
+        ofullname.setEditable(false);
+        ofullname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ofullnameMouseClicked(evt);
             }
         });
         panelAdmin.add(ofullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 200, -1));
@@ -136,10 +140,10 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel4.setText("Birthday");
         panelAdmin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
-        obirthday.setEnabled(false);
-        obirthday.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                obirthdayActionPerformed(evt);
+        obirthday.setEditable(false);
+        obirthday.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obirthdayMouseClicked(evt);
             }
         });
         panelAdmin.add(obirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));
@@ -150,10 +154,10 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel5.setText("Phone");
         panelAdmin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
-        ophonenum.setEnabled(false);
-        ophonenum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ophonenumActionPerformed(evt);
+        ophonenum.setEditable(false);
+        ophonenum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ophonenumMouseClicked(evt);
             }
         });
         panelAdmin.add(ophonenum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 200, -1));
@@ -164,10 +168,10 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel6.setText("Email");
         panelAdmin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 70, -1));
 
-        oemail.setEnabled(false);
-        oemail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oemailActionPerformed(evt);
+        oemail.setEditable(false);
+        oemail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oemailMouseClicked(evt);
             }
         });
         panelAdmin.add(oemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 200, -1));
@@ -178,18 +182,13 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel7.setText("Gender");
         panelAdmin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 70, -1));
 
-        osex.setEnabled(false);
-        osex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                osexActionPerformed(evt);
-            }
-        });
+        osex.setEditable(false);
         panelAdmin.add(osex, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 200, -1));
 
-        owork.setEnabled(false);
-        owork.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oworkActionPerformed(evt);
+        owork.setEditable(false);
+        owork.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oworkMouseClicked(evt);
             }
         });
         panelAdmin.add(owork, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 200, -1));
@@ -200,10 +199,10 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel8.setText("Work");
         panelAdmin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 70, -1));
 
-        oaddress.setEnabled(false);
-        oaddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oaddressActionPerformed(evt);
+        oaddress.setEditable(false);
+        oaddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                oaddressMouseClicked(evt);
             }
         });
         panelAdmin.add(oaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 200, -1));
@@ -220,10 +219,10 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel10.setText("Facebook");
         panelAdmin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 80, -1));
 
-        ofb.setEnabled(false);
-        ofb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ofbActionPerformed(evt);
+        ofb.setEditable(false);
+        ofb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ofbMouseClicked(evt);
             }
         });
         panelAdmin.add(ofb, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 200, -1));
@@ -280,6 +279,16 @@ public class guiAdmin extends javax.swing.JFrame {
         });
         panelAdmin.add(resetTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
 
+        copyModeBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        copyModeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        copyModeBtn.setText("Copy Mode");
+        copyModeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyModeBtnActionPerformed(evt);
+            }
+        });
+        panelAdmin.add(copyModeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
         jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
         panelAdmin.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 420));
 
@@ -318,7 +327,6 @@ public class guiAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        // TODO add your handling code here:
         guiMain f1 = new guiMain();
         f1.setVisible(true);
         dispose();
@@ -343,38 +351,6 @@ public class guiAdmin extends javax.swing.JFrame {
         model.removeRow(index);
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void ofullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ofullnameActionPerformed
-
-    }//GEN-LAST:event_ofullnameActionPerformed
-
-    private void obirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obirthdayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_obirthdayActionPerformed
-
-    private void ophonenumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ophonenumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ophonenumActionPerformed
-
-    private void oemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oemailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oemailActionPerformed
-
-    private void osexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_osexActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_osexActionPerformed
-
-    private void oworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oworkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oworkActionPerformed
-
-    private void oaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oaddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oaddressActionPerformed
-
-    private void ofbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ofbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ofbActionPerformed
-
     private void jtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMouseClicked
         int index = jt.getSelectedRow();
         ofullname.setText((String) jt.getValueAt(index, 1));
@@ -391,6 +367,11 @@ public class guiAdmin extends javax.swing.JFrame {
             lbAvatar.setIcon(new ImageIcon(resize));
         } else {
             lbAvatar.setIcon(null);
+        }
+        if (copyMode) {
+            StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
         }
     }//GEN-LAST:event_jtMouseClicked
 
@@ -432,6 +413,66 @@ public class guiAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_softByNameActionPerformed
 
+    private void copyModeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyModeBtnActionPerformed
+        copyMode = copyModeBtn.isSelected();
+    }//GEN-LAST:event_copyModeBtnActionPerformed
+
+    private void ofullnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ofullnameMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(ofullname.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_ofullnameMouseClicked
+
+    private void obirthdayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obirthdayMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(obirthday.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_obirthdayMouseClicked
+
+    private void ophonenumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ophonenumMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(ophonenum.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_ophonenumMouseClicked
+
+    private void oemailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oemailMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(oemail.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_oemailMouseClicked
+
+    private void oworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oworkMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(owork.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_oworkMouseClicked
+
+    private void oaddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oaddressMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(oaddress.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_oaddressMouseClicked
+
+    private void ofbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ofbMouseClicked
+        if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
+            StringSelection stringSelection = new StringSelection(ofb.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_ofbMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -469,11 +510,13 @@ public class guiAdmin extends javax.swing.JFrame {
         });
     }
 
+    private boolean copyMode;
     private boolean sortUsernameFlag;
     private boolean sortNameFlag;
     private AccountList list;
     private DefaultTableModel model;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton copyModeBtn;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -507,6 +550,7 @@ public class guiAdmin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initComponentsCustom() {
+        copyMode = false;
         sortNameFlag = false;
         sortUsernameFlag = true;
         list = new AccountList();

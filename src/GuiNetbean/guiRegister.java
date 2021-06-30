@@ -11,6 +11,7 @@ import Storage.AccountList;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,38 +28,31 @@ public class guiRegister extends javax.swing.JFrame {
      */
     public guiRegister() {
         initComponents();
+        initCustomer();
     }
-    
+
     private boolean isValidPhone(String phoneNum) {
         String regex = "(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(phoneNum);
         return m.matches();
     }
-    
+
     public LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
     }
-    
+
     public static boolean isValidUsername(String name) {
         String regex = "^[a-zA-Z0-9._-]{5,20}$";
-//		^ asserts position at start of a line
-//		Match a single character present in the list below [a-zA-Z0-9._-]
-//			{5,20} matches the previous token between 5 and 20 times, as many times as possible, giving back as needed (greedy)
-//			a-z matches a single character in the range between a (index 97) and z (index 122) (case sensitive)
-//			A-Z matches a single character in the range between A (index 65) and Z (index 90) (case sensitive)
-//			0-9 matches a single character in the range between 0 (index 48) and 9 (index 57) (case sensitive)
-//			._- matches a single character in the list ._- (case sensitive)
-//		$ asserts position at the end of a line
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(name);
         return m.matches();
     }
-    
+
     public static boolean isValidPassword(char[] password) {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,30}$";
         Pattern p = Pattern.compile(regex);
-        
+
         Matcher m = p.matcher(new String(password));
         return m.matches();
     }
@@ -92,7 +86,6 @@ public class guiRegister extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         oday = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
-        jMs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(650, 250));
@@ -114,11 +107,9 @@ public class guiRegister extends javax.swing.JFrame {
 
         jLabel7.setText("Name");
 
-        opassword1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opassword1ActionPerformed(evt);
-            }
-        });
+        opassword1.setEchoChar('\u2022');
+
+        opassword2.setEchoChar('\u2022');
 
         showpassword.setText("Show password");
         showpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -153,8 +144,6 @@ public class guiRegister extends javax.swing.JFrame {
             }
         });
 
-        jMs.setForeground(new java.awt.Color(255, 0, 0));
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -162,64 +151,52 @@ public class guiRegister extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(88, 88, 88)
-                                        .addComponent(BtSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(141, 141, 141))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ofullname))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ophone))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(oday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(showpassword)))
-                                        .addGap(91, 91, 91))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(login))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(opassword2))
+                                        .addGap(88, 88, 88)
+                                        .addComponent(BtSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(opassword1))
+                                        .addComponent(oday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ofullname, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ophone))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(ousername, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(ousername, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(opassword1)
+                                            .addComponent(opassword2)))
+                                    .addComponent(showpassword, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jMs, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)))
+                        .addGap(0, 91, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(login)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -235,15 +212,13 @@ public class guiRegister extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jMs, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(showpassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(showpassword)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ofullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,15 +231,13 @@ public class guiRegister extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(oday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(BtSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(BtSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(login)
-                            .addComponent(jLabel8)))
+                    .addComponent(login)
+                    .addComponent(jLabel8)
                     .addComponent(jButton2))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jDesktopPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -300,9 +273,17 @@ public class guiRegister extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void opassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opassword1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opassword1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        guiMain d2 = new guiMain();
+        d2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        guiLogin d2 = new guiLogin();
+        d2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_loginActionPerformed
 
     private void BtSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSignupActionPerformed
         // TODO add your handling code here:
@@ -312,22 +293,21 @@ public class guiRegister extends javax.swing.JFrame {
         String name = ofullname.getText();
         String phoneNum = ophone.getText();
         Date birtday = oday.getCalendar().getTime();
-        if (username.equals("") || (new String(password)).isEmpty() || (new String(password_2)).isEmpty()
-                || name.equals("") || phoneNum.equals("")) {
-            jMs.setText("Please enter information");
+        if (!(!username.isEmpty() && password.length != 0 && password_2.length != 0 && !name.isEmpty() && !phoneNum.isEmpty())) {
+            JOptionPane.showMessageDialog(jDesktopPane2, "Please enter information", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!isValidUsername(username)) {
-           jMs.setText("Username must be between 5 and 20 characters, can contain lowercase letters, uppercase numbers and some special characters (._=)");
+            JOptionPane.showMessageDialog(jDesktopPane2, "Username must be between 5 and 20 characters, can contain lowercase \nletters, uppercase numbers and some special characters (._=)", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!isValidPassword(password)) {
-            jMs.setText("Password must be between 8 and 30 characters, at least one uppercase, one lowercase, one number and one special character (@$!%*?&)");
+            JOptionPane.showMessageDialog(jDesktopPane2, "Password must be between 8 and 30 characters, at least one uppercase, \none lowercase, one number and one special character (@$!%*?&)", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!(new String(password)).equals(new String(password_2))) {
-            jMs.setText("Passwords are not the same");
+            JOptionPane.showMessageDialog(jDesktopPane2, "Passwords are not the same", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!isValidPhone(phoneNum)) {
-            jMs.setText("The phone number you entered is not of a Vietnamese carrier");
+            JOptionPane.showMessageDialog(jDesktopPane2, "The phone number you entered is not of a Vietnamese carrier", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             AccountList list = new AccountList();
             if (!list.addAccount(new Account(username, new String(password), name,
                     convertToLocalDateViaMilisecond(birtday), phoneNum))) {
-                jMs.setText("Username already in use");
+                JOptionPane.showMessageDialog(jDesktopPane2, "Username already in use", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(BtSignup, "Successful registration", "Success",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -336,33 +316,17 @@ public class guiRegister extends javax.swing.JFrame {
                 dispose();
             }
         }
-
     }//GEN-LAST:event_BtSignupActionPerformed
 
     private void showpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpasswordActionPerformed
-        // TODO add your handling code here:
         if (showpassword.isSelected()) {
             opassword1.setEchoChar((char) 0);
             opassword2.setEchoChar((char) 0);
         } else {
-            opassword1.setEchoChar('*');
-            opassword2.setEchoChar('*');
+            opassword1.setEchoChar('\u2022');
+            opassword2.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_showpasswordActionPerformed
-
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-        guiLogin d2 = new guiLogin();
-        d2.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_loginActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:\
-        guiMain d2 = new guiMain();
-        d2.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,21 +342,21 @@ public class guiRegister extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(guiRegister.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(guiRegister.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(guiRegister.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(guiRegister.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -422,7 +386,6 @@ public class guiRegister extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jMs;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton login;
     private com.toedter.calendar.JDateChooser oday;
@@ -433,4 +396,17 @@ public class guiRegister extends javax.swing.JFrame {
     private javax.swing.JTextField ousername;
     private javax.swing.JRadioButton showpassword;
     // End of variables declaration//GEN-END:variables
+
+    private void initCustomer() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2001);
+        cal.set(Calendar.MONTH, 0);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date date = cal.getTime();
+        oday.setDate(date);
+    }
 }

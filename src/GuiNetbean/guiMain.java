@@ -5,6 +5,14 @@
  */
 package GuiNetbean;
 
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Admin
@@ -18,6 +26,32 @@ public class guiMain extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void goWebsite1(JLabel website) {
+		website.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://github.com/fudio/PasswordManager"));
+				} catch (URISyntaxException | IOException ex) {
+					// It looks like there's a problem
+				}
+			}
+		});
+	}
+    
+    private void goWebsite2(JLabel website) {
+		website.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://www.facebook.com/1.fudio"));
+				} catch (URISyntaxException | IOException ex) {
+					// It looks like there's a problem
+				}
+			}
+		});
+	}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +64,9 @@ public class guiMain extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Link2 = new javax.swing.JLabel();
+        Link1 = new javax.swing.JLabel();
+        Link3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -53,6 +90,48 @@ public class guiMain extends javax.swing.JFrame {
 
         jLabel1.setText("Carrot team - 2021 @");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
+
+        Link2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Link2.setText("Our project");
+        Link2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                Link2AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        getContentPane().add(Link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 140, 60));
+
+        Link1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Link1.setText("Contact us");
+        Link1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                Link1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        getContentPane().add(Link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 140, 60));
+
+        Link3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Link3.setText("Another");
+        Link3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                Link3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        getContentPane().add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 140, 60));
 
         jMenu2.setText("Account");
 
@@ -96,6 +175,19 @@ public class guiMain extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void Link2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link2AncestorAdded
+        // TODO add your handling code here:
+        goWebsite1(Link2);
+    }//GEN-LAST:event_Link2AncestorAdded
+
+    private void Link1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link1AncestorAdded
+        goWebsite2(Link1);        // TODO add your handling code here:
+    }//GEN-LAST:event_Link1AncestorAdded
+
+    private void Link3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link3AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Link3AncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -133,6 +225,9 @@ public class guiMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Link1;
+    private javax.swing.JLabel Link2;
+    private javax.swing.JLabel Link3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -83,7 +83,7 @@ public class guiProfile extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("UTM Americana EB", 0, 24)); // NOI18N
         jLabel2.setText("PROFILE");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, -1, -1));
 
         jLabel3.setText("Carrot team @ 2021");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 530, -1, -1));
@@ -99,7 +99,7 @@ public class guiProfile extends javax.swing.JFrame {
                 birthdayActionPerformed(evt);
             }
         });
-        getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 140, -1));
+        getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 130, -1));
 
         address.setText("address");
         getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 210, 50));
@@ -138,7 +138,7 @@ public class guiProfile extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, -1, -1));
-        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 160, -1));
+        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 160, -1));
 
         email1.setText("email");
         getContentPane().add(email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 190, -1));
@@ -220,7 +220,7 @@ public class guiProfile extends javax.swing.JFrame {
 	}// GEN-LAST:event_phoneActionPerformed
 
 	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem2ActionPerformed
-		int output = JOptionPane.showConfirmDialog(jMenuItem2, "Do you want to sign out?", "Logout",
+		int output = JOptionPane.showConfirmDialog(jMenuItem2, "Do you want to exit?", "Logout",
 				JOptionPane.YES_NO_OPTION);
 		if (output == 0) {
 			dispose();

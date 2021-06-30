@@ -436,7 +436,7 @@ public class guiLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(login1, "Logged in successfully", "Success",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (login.getRank() == 0) {
-                        new guiAdmin(login);
+                        new guiAccountManager(login);
 //						admin.setVisible(true);
                         dispose();
                     } else {

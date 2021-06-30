@@ -28,10 +28,13 @@ public class guiAccountManager extends javax.swing.JFrame {
         List <DanhmucBean> listItem = new ArrayList<DanhmucBean>();
         listItem.add(new DanhmucBean("AccountManager", AccountManager, lbAccount));
         listItem.add(new DanhmucBean("StacticChart", StaticChart, lbStatic));
+        listItem.add(new DanhmucBean("AdminProfile", AdminProfile, lbAdminProfile));
         
         controller.setEvent(listItem);  
-        //gaf
     }
+    
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,10 +55,12 @@ public class guiAccountManager extends javax.swing.JFrame {
         lbStatic = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        AdminProfile = new javax.swing.JPanel();
+        lbAdminProfile = new javax.swing.JLabel();
         panelView = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(650, 250));
 
         panelMenu.setBackground(new java.awt.Color(102, 102, 102));
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,10 +109,10 @@ public class guiAccountManager extends javax.swing.JFrame {
         );
         AccountManagerLayout.setVerticalGroup(
             AccountManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+            .addComponent(lbAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
-        panelMenu.add(AccountManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, 315, -1));
+        panelMenu.add(AccountManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 315, -1));
 
         StaticChart.setBackground(new java.awt.Color(0, 153, 0));
 
@@ -125,10 +130,10 @@ public class guiAccountManager extends javax.swing.JFrame {
         );
         StaticChartLayout.setVerticalGroup(
             StaticChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbStatic, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+            .addComponent(lbStatic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
-        panelMenu.add(StaticChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 246, 315, -1));
+        panelMenu.add(StaticChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 315, -1));
 
         logoutButton.setText("Logout");
         panelMenu.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, -1, -1));
@@ -136,25 +141,38 @@ public class guiAccountManager extends javax.swing.JFrame {
         jLabel4.setText("Carrot team @2021");
         panelMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, -1, -1));
 
-        panelView.setBackground(new java.awt.Color(204, 204, 204));
+        AdminProfile.setBackground(new java.awt.Color(0, 153, 0));
+        AdminProfile.setPreferredSize(new java.awt.Dimension(315, 112));
 
-        jLabel5.setText("jLabel5");
+        lbAdminProfile.setFont(new java.awt.Font("UTM Androgyne", 1, 18)); // NOI18N
+        lbAdminProfile.setForeground(new java.awt.Color(255, 255, 255));
+        lbAdminProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbAdminProfile.setText("Admin profile");
+
+        javax.swing.GroupLayout AdminProfileLayout = new javax.swing.GroupLayout(AdminProfile);
+        AdminProfile.setLayout(AdminProfileLayout);
+        AdminProfileLayout.setHorizontalGroup(
+            AdminProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbAdminProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+        );
+        AdminProfileLayout.setVerticalGroup(
+            AdminProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbAdminProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+        );
+
+        panelMenu.add(AdminProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 310, -1));
+
+        panelView.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout panelViewLayout = new javax.swing.GroupLayout(panelView);
         panelView.setLayout(panelViewLayout);
         panelViewLayout.setHorizontalGroup(
             panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewLayout.createSequentialGroup()
-                .addContainerGap(765, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
+            .addGap(0, 809, Short.MAX_VALUE)
         );
         panelViewLayout.setVerticalGroup(
             panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout paneRootLayout = new javax.swing.GroupLayout(paneRoot);
@@ -223,12 +241,13 @@ public class guiAccountManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccountManager;
+    private javax.swing.JPanel AdminProfile;
     private javax.swing.JPanel StaticChart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbAccount;
+    private javax.swing.JLabel lbAdminProfile;
     private javax.swing.JLabel lbStatic;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel paneRoot;

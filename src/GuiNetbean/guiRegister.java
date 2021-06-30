@@ -312,7 +312,6 @@ public class guiRegister extends javax.swing.JFrame {
         String name = ofullname.getText();
         String phoneNum = ophone.getText();
         Date birtday = oday.getCalendar().getTime();
-        jMs.setText(password.length);
         if (username.equals("") || (new String(password)).isEmpty() || (new String(password_2)).isEmpty()
                 || name.equals("") || phoneNum.equals("")) {
             jMs.setText("Please enter information");

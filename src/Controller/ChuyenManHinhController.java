@@ -46,7 +46,7 @@ public class ChuyenManHinhController {
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-//        root.add(new guiAdmin(login));
+    //    root.add(new node);
         root.validate();
         root.repaint();
 

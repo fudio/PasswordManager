@@ -33,7 +33,7 @@ public class Account {
 //		System.out.println(a.check("Ng01637202484"));
 //		a.insert("Account.db");
 //		a.selectAll("Account.db");
-//		String str = "�?ăng";
+//		String str = "�?ăng";
 //		System.out.println(Account.deAccent(str));
 	}
 
@@ -106,22 +106,11 @@ public class Account {
 		try {
 			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
 					AESUtil.readIv("paramFile"));
-		} catch (InvalidKeyException e) {
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
+				| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
+				| IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public Account(String un, String n) {
@@ -175,6 +164,9 @@ public class Account {
 	}
 
 	public String getFullName() {
+		if (this.fullName == null) {
+			return "";
+		}
 		return fullName;
 	}
 
@@ -206,6 +198,9 @@ public class Account {
 	}
 
 	public String getPhoneNum() {
+		if (this.phoneNum == null) {
+			return "";
+		}
 		return this.phoneNum;
 	}
 
@@ -288,18 +283,30 @@ public class Account {
 	}
 
 	public String getEmail() {
+		if (this.email == null) {
+			return "";
+		}
 		return this.email;
 	}
 
 	public String getFb() {
+		if (this.facebook == null) {
+			return "";
+		}
 		return this.facebook;
 	}
 
 	public String getWork() {
+		if (this.work == null) {
+			return "";
+		}
 		return this.work;
 	}
 
 	public String getAddress() {
+		if (this.address == null) {
+			return "";
+		}
 		return this.address;
 	}
 
@@ -312,9 +319,24 @@ public class Account {
 		return this.fullName;
 	}
 
+	public void setNewPassword(String pw) {
+		String BCryptHash = BCryptHash(pw);
+
+		try {
+			this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
+					AESUtil.readIv("paramFile"));
+		} catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
+				| InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
+				| IOException e) {
+			e.printStackTrace();
+		}
+
+		insert("Account.db");
+	}
+
 //	private static String deAccent(String str) {
 //		str = str.replaceAll("đ", "d");
-//		str = str.replaceAll("�?", "D");
+//		str = str.replaceAll("�?", "D");
 //		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
 //		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 //		return pattern.matcher(nfdNormalizedString).replaceAll("");
@@ -344,7 +366,7 @@ public class Account {
 //	    str = str.replace("ẻ", "e");
 //	    str = str.replace("ẽ", "e");
 //	    str = str.replace("ê", "e");
-//	    str = str.replace("�?", "e");
+//	    str = str.replace("�?", "e");
 //	    str = str.replace("ế", "e");
 //	    str = str.replace("ệ", "e");
 //	    str = str.replace("ể", "e");
@@ -354,13 +376,13 @@ public class Account {
 //	    str = str.replace(, "i");
 //	    str = str.replace(, "i");
 //	    str = str.replace(, "i");
-//	    str = str.replace("ò"|"ó"|"�?"|"�?"|"õ"|"ô"|"ồ"|"ố"|"ộ"|"ổ"|"ỗ"|"ơ"|"�?"|"ớ"|"ợ"|"ở"|"ỡ", "o");
+//	    str = str.replace("ò"|"ó"|"�?"|"�?"|"õ"|"ô"|"ồ"|"ố"|"ộ"|"ổ"|"ỗ"|"ơ"|"�?"|"ớ"|"ợ"|"ở"|"ỡ", "o");
 //	    str = str.replace(, "o");
 //	    str = str.replace("ù"|"ú"|"ụ"|"ủ"|"ũ"|"ư"|"ừ"|"ứ"|"ự"|"ử"|"ữ", "u");
 //	    str = str.replace("ỳ"|"ý"|"ỵ"|"ỷ"|"ỹ", "y");
 //	    str = str.replace("đ", "d");
 //	    // Some system encode vietnamese combining accent as individual utf-8 characters
-//	    str = str.replace("\u0300", ""); // Huy�?n sắc h�?i ngã nặng 
+//	    str = str.replace("\u0300", ""); // Huy�?n sắc h�?i ngã nặng 
 //	    str = str.replace("\u0301","");
 //	    str = str.replace("\u0303","");
 //	    str = str.replace("\u0309","");

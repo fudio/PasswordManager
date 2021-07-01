@@ -414,7 +414,7 @@ public class AccountList implements Serializable {
 
 	private static String deAccent(String str) {
 		str = str.replaceAll("đ", "d");
-		str = str.replaceAll("Đ", "D");
+		str = str.replaceAll("�?", "D");
 		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 		return pattern.matcher(nfdNormalizedString).replaceAll("");
@@ -519,4 +519,8 @@ public class AccountList implements Serializable {
 			this.list.poll().insert("Account.db");
 		}
 	}
+
+    public Account accountSearchByPhone(String content) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

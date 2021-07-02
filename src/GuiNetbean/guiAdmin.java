@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Queue;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,14 +26,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class guiAdmin extends javax.swing.JFrame {
 
-    // JFrame f;
     /**
      * Creates new form guiAdmin
      */
     public guiAdmin(Account login) {
         initComponents();
 
-//        setTitle("Admin");
         initComponentsCustom();
         setValueTable(list.getAccountList());
         this.setVisible(true);
@@ -87,11 +86,11 @@ public class guiAdmin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admin");
+        jLabel1.setText("User information");
         jLabel1.setToolTipText("");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        panelAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 54));
+        panelAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 370, 54));
         jLabel1.getAccessibleContext().setAccessibleName("");
 
         jLabel2.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
@@ -327,9 +326,14 @@ public class guiAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        guiMain f1 = new guiMain();
-        f1.setVisible(true);
-        dispose();
+        int output = JOptionPane.showConfirmDialog(logout, "Do you want to sign out?", "Logout",
+                JOptionPane.YES_NO_OPTION);
+        if (output == 0) {
+            guiMain f1 = new guiMain();
+            f1.setVisible(true);
+            dispose();
+        }
+
     }//GEN-LAST:event_logoutActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed

@@ -67,6 +67,10 @@ public class guiMain extends javax.swing.JFrame {
         Link2 = new javax.swing.JLabel();
         Link1 = new javax.swing.JLabel();
         Link3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        View = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -81,19 +85,23 @@ public class guiMain extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 51));
         jLabel2.setText("WELLCOM TO");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 310, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 310, 60));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 153, 0));
         jLabel3.setText("CARROT");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 190, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 190, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Carrot team - 2021 @");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
 
+        Link2.setBackground(new java.awt.Color(255, 255, 255));
+        Link2.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        Link2.setForeground(new java.awt.Color(255, 153, 51));
         Link2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Link2.setText("Our project");
-        Link2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         Link2.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Link2AncestorAdded(evt);
@@ -103,11 +111,14 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 140, 60));
+        getContentPane().add(Link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 310, 60));
 
+        Link1.setBackground(new java.awt.Color(255, 255, 255));
+        Link1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        Link1.setForeground(new java.awt.Color(255, 153, 51));
         Link1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Link1.setText("Contact us");
-        Link1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         Link1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Link1AncestorAdded(evt);
@@ -117,11 +128,14 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 140, 60));
+        getContentPane().add(Link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 60));
 
+        Link3.setBackground(new java.awt.Color(255, 255, 255));
+        Link3.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        Link3.setForeground(new java.awt.Color(255, 153, 51));
         Link3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Link3.setText("Another");
-        Link3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Link3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         Link3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Link3AncestorAdded(evt);
@@ -131,7 +145,22 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 140, 60));
+        getContentPane().add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 310, 60));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("*________________________________*");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 430, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("*________________________________*");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 400, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("*________________________________*");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 280, 20));
+
+        View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
+        getContentPane().add(View, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 500));
 
         jMenu2.setText("Account");
 
@@ -228,9 +257,13 @@ public class guiMain extends javax.swing.JFrame {
     private javax.swing.JLabel Link1;
     private javax.swing.JLabel Link2;
     private javax.swing.JLabel Link3;
+    private javax.swing.JLabel View;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;

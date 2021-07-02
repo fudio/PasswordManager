@@ -5,8 +5,13 @@
  */ 
 package GuiNetbean;
 
+
 import Controller.ChuyenManHinhController;
 import Controller.DanhmucBean;
+import Storage.Account;
+import Storage.AccountList;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +24,7 @@ public class guiAccountManager extends javax.swing.JFrame {
     /**
      * Creates new form guiAccountManager
      */
-    public guiAccountManager() {
+    public guiAccountManager(Account login) {
         initComponents();
 
         ChuyenManHinhController controller = new ChuyenManHinhController(panelView);
@@ -234,7 +239,9 @@ public class guiAccountManager extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new guiAccountManager().setVisible(true);
+                Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
+                        LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+                new guiAccountManager(a);
             }
         });
     }

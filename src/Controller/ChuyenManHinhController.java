@@ -6,7 +6,9 @@
 package Controller;
 
 import GuiNetbean.guiAdmin;
+import GuiNetbean.guiAccountManager;
 import Controller.DanhmucBean;
+import GuiNetbean.guiProfile;
 import GuiNetbean.guiRegister;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;
@@ -16,6 +18,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Queue;
 
@@ -33,6 +37,9 @@ public class ChuyenManHinhController {
     private JPanel root;
     private String kindSelected = "";
 
+    Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
+            LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+
     private List<DanhmucBean> listItem = null;
 
     public ChuyenManHinhController(JPanel panelRoot) {
@@ -46,7 +53,7 @@ public class ChuyenManHinhController {
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-    //    root.add(new node);
+        //    root.add(node);
         root.validate();
         root.repaint();
 
@@ -55,7 +62,7 @@ public class ChuyenManHinhController {
     public void setEvent(List<DanhmucBean> listItem) {
         this.listItem = listItem;
         for (DanhmucBean item : listItem) {
-            item.getJlb().addMouseListener(new LabelEvent(item.getKind(), item.getJpn(), item.getJlb()));
+            item.getJlb().addMouseListener(new LabelEvent(a, item.getKind(), item.getJpn(), item.getJlb()));
         }
     }
 
@@ -67,7 +74,7 @@ public class ChuyenManHinhController {
         private JPanel paneItem;
         private JLabel lbItem;
 
-        public LabelEvent(String kind, JPanel paneItem, JLabel lbItem) {
+        public LabelEvent(Account login, String kind, JPanel paneItem, JLabel lbItem) {
             this.kind = kind;
             this.paneItem = paneItem;
             this.lbItem = lbItem;
@@ -76,10 +83,12 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "AccountManager":
-//                    node = new guiAdmin();      muốn chuyển qua trang đây phải đưa vào 1 account admin
+                    node = new guiAdmin(a);
                     break;
                 case "StatisChart":
                     node = new guiStatisticalChart();
+                case "AdminAccount":
+                    node = new guiProfile(a);
                     break;
 
                 default:
@@ -94,7 +103,6 @@ public class ChuyenManHinhController {
         }
 
         public void mousePressed(MouseEvent e) {
-
             kindSelected = kind;
             paneItem.setBackground(new Color(96, 100, 191));
             lbItem.setBackground(new Color(96, 100, 191));
@@ -110,34 +118,12 @@ public class ChuyenManHinhController {
         }
 
         public void mouseExited(MouseEvent e) {
-
             if (!kindSelected.equalsIgnoreCase(kind)) {
                 paneItem.setBackground(new Color(76, 175, 80));
                 lbItem.setBackground(new Color(76, 175, 80));
 
             }
         }
-
-//        kindSelected  = "Account Management";
-//
-//        paneItem.setBackground (
-//
-//        new Color(96, 100, 191));
-//        lbItem.setBackground (
-//
-//        new Color(96, 100, 191));
-//        
-//        root.removeAll ();
-//
-//        root.setLayout (
-//
-//        new BorderLayout());
-//        root.add (
-//
-//        new guiAdmin());
-//        root.validate ();
-//
-//        root.repaint ();
     }
 
     private void setChangeBackground(String kind) {

@@ -151,9 +151,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="phone">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="phone number"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneActionPerformed"/>
       </Events>
@@ -164,9 +161,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="email">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="fblink"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="410" y="400" width="190" height="-1"/>
@@ -215,14 +209,11 @@
     <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="160" width="160" height="-1"/>
+          <AbsoluteConstraints x="500" y="160" width="160" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="email1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="email"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="410" y="340" width="190" height="-1"/>
@@ -230,9 +221,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="email2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="word"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="70" y="450" width="270" height="60"/>

@@ -104,15 +104,12 @@ public class guiProfile extends javax.swing.JFrame {
         getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 130, -1));
         getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 270, 50));
 
-        phone.setText("phone number");
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneActionPerformed(evt);
             }
         });
         getContentPane().add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 270, -1));
-
-        email.setText("fblink");
         getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 190, -1));
 
         editProfileButton.setText("Edit profile");
@@ -138,12 +135,8 @@ public class guiProfile extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, -1, -1));
-        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 160, -1));
-
-        email1.setText("email");
+        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 160, -1));
         getContentPane().add(email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 190, -1));
-
-        email2.setText("word");
         getContentPane().add(email2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, 270, 60));
 
         jLabel4.setForeground(new java.awt.Color(255, 102, 0));

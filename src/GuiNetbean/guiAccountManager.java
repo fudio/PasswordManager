@@ -65,6 +65,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         panelView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Account Manager");
         setLocation(new java.awt.Point(650, 250));
 
         panelMenu.setBackground(new java.awt.Color(102, 102, 102));

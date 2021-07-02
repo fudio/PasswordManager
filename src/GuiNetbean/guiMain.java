@@ -70,6 +70,8 @@ public class guiMain extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         View = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -78,6 +80,7 @@ public class guiMain extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Wellcome");
         setLocation(new java.awt.Point(650, 250));
         setSize(new java.awt.Dimension(650, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,12 +88,12 @@ public class guiMain extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 51));
         jLabel2.setText("WELLCOM TO");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 310, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 60));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 153, 0));
         jLabel3.setText("CARROT");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 190, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 190, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Carrot team - 2021 @");
@@ -111,7 +114,7 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 310, 60));
+        getContentPane().add(Link2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 200, 60));
 
         Link1.setBackground(new java.awt.Color(255, 255, 255));
         Link1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -128,7 +131,7 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 60));
+        getContentPane().add(Link1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, 60));
 
         Link3.setBackground(new java.awt.Color(255, 255, 255));
         Link3.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -145,19 +148,25 @@ public class guiMain extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        getContentPane().add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 310, 60));
+        getContentPane().add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 200, 60));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("*________________________________*");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 430, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 220, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("*________________________________*");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 400, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 230, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("*________________________________*");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 280, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 230, 20));
+
+        jTextField2.setText("Bcrypt là m?t ch?c n?ng mã hóa m?t kh?u  thi?t k? b?i Niels Provos và David Mazières");
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 420, 20));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/Untitled-1.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
         View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
         getContentPane().add(View, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 500));
@@ -264,10 +273,12 @@ public class guiMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

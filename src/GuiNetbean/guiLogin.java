@@ -426,7 +426,7 @@ public class guiLogin extends javax.swing.JFrame {
 //                    JOptionPane.WARNING_MESSAGE);
             jMs.setText("Please enter username and password");
         } else {
-            Account login = list.accountSearch(username);
+            Account login = list.accountSearch(username.toLowerCase());
             if (login != null) {
                 if (!login.check(new String(password))) {
 //                    JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",

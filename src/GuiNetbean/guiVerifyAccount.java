@@ -180,7 +180,7 @@ public class guiVerifyAccount extends javax.swing.JFrame {
         });
     }
 
-    private AccountList list;
+    private final AccountList list;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField inputTf;
     private javax.swing.JButton jButton1;

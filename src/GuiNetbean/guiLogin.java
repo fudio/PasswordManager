@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package GuiNetbean;
-//aa
 
-import GUI.GuiAdmin;
-import GUI.GuiProfile;
 import Storage.Account;
 import Storage.AccountList;
 import javax.swing.JButton;
@@ -364,6 +361,7 @@ public class guiLogin extends javax.swing.JFrame {
 //                    JOptionPane.WARNING_MESSAGE);
             jMs.setText("Please enter username and password");
         } else {
+            @SuppressWarnings("LocalVariableHidesMemberVariable")
             Account login = list.accountSearch(username.toLowerCase());
             if (login != null) {
                 if (!login.check(new String(password))) {
@@ -374,7 +372,7 @@ public class guiLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(login1, "Logged in successfully", "Success",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (login.getRank() == 0) {
-                        new guiAccountManager(login);
+                        new guiAccountManager(login).setVisible(true);
 //						admin.setVisible(true);
                         dispose();
                     } else {
@@ -426,7 +424,7 @@ public class guiLogin extends javax.swing.JFrame {
         });
     }
     
-    private AccountList list;
+    private final AccountList list;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JButton fogotpassword;

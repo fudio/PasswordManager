@@ -22,6 +22,8 @@ public class guiConfirmInformation extends javax.swing.JFrame {
 
     /**
      * Creates new form guiConfirmInformation
+     * @param account
+     * @param mod
      */
     public guiConfirmInformation(Account account, Boolean mod) {
         initComponents();
@@ -219,8 +221,8 @@ public class guiConfirmInformation extends javax.swing.JFrame {
         });
     }
 
-    private Account reset;
-    private Boolean mode;
+    private final Account reset;
+    private final Boolean mode;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JLabel addressLb;

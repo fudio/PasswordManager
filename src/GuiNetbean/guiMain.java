@@ -27,31 +27,31 @@ public class guiMain extends javax.swing.JFrame {
     }
 
     private void goWebsite1(JLabel website) {
-		website.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					Desktop.getDesktop().browse(new URI("https://github.com/fudio/PasswordManager"));
-				} catch (URISyntaxException | IOException ex) {
-					// It looks like there's a problem
-				}
-			}
-		});
-	}
-    
+        website.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/fudio/PasswordManager"));
+                } catch (URISyntaxException | IOException ex) {
+                    // It looks like there's a problem
+                }
+            }
+        });
+    }
+
     private void goWebsite2(JLabel website) {
-		website.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					Desktop.getDesktop().browse(new URI("https://www.facebook.com/1.fudio"));
-				} catch (URISyntaxException | IOException ex) {
-					// It looks like there's a problem
-				}
-			}
-		});
-	}
-    
+        website.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/1.fudio"));
+                } catch (URISyntaxException | IOException ex) {
+                    // It looks like there's a problem
+                }
+            }
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -238,31 +238,31 @@ public class guiMain extends javax.swing.JFrame {
         guiLogin d1 = new guiLogin();
         d1.setVisible(true);
         dispose();
-       
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-               guiRegister d2 = new guiRegister();
+        guiRegister d2 = new guiRegister();
         d2.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void Link2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link2AncestorAdded
-               goWebsite1(Link2);
+        goWebsite1(Link2);
     }//GEN-LAST:event_Link2AncestorAdded
 
     private void Link1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link1AncestorAdded
-        goWebsite2(Link1);       
+        goWebsite2(Link1);
     }//GEN-LAST:event_Link1AncestorAdded
 
     private void Link3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Link3AncestorAdded
-       
+
     }//GEN-LAST:event_Link3AncestorAdded
 
     private void login2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login2ActionPerformed
-           guiLogin df2 = new guiLogin();
-           df2.setVisible(true);
-           dispose();
+        guiLogin df2 = new guiLogin();
+        df2.setVisible(true);
+        dispose();
     }//GEN-LAST:event_login2ActionPerformed
 
     /**

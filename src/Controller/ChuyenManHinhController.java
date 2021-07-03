@@ -6,14 +6,10 @@
 package Controller;
 
 import GuiNetbean.guiAdmin;
-import GuiNetbean.guiAccountManager;
 import Controller.DanhmucBean;
 import GuiNetbean.guiProfile;
-import GuiNetbean.guiRegister;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;
-import Storage.AccountList;
-import com.sun.tools.javac.code.Kinds;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -21,12 +17,10 @@ import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
-import java.util.Queue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static sun.security.jgss.GSSUtil.login;
 
 /**
  *
@@ -34,7 +28,7 @@ import static sun.security.jgss.GSSUtil.login;
  */
 public class ChuyenManHinhController {
 
-    private JPanel root;
+    private final JPanel root;
     private String kindSelected = "";
 
     Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
@@ -70,9 +64,9 @@ public class ChuyenManHinhController {
 
         private JFrame node;
 
-        private String kind;
-        private JPanel paneItem;
-        private JLabel lbItem;
+        private final String kind;
+        private final JPanel paneItem;
+        private final JLabel lbItem;
 
         public LabelEvent(Account login, String kind, JPanel paneItem, JLabel lbItem) {
             this.kind = kind;
@@ -83,7 +77,7 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "AccountManager":
-                    node = new guiAdmin(a);
+                    node = new guiAdmin();
                     break;
                 case "StatisChart":
                     node = new guiStatisticalChart();

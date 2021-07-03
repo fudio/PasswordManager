@@ -13,8 +13,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.Queue;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,9 +27,9 @@ public class guiAdmin extends javax.swing.JFrame {
     /**
      * Creates new form guiAdmin
      */
-    public guiAdmin(Account login) {
+    public guiAdmin() {
         initComponents();
-
+        
         initComponentsCustom();
         setValueTable(list.getAccountList());
         this.setVisible(true);
@@ -507,13 +505,13 @@ public class guiAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
-                        LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-                new guiAdmin(a);
+//                Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
+//                        LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+                new guiAdmin().setVisible(true);
             }
         });
     }
-
+    
     private boolean copyMode;
     private boolean sortUsernameFlag;
     private boolean sortNameFlag;
@@ -570,7 +568,7 @@ public class guiAdmin extends javax.swing.JFrame {
         jt.getColumnModel().getColumn(7).setPreferredWidth(100);
         jt.getColumnModel().getColumn(8).setPreferredWidth(150);
     }
-
+    
     private void setValueTable(Queue<Account> accountList) {
         for (int i = model.getRowCount() - 1; i > -1; i--) {
             model.removeRow(i);

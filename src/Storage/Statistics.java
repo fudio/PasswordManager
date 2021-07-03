@@ -37,9 +37,18 @@ public class Statistics implements java.lang.Comparable<Statistics> {
         return this.getCreateDate().compareTo(o.getCreateDate());
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof Statistics)) {
             return false;
         }
 
@@ -67,6 +76,13 @@ public class Statistics implements java.lang.Comparable<Statistics> {
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + (this.createDate != null ? this.createDate.hashCode() : 0);
+        return hash;
     }
 
     public int getCount() {

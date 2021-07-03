@@ -173,28 +173,12 @@ public class Account {
     private String getHasedPw() {
         try {
             return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
-        } catch (InvalidKeyException e) {
+        } catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
+                | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
+                | IOException e) {
             e.printStackTrace();
-            return null;
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-            return null;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-            return null;
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     public String getPhoneNum() {
@@ -347,61 +331,4 @@ public class Account {
 
         insert("Account.db");
     }
-
-//	private static String deAccent(String str) {
-//		str = str.replaceAll("đ", "d");
-//		str = str.replaceAll("�?", "D");
-//		String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
-//		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-//		return pattern.matcher(nfdNormalizedString).replaceAll("");
-//	}
-//	private static String nonAccentVietnamese(String str) {
-//	    str = str.toLowerCase();
-//	    str = str.replace("à", "a");
-//	    str = str.replace("á", "a");
-//	    str = str.replace("ạ", "a");
-//	    str = str.replace("ả", "a");
-//	    str = str.replace("ã", "a");
-//	    str = str.replace("â", "a");
-//	    str = str.replace("ầ", "a");
-//	    str = str.replace("ấ", "a");
-//	    str = str.replace("ậ", "a");
-//	    str = str.replace("ẩ", "a");
-//	    str = str.replace("ẫ", "a");
-//	    str = str.replace("ă", "a");
-//	    str = str.replace("ằ", "a");
-//	    str = str.replace("ắ", "a");
-//	    str = str.replace("ặ", "a");
-//	    str = str.replace("ẳ", "a");
-//	    str = str.replace("ẵ", "a");
-//	    str = str.replace("è", "e");
-//	    str = str.replace("é", "e");
-//	    str = str.replace("ẹ", "e");
-//	    str = str.replace("ẻ", "e");
-//	    str = str.replace("ẽ", "e");
-//	    str = str.replace("ê", "e");
-//	    str = str.replace("�?", "e");
-//	    str = str.replace("ế", "e");
-//	    str = str.replace("ệ", "e");
-//	    str = str.replace("ể", "e");
-//	    str = str.replace("ễ", "e");
-//	    str = str.replace("ì"|"í"|"ị"|"ỉ"|"ĩ", "i");
-//	    str = str.replace(, "i");
-//	    str = str.replace(, "i");
-//	    str = str.replace(, "i");
-//	    str = str.replace(, "i");
-//	    str = str.replace("ò"|"ó"|"�?"|"�?"|"õ"|"ô"|"ồ"|"ố"|"ộ"|"ổ"|"ỗ"|"ơ"|"�?"|"ớ"|"ợ"|"ở"|"ỡ", "o");
-//	    str = str.replace(, "o");
-//	    str = str.replace("ù"|"ú"|"ụ"|"ủ"|"ũ"|"ư"|"ừ"|"ứ"|"ự"|"ử"|"ữ", "u");
-//	    str = str.replace("ỳ"|"ý"|"ỵ"|"ỷ"|"ỹ", "y");
-//	    str = str.replace("đ", "d");
-//	    // Some system encode vietnamese combining accent as individual utf-8 characters
-//	    str = str.replace("\u0300", ""); // Huy�?n sắc h�?i ngã nặng 
-//	    str = str.replace("\u0301","");
-//	    str = str.replace("\u0303","");
-//	    str = str.replace("\u0309","");
-//	    str = str.replace("\u0323","");
-//	    str = str.replace("\u02C6"|"\u0306"|"\u031B", ""); // Â, Ê, Ă, Ơ, Ư
-//	    return str;
-//	}
 }

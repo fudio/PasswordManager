@@ -15,7 +15,6 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.awt.Image;
 
 /**
  *
@@ -254,9 +253,9 @@ public class guiProfile extends javax.swing.JFrame {
     private void birthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_birthdayActionPerformed
-    
+
     Date date = new Date();
-    
+
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phoneActionPerformed
     }// GEN-LAST:event_phoneActionPerformed
 
@@ -291,7 +290,7 @@ public class guiProfile extends javax.swing.JFrame {
         gender.setEditable(true);
         birthday.setVisible(false);
         dateChooser.setVisible(true);
-        
+
     }// GEN-LAST:event_editProfileButtonActionPerformed
 
     private void agreeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_agreeButtonActionPerformed
@@ -318,25 +317,25 @@ public class guiProfile extends javax.swing.JFrame {
                     "Not a Vietnamese phone number", "InvalidPhoneNumberError",
                     JOptionPane.WARNING_MESSAGE);
         } else {
-            if (fullName != login.getFullName()) {
+            if (fullName == null ? login.getFullName() != null : !fullName.equals(login.getFullName())) {
                 login.setFullName(fullName);
             }
             if (birthday_ != new Date()) {
                 login.setBirthday(convertToLocalDateViaMilisecond(birthday_));
             }
-            if (phone_ != login.getPhoneNum()) {
+            if (phone_ == null ? login.getPhoneNum() != null : !phone_.equals(login.getPhoneNum())) {
                 login.setPhoneNum(phone_);
             }
-            if (address_ != login.getAddress()) {
+            if (address_ == null ? login.getAddress() != null : !address_.equals(login.getAddress())) {
                 login.setAddress(address_);
             }
-            if (work_ != login.getWork()) {
+            if (work_ == null ? login.getWork() != null : !work_.equals(login.getWork())) {
                 login.setWork(work_);
             }
-            if (fblink_ != login.getFb()) {
+            if (fblink_ == null ? login.getFb() != null : !fblink_.equals(login.getFb())) {
                 login.setFblink(fblink_);
             }
-             if (email_ != login.getEmail()) {
+            if (email_ == null ? login.getEmail() != null : !email_.equals(login.getEmail())) {
                 login.setEmail(email_);
             }
             AccountList a = new AccountList();
@@ -350,7 +349,7 @@ public class guiProfile extends javax.swing.JFrame {
         editProfileButton.setVisible(true);
         fullname.setText(login.getFullName());
         phone.setText(login.getPhoneNum());
-         address.setText(login.getAddress());
+        address.setText(login.getAddress());
         work.setText(login.getWork());
         fblink.setText(login.getFb());
         email.setText(login.getEmail());
@@ -375,21 +374,21 @@ public class guiProfile extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(guiProfile.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(guiProfile.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(guiProfile.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(guiProfile.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
@@ -406,19 +405,19 @@ public class guiProfile extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private boolean isValidPhone(String phoneNum) {
         String regex = "(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(phoneNum);
         return m.matches();
     }
-    
+
     public LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
     }
-    
-    private Account login;
+
+    private final Account login;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel View;
     private javax.swing.JTextField address;

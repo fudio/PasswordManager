@@ -9,7 +9,6 @@ package GuiNetbean;
 import Controller.ChuyenManHinhController;
 import Controller.DanhmucBean;
 import Storage.Account;
-import Storage.AccountList;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -242,7 +241,7 @@ public class guiAccountManager extends javax.swing.JFrame {
             public void run() {
                 Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
                         LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-                new guiAccountManager(a);
+                new guiAccountManager(a).setVisible(true);
             }
         });
     }

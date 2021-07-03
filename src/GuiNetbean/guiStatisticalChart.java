@@ -40,666 +40,676 @@ import org.jfree.chart.ui.TextAnchor;
  */
 public class guiStatisticalChart extends javax.swing.JFrame {
 
-	/**
-	 * Creates new form guiStatisticalChart
-	 */
-	public guiStatisticalChart() {
-		statisticsBy = new ButtonGroup();
-		chartStyle = new ButtonGroup();
+    /**
+     * Creates new form guiStatisticalChart
+     */
+    public guiStatisticalChart() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        now = cal.getTime();
 
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
-		now = cal.getTime();
+        initComponents();
+        createDataset();
+        initBarChart(pnChart);
+    }
 
-		initComponents();
-		createDataset();
-		initBarChart(pnChart);
-	}
+    private void initBarChart(javax.swing.JPanel chartPanel) {
+        // Create barChart
+        barChart = ChartFactory.createBarChart("Statistical Chart", "Time", "Number of Register", dataset,
+                PlotOrientation.VERTICAL, false, true, true);
 
-	private void initBarChart(javax.swing.JPanel chartPanel) {
-		// Create barChart
-		barChart = ChartFactory.createBarChart("Statistical Chart", "Time", "Number of Register", dataset,
-				PlotOrientation.VERTICAL, false, true, true);
+        CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        renderer.setDefaultItemLabelsVisible(true);
+        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.TOP_CENTER);
+        renderer.setDefaultPositiveItemLabelPosition(position);
 
-		CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
-		renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-		renderer.setDefaultItemLabelsVisible(true);
-		ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.TOP_CENTER);
-		renderer.setDefaultPositiveItemLabelPosition(position);
+        ChartPanel panel = new ChartPanel(barChart);
+        panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
 
-		ChartPanel panel = new ChartPanel(barChart);
-		panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
+        chartPanel.removeAll();
+        chartPanel.setLayout(new CardLayout());
+        chartPanel.add(panel);
+        chartPanel.validate();
+        chartPanel.repaint();
+    }
 
-		chartPanel.removeAll();
-		chartPanel.setLayout(new CardLayout());
-		chartPanel.add(panel);
-		chartPanel.validate();
-		chartPanel.repaint();
-	}
+    private void initLineChart(javax.swing.JPanel chartPanel) {
+        // Create lineChart
+        lineChart = ChartFactory.createLineChart("Statistical Chart", // Chart title
+                "Time", // X-Axis Label
+                "Number of Register", // Y-Axis Label
+                dataset, PlotOrientation.VERTICAL, false, true, true);
 
-	private void initLineChart(javax.swing.JPanel chartPanel) {
-		// Create lineChart
-		lineChart = ChartFactory.createLineChart("Statistical Chart", // Chart title
-				"Time", // X-Axis Label
-				"Number of Register", // Y-Axis Label
-				dataset, PlotOrientation.VERTICAL, false, true, true);
+        CategoryPlot plot = (CategoryPlot) lineChart.getPlot();
 
-		CategoryPlot plot = (CategoryPlot) lineChart.getPlot();
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setDefaultShapesVisible(true);
+        DecimalFormat decimalformat1 = new DecimalFormat("##");
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", decimalformat1));
+        renderer.setDefaultItemLabelsVisible(true);
+        renderer.setDefaultSeriesVisible(true);
 
-		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-		renderer.setDefaultShapesVisible(true);
-		DecimalFormat decimalformat1 = new DecimalFormat("##");
-		renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", decimalformat1));
-		renderer.setDefaultItemLabelsVisible(true);
-		renderer.setDefaultSeriesVisible(true);
+        ChartPanel panel = new ChartPanel(lineChart);
+        panel.setPreferredSize(new Dimension(840, 450));
+        panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
 
-		ChartPanel panel = new ChartPanel(lineChart);
-		panel.setPreferredSize(new Dimension(840, 450));
-		panel.setPreferredSize(new Dimension(chartPanel.getWidth(), chartPanel.getHeight()));
+        chartPanel.removeAll();
+        chartPanel.setLayout(new CardLayout());
+        chartPanel.add(panel);
+        chartPanel.validate();
+        chartPanel.repaint();
+    }
 
-		chartPanel.removeAll();
-		chartPanel.setLayout(new CardLayout());
-		chartPanel.add(panel);
-		chartPanel.validate();
-		chartPanel.repaint();
-	}
+    private void createDataset() {
+        AccountList list = new AccountList();
+        listItem = list.getStatitical();
+        dataset = new DefaultCategoryDataset();
+    }
 
-	private void createDataset() {
-		AccountList list = new AccountList();
-		listItem = list.getStatitical();
-		dataset = new DefaultCategoryDataset();
-	}
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-	/**
-	 * This method is called from within the constructor to initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is always
-	 * regenerated by the Form Editor.
-	 */
-	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+        statisticsBy = new javax.swing.ButtonGroup();
+        chartStyle = new javax.swing.ButtonGroup();
+        pnRoot = new javax.swing.JPanel();
+        pnOption = new javax.swing.JPanel();
+        statisticsByLabel1 = new javax.swing.JLabel();
+        allTimeButton = new javax.swing.JRadioButton();
+        dayButton = new javax.swing.JRadioButton();
+        monthButton = new javax.swing.JRadioButton();
+        yearButton = new javax.swing.JRadioButton();
+        pnYear = new javax.swing.JPanel();
+        fromLabel1 = new javax.swing.JLabel();
+        toLabel1 = new javax.swing.JLabel();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jYearChooser2 = new com.toedter.calendar.JYearChooser();
+        pnDay = new javax.swing.JPanel();
+        fromLabel = new javax.swing.JLabel();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        toLabel = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        pnMonth = new javax.swing.JPanel();
+        fromLabel2 = new javax.swing.JLabel();
+        toLabel2 = new javax.swing.JLabel();
+        jYearChooser3 = new com.toedter.calendar.JYearChooser();
+        jYearChooser4 = new com.toedter.calendar.JYearChooser();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jMonthChooser2 = new com.toedter.calendar.JMonthChooser();
+        chartStyleLabel = new javax.swing.JLabel();
+        barChartButton = new javax.swing.JRadioButton();
+        lineChartButton = new javax.swing.JRadioButton();
+        showButton = new javax.swing.JButton();
+        pnChart = new javax.swing.JPanel();
 
-		pnRoot = new javax.swing.JPanel();
-		pnOption = new javax.swing.JPanel();
-		statisticsByLabel1 = new javax.swing.JLabel();
-		allTimeButton = new javax.swing.JRadioButton();
-		dayButton = new javax.swing.JRadioButton();
-		monthButton = new javax.swing.JRadioButton();
-		yearButton = new javax.swing.JRadioButton();
-		pnYear = new javax.swing.JPanel();
-		fromLabel1 = new javax.swing.JLabel();
-		toLabel1 = new javax.swing.JLabel();
-		jYearChooser1 = new com.toedter.calendar.JYearChooser();
-		jYearChooser2 = new com.toedter.calendar.JYearChooser();
-		pnDay = new javax.swing.JPanel();
-		fromLabel = new javax.swing.JLabel();
-		jDateChooser = new com.toedter.calendar.JDateChooser();
-		toLabel = new javax.swing.JLabel();
-		jDateChooser1 = new com.toedter.calendar.JDateChooser();
-		pnMonth = new javax.swing.JPanel();
-		fromLabel2 = new javax.swing.JLabel();
-		toLabel2 = new javax.swing.JLabel();
-		jYearChooser3 = new com.toedter.calendar.JYearChooser();
-		jYearChooser4 = new com.toedter.calendar.JYearChooser();
-		jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-		jMonthChooser2 = new com.toedter.calendar.JMonthChooser();
-		chartStyleLabel = new javax.swing.JLabel();
-		barChartButton = new javax.swing.JRadioButton();
-		lineChartButton = new javax.swing.JRadioButton();
-		showButton = new javax.swing.JButton();
-		pnChart = new javax.swing.JPanel();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        statisticsByLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        statisticsByLabel1.setText("Statistics by:");
+        statisticsByLabel1.setToolTipText("");
+        pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-		statisticsByLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-		statisticsByLabel1.setText("Statistics by:");
-		statisticsByLabel1.setToolTipText("");
-		pnOption.add(statisticsByLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        statisticsBy.add(allTimeButton);
+        allTimeButton.setSelected(true);
+        allTimeButton.setText("All time");
+        allTimeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allTimeButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-		statisticsBy.add(allTimeButton);
-		allTimeButton.setSelected(true);
-		allTimeButton.setText("All time");
-		allTimeButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				allTimeButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(allTimeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        statisticsBy.add(dayButton);
+        dayButton.setText("Day");
+        dayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(dayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        statisticsBy.add(dayButton);
 
-		statisticsBy.add(dayButton);
-		dayButton.setText("Day");
-		dayButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				dayButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(dayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-		statisticsBy.add(dayButton);
+        statisticsBy.add(monthButton);
+        monthButton.setText("Month");
+        monthButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(monthButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        statisticsBy.add(dayButton);
 
-		statisticsBy.add(monthButton);
-		monthButton.setText("Month");
-		monthButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				monthButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(monthButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-		statisticsBy.add(dayButton);
+        statisticsBy.add(yearButton);
+        yearButton.setText("Year");
+        yearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(yearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        statisticsBy.add(dayButton);
 
-		statisticsBy.add(yearButton);
-		yearButton.setText("Year");
-		yearButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				yearButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(yearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-		statisticsBy.add(dayButton);
+        pnYear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		pnYear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        fromLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel1.setText("From");
+        fromLabel1.setToolTipText("");
+        pnYear.add(fromLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-		fromLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		fromLabel1.setText("From");
-		fromLabel1.setToolTipText("");
-		pnYear.add(fromLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        toLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel1.setText("to");
+        toLabel1.setToolTipText("");
+        pnYear.add(toLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnYear.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
+        pnYear.add(jYearChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, -1));
 
-		toLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		toLabel1.setText("to");
-		toLabel1.setToolTipText("");
-		pnYear.add(toLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-		pnYear.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
-		pnYear.add(jYearChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, -1));
+        pnOption.add(pnYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
+        pnYear.setVisible(false);
 
-		pnOption.add(pnYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
-		pnYear.setVisible(false);
+        pnDay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		pnDay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        fromLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel.setText("From");
+        fromLabel.setToolTipText("");
+        pnDay.add(fromLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-		fromLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		fromLabel.setText("From");
-		fromLabel.setToolTipText("");
-		pnDay.add(fromLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jDateChooser.setDate(now);
+        pnDay.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, -1));
+        jDateChooser.setDateFormatString("dd/MM/yyyy");
+        jDateChooser1.setDateFormatString("dd/MM/yyyy");
 
-		jDateChooser.setDate(now);
-		pnDay.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, -1));
-		jDateChooser.setDateFormatString("dd/MM/yyyy");
-		jDateChooser1.setDateFormatString("dd/MM/yyyy");
+        toLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel.setText("to");
+        toLabel.setToolTipText("");
+        pnDay.add(toLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-		toLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		toLabel.setText("to");
-		toLabel.setToolTipText("");
-		pnDay.add(toLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jDateChooser1.setDate(now);
+        pnDay.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, -1));
 
-		jDateChooser1.setDate(now);
-		pnDay.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, -1));
+        pnOption.add(pnDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
+        pnDay.setVisible(false);
 
-		pnOption.add(pnDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 120));
-		pnDay.setVisible(false);
+        pnMonth.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		pnMonth.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        fromLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fromLabel2.setText("From");
+        fromLabel2.setToolTipText("");
+        pnMonth.add(fromLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-		fromLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		fromLabel2.setText("From");
-		fromLabel2.setToolTipText("");
-		pnMonth.add(fromLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        toLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toLabel2.setText("to");
+        toLabel2.setToolTipText("");
+        pnMonth.add(toLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        pnMonth.add(jYearChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
+        pnMonth.add(jYearChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, -1));
+        pnMonth.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnMonth.add(jMonthChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-		toLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		toLabel2.setText("to");
-		toLabel2.setToolTipText("");
-		pnMonth.add(toLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-		pnMonth.add(jYearChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, -1));
-		pnMonth.add(jYearChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, -1));
-		pnMonth.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-		pnMonth.add(jMonthChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        pnOption.add(pnMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 170));
+        pnMonth.setVisible(false);
 
-		pnOption.add(pnMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 170));
-		pnMonth.setVisible(false);
+        chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chartStyleLabel.setText("Chart style:");
+        chartStyleLabel.setToolTipText("");
+        pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
-		chartStyleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-		chartStyleLabel.setText("Chart style:");
-		chartStyleLabel.setToolTipText("");
-		pnOption.add(chartStyleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        chartStyle.add(barChartButton);
+        barChartButton.setSelected(true);
+        barChartButton.setText("Bar chart");
+        barChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        chartStyle.add(barChartButton);
 
-		barChartButton.setSelected(true);
-		barChartButton.setText("Bar chart");
-		barChartButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				barChartButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(barChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
-		chartStyle.add(barChartButton);
+        chartStyle.add(lineChartButton);
+        lineChartButton.setText("Line chart");
+        lineChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lineChartButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        statisticsBy.add(dayButton);
+        chartStyle.add(lineChartButton);
 
-		lineChartButton.setText("Line chart");
-		lineChartButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				lineChartButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(lineChartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
-		statisticsBy.add(dayButton);
-		chartStyle.add(lineChartButton);
+        showButton.setText("Show");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
+            }
+        });
+        pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
-		showButton.setText("Show");
-		showButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				showButtonActionPerformed(evt);
-			}
-		});
-		pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
+        pnChart.setLayout(pnChartLayout);
+        pnChartLayout.setHorizontalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 810, Short.MAX_VALUE)
+        );
+        pnChartLayout.setVerticalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-		javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
-		pnChart.setLayout(pnChartLayout);
-		pnChartLayout.setHorizontalGroup(pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 810, Short.MAX_VALUE));
-		pnChartLayout.setVerticalGroup(pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 0, Short.MAX_VALUE));
+        javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
+        pnRoot.setLayout(pnRootLayout);
+        pnRootLayout.setHorizontalGroup(
+            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnRootLayout.createSequentialGroup()
+                .addComponent(pnOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnRootLayout.setVerticalGroup(
+            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+            .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
-		javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
-		pnRoot.setLayout(pnRootLayout);
-		pnRootLayout.setHorizontalGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(pnRootLayout.createSequentialGroup()
-						.addComponent(pnOption, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 0, 0).addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		pnRootLayout.setVerticalGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-				.addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+    private void yearButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_yearButtonActionPerformed
+        pnDay.setVisible(false);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(true);
+    }// GEN-LAST:event_yearButtonActionPerformed
 
-	private void yearButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_yearButtonActionPerformed
-		pnDay.setVisible(false);
-		pnMonth.setVisible(false);
-		pnYear.setVisible(true);
-	}// GEN-LAST:event_yearButtonActionPerformed
+    private void monthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_monthButtonActionPerformed
+        pnDay.setVisible(false);
+        pnMonth.setVisible(true);
+        pnYear.setVisible(false);
+    }// GEN-LAST:event_monthButtonActionPerformed
 
-	private void monthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_monthButtonActionPerformed
-		pnDay.setVisible(false);
-		pnMonth.setVisible(true);
-		pnYear.setVisible(false);
-	}// GEN-LAST:event_monthButtonActionPerformed
+    private void allTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allTimeButtonActionPerformed
+        pnDay.setVisible(false);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(false);
+    }// GEN-LAST:event_allTimeButtonActionPerformed
 
-	private void allTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allTimeButtonActionPerformed
-		pnDay.setVisible(false);
-		pnMonth.setVisible(false);
-		pnYear.setVisible(false);
-	}// GEN-LAST:event_allTimeButtonActionPerformed
+    private void dayButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
+        pnDay.setVisible(true);
+        pnMonth.setVisible(false);
+        pnYear.setVisible(false);
+    }// GEN-LAST:event_betweenButtonActionPerformed
 
-	private void dayButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_betweenButtonActionPerformed
-		pnDay.setVisible(true);
-		pnMonth.setVisible(false);
-		pnYear.setVisible(false);
-	}// GEN-LAST:event_betweenButtonActionPerformed
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
+        String select = getSelectedStatisticsBy(statisticsBy);
+        switch (select) {
+            case "All time":
+                setAllTime();
+                break;
+            case "Day":
+                setDayTime();
+                break;
+            case "Month":
+                setMonthTime();
+                break;
+            case "Year":
+                setYearTime();
+                break;
+        }
+    }// GEN-LAST:event_showButtonActionPerformed
 
-	private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
-		String select = getSelectedStatisticsBy(statisticsBy);
-		switch (select) {
-		case "All time":
-			setAllTime();
-			break;
-		case "Day":
-			setDayTime();
-			break;
-		case "Month":
-			setMonthTime();
-			break;
-		case "Year":
-			setYearTime();
-			break;
-		}
-	}// GEN-LAST:event_showButtonActionPerformed
+    public String getSelectedStatisticsBy(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
 
-	public String getSelectedStatisticsBy(ButtonGroup buttonGroup) {
-		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-			AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
 
-			if (button.isSelected()) {
-				return button.getText();
-			}
-		}
-		return null;
-	}
+    private void lineChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_lineChartButtonActionPerformed
+        initLineChart(pnChart);
+    }// GEN-LAST:event_lineChartButtonActionPerformed
 
-	private void lineChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_lineChartButtonActionPerformed
-		initLineChart(pnChart);
-	}// GEN-LAST:event_lineChartButtonActionPerformed
+    private void barChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_barChartButtonActionPerformed
+        initBarChart(pnChart);
+    }// GEN-LAST:event_barChartButtonActionPerformed
 
-	private void barChartButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_barChartButtonActionPerformed
-		initBarChart(pnChart);
-	}// GEN-LAST:event_barChartButtonActionPerformed
-
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
 		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
 		 * look and feel. For details see
 		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
-					null, ex);
-		}
-		// </editor-fold>
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(guiStatisticalChart.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        // </editor-fold>
 
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
 //                new guiStatisticalChart().setVisible(true);
-				guiStatisticalChart example = new guiStatisticalChart();
+                guiStatisticalChart example = new guiStatisticalChart();
 //                example.setAlwaysOnTop(true);
-				example.setVisible(true);
-			}
-		});
-	}
+                example.setVisible(true);
+            }
+        });
+    }
 
-	private JFreeChart barChart;
-	private JFreeChart lineChart;
-	private final ButtonGroup statisticsBy;
-	private final ButtonGroup chartStyle;
-	DefaultCategoryDataset dataset;
-	List<Statistics> listItem;
-	private final Date now;
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JRadioButton allTimeButton;
-	private javax.swing.JRadioButton barChartButton;
-	private javax.swing.JLabel chartStyleLabel;
-	private javax.swing.JRadioButton dayButton;
-	private javax.swing.JLabel fromLabel;
-	private javax.swing.JLabel fromLabel1;
-	private javax.swing.JLabel fromLabel2;
-	private com.toedter.calendar.JDateChooser jDateChooser;
-	private com.toedter.calendar.JDateChooser jDateChooser1;
-	private com.toedter.calendar.JMonthChooser jMonthChooser1;
-	private com.toedter.calendar.JMonthChooser jMonthChooser2;
-	private com.toedter.calendar.JYearChooser jYearChooser1;
-	private com.toedter.calendar.JYearChooser jYearChooser2;
-	private com.toedter.calendar.JYearChooser jYearChooser3;
-	private com.toedter.calendar.JYearChooser jYearChooser4;
-	private javax.swing.JRadioButton lineChartButton;
-	private javax.swing.JRadioButton monthButton;
-	private javax.swing.JPanel pnChart;
-	private javax.swing.JPanel pnDay;
-	private javax.swing.JPanel pnMonth;
-	private javax.swing.JPanel pnOption;
-	private javax.swing.JPanel pnRoot;
-	private javax.swing.JPanel pnYear;
-	private javax.swing.JButton showButton;
-	private javax.swing.JLabel statisticsByLabel1;
-	private javax.swing.JLabel toLabel;
-	private javax.swing.JLabel toLabel1;
-	private javax.swing.JLabel toLabel2;
-	private javax.swing.JRadioButton yearButton;
-	// End of variables declaration//GEN-END:variables
+    private JFreeChart barChart;
+    private JFreeChart lineChart;
+//    private final ButtonGroup chartStyle;
+    DefaultCategoryDataset dataset;
+    List<Statistics> listItem;
+    private final Date now;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton allTimeButton;
+    private javax.swing.JRadioButton barChartButton;
+    private javax.swing.ButtonGroup chartStyle;
+    private javax.swing.JLabel chartStyleLabel;
+    private javax.swing.JRadioButton dayButton;
+    private javax.swing.JLabel fromLabel;
+    private javax.swing.JLabel fromLabel1;
+    private javax.swing.JLabel fromLabel2;
+    private com.toedter.calendar.JDateChooser jDateChooser;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser2;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private com.toedter.calendar.JYearChooser jYearChooser2;
+    private com.toedter.calendar.JYearChooser jYearChooser3;
+    private com.toedter.calendar.JYearChooser jYearChooser4;
+    private javax.swing.JRadioButton lineChartButton;
+    private javax.swing.JRadioButton monthButton;
+    private javax.swing.JPanel pnChart;
+    private javax.swing.JPanel pnDay;
+    private javax.swing.JPanel pnMonth;
+    private javax.swing.JPanel pnOption;
+    private javax.swing.JPanel pnRoot;
+    private javax.swing.JPanel pnYear;
+    private javax.swing.JButton showButton;
+    private javax.swing.ButtonGroup statisticsBy;
+    private javax.swing.JLabel statisticsByLabel1;
+    private javax.swing.JLabel toLabel;
+    private javax.swing.JLabel toLabel1;
+    private javax.swing.JLabel toLabel2;
+    private javax.swing.JRadioButton yearButton;
+    // End of variables declaration//GEN-END:variables
 
-	private void setAllTime() {
-		dataset.clear();
-		for (Statistics i : listItem) {
-			dataset.addValue(i.getCount(), "", i.getCreateDate());
-		}
-	}
+    private void setAllTime() {
+        dataset.clear();
+        for (Statistics i : listItem) {
+            dataset.addValue(i.getCount(), "", i.getCreateDate());
+        }
+    }
 
-	private void setYearTime() {
-		dataset.clear();
-		List<Statistics> yearList = new ArrayList<Statistics>();
-		int year1 = jYearChooser1.getYear();
-		int year2 = jYearChooser2.getYear();
-		for (Statistics i : listItem) {
-			Date t = i.getCreateDate();
-			int year = getYear(t);
-			if (year >= year1 && year <= year2) {
-				if (!yearList.contains(i)) {
-					yearList.add(i);
-				} else {
-					int index = yearList.indexOf(i);
-					Statistics newEle = yearList.get(index);
-					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount());
-					newEle.add(i.getCount());
-					yearList.remove(index);
-					yearList.add(newEle);
-				}
-			}
-		}
-		while (year1 <= year2) {
-			java.sql.Date t = setYear(year1);
-			Statistics s = new Statistics(t, 0, 0);
-			if (!yearList.contains(s)) {
-				yearList.add(s);
-			}
-			year1 += 1;
-		}
-		Collections.sort(yearList);
-		for (Statistics i : yearList) {
-			dataset.addValue(i.getCount(), "", "" + i.getYear());
-		}
-	}
+    private void setYearTime() {
+        dataset.clear();
+        List<Statistics> yearList = new ArrayList<Statistics>();
+        int year1 = jYearChooser1.getYear();
+        int year2 = jYearChooser2.getYear();
+        for (Statistics i : listItem) {
+            Date t = i.getCreateDate();
+            int year = getYear(t);
+            if (year >= year1 && year <= year2) {
+                if (!yearList.contains(i)) {
+                    yearList.add(i);
+                } else {
+                    int index = yearList.indexOf(i);
+                    Statistics newEle = yearList.get(index);
+                    newEle = new Statistics(newEle.getCreateDate(), newEle.getCount());
+                    newEle.add(i.getCount());
+                    yearList.remove(index);
+                    yearList.add(newEle);
+                }
+            }
+        }
+        while (year1 <= year2) {
+            java.sql.Date t = setYear(year1);
+            Statistics s = new Statistics(t, 0, 0);
+            if (!yearList.contains(s)) {
+                yearList.add(s);
+            }
+            year1 += 1;
+        }
+        Collections.sort(yearList);
+        for (Statistics i : yearList) {
+            dataset.addValue(i.getCount(), "", "" + i.getYear());
+        }
+    }
 
-	private java.sql.Date setYear(int year) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.YEAR, year);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
+    private java.sql.Date setYear(int year) {
+        Calendar cal = Calendar.getInstance();
+        Date value;
+        cal.set(Calendar.YEAR, year);
+        value = cal.getTime();
+        return new java.sql.Date(value.getTime());
+    }
 
-	private int getYear(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.YEAR);
-	}
+    private int getYear(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.YEAR);
+    }
 
-	private void setMonthTime() {
-		dataset.clear();
-		List<Statistics> monthList = new ArrayList<Statistics>();
-		int year1 = jYearChooser3.getYear();
-		int month1 = jMonthChooser1.getMonth();
-		int year2 = jYearChooser4.getYear();
-		int month2 = jMonthChooser2.getMonth();
-		for (Statistics i : listItem) {
-			Date t = i.getCreateDate();
-			int year = getYear(t);
-			int month = getMonth(t);
-			if (compareMonth(year1, month1, year, month) && compareMonth(year, month, year2, month2)) {
-				if (!monthList.contains(i)) {
-					i.setI(1);
-					monthList.add(i);
-				} else {
-					int index = monthList.indexOf(i);
-					Statistics newEle = monthList.get(index);
-					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 1);
-					newEle.add(i.getCount());
-					monthList.remove(index);
-					monthList.add(newEle);
-				}
-			}
-		}
-		while (compareMonth(year1, month1, year2, month2)) {
-			java.sql.Date t = setMonth(month1, year1);
-			Statistics s = new Statistics(t, 0, 1);
-			if (!monthList.contains(s)) {
-				monthList.add(s);
-			}
-			t = addMonth(t);
-			month1 = getMonth(t);
-			year1 = getYear(t);
-		}
-		Collections.sort(monthList);
-		year1 = -1;
-		for (Statistics i : monthList) {
-			year2 = i.getYear();
-			dataset.addValue(i.getCount(), "",
-					"" + ((int) i.getMonth() + (int) 1) + (year1 == year2 ? "" : ("/" + year2)));
-			year1 = year2;
-		}
-	}
+    private void setMonthTime() {
+        dataset.clear();
+        List<Statistics> monthList = new ArrayList<Statistics>();
+        int year1 = jYearChooser3.getYear();
+        int month1 = jMonthChooser1.getMonth();
+        int year2 = jYearChooser4.getYear();
+        int month2 = jMonthChooser2.getMonth();
+        for (Statistics i : listItem) {
+            Date t = i.getCreateDate();
+            int year = getYear(t);
+            int month = getMonth(t);
+            if (compareMonth(year1, month1, year, month) && compareMonth(year, month, year2, month2)) {
+                if (!monthList.contains(i)) {
+                    i.setI(1);
+                    monthList.add(i);
+                } else {
+                    int index = monthList.indexOf(i);
+                    Statistics newEle = monthList.get(index);
+                    newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 1);
+                    newEle.add(i.getCount());
+                    monthList.remove(index);
+                    monthList.add(newEle);
+                }
+            }
+        }
+        while (compareMonth(year1, month1, year2, month2)) {
+            java.sql.Date t = setMonth(month1, year1);
+            Statistics s = new Statistics(t, 0, 1);
+            if (!monthList.contains(s)) {
+                monthList.add(s);
+            }
+            t = addMonth(t);
+            month1 = getMonth(t);
+            year1 = getYear(t);
+        }
+        Collections.sort(monthList);
+        year1 = -1;
+        for (Statistics i : monthList) {
+            year2 = i.getYear();
+            dataset.addValue(i.getCount(), "",
+                    "" + ((int) i.getMonth() + (int) 1) + (year1 == year2 ? "" : ("/" + year2)));
+            year1 = year2;
+        }
+    }
 
-	private boolean compareMonth(int year1, int month1, int year2, int month2) {
-		if (year1 < year2)
-			return true;
-		if (year1 == year2) {
-			if (month1 <= month2)
-				return true;
-			return false;
-		}
-		return false;
-	}
+    private boolean compareMonth(int year1, int month1, int year2, int month2) {
+        if (year1 < year2) {
+            return true;
+        }
+        if (year1 == year2) {
+            return month1 <= month2;
+        }
+        return false;
+    }
 
-	private java.sql.Date addMonth(java.sql.Date t) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(t);
-		cal.set(Calendar.MONTH, getMonth(t) + 1);
-		return new java.sql.Date(cal.getTime().getTime());
-	}
+    private java.sql.Date addMonth(java.sql.Date t) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(t);
+        cal.set(Calendar.MONTH, getMonth(t) + 1);
+        return new java.sql.Date(cal.getTime().getTime());
+    }
 
-	private int getMonth(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.MONTH);
-	}
+    private int getMonth(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MONTH);
+    }
 
-	private java.sql.Date setMonth(int month, int year) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.MONTH, month);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
+    private java.sql.Date setMonth(int month, int year) {
+        Calendar cal = Calendar.getInstance();
+        Date value;
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month);
+        value = cal.getTime();
+        return new java.sql.Date(value.getTime());
+    }
 
-	private void setDayTime() {
-		dataset.clear();
-		List<Statistics> dayList = new ArrayList<Statistics>();
-		int year1 = getYear(jDateChooser.getDate());
-		int month1 = getMonth(jDateChooser.getDate());
-		int day1 = getDay(jDateChooser.getDate());
-		int year2 = getYear(jDateChooser1.getDate());
-		int month2 = getMonth(jDateChooser1.getDate());
-		int day2 = getDay(jDateChooser1.getDate());
-		for (Statistics i : listItem) {
-			Date t = i.getCreateDate();
-			int year = getYear(t);
-			int month = getMonth(t);
-			int day = getDay(t);
-			if (compareDay(year1, month1, day1, year, month, day)
-					&& compareDay(year, month, day, year2, month2, day2)) {
-				if (!dayList.contains(i)) {
-					i.setI(2);
-					dayList.add(i);
-				} else {
-					int index = dayList.indexOf(i);
-					Statistics newEle = dayList.get(index);
-					newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 2);
-					newEle.add(i.getCount());
-					dayList.remove(index);
-					dayList.add(newEle);
-				}
-			}
-		}
-		while (compareDay(year1, month1, day1, year2, month2, day2)) {
-			java.sql.Date t = setDay(day1, month1, year1);
-			Statistics s = new Statistics(t, 0, 2);
-			if (!dayList.contains(s)) {
-				dayList.add(s);
-			}
-			t = addDay(t);
-			day1 = getDay(t);
-			month1 = getMonth(t);
-			year1 = getYear(t);
-		}
-		Collections.sort(dayList);
-		year1 = month1 = -1;
-		for (Statistics i : dayList) {
-			year2 = i.getYear();
-			month2 = i.getMonth();
-			dataset.addValue(i.getCount(), "", "" + i.getDay() + (month1 == month2 ? ""
-					: ("/" + ((int) month2 + (int) 1) + (year1 == year2 ? "" : ("/" + year2)))));
-			month1 = month2;
-			year1 = year2;
-		}
-	}
+    private void setDayTime() {
+        dataset.clear();
+        List<Statistics> dayList = new ArrayList<Statistics>();
+        int year1 = getYear(jDateChooser.getDate());
+        int month1 = getMonth(jDateChooser.getDate());
+        int day1 = getDay(jDateChooser.getDate());
+        int year2 = getYear(jDateChooser1.getDate());
+        int month2 = getMonth(jDateChooser1.getDate());
+        int day2 = getDay(jDateChooser1.getDate());
+        for (Statistics i : listItem) {
+            Date t = i.getCreateDate();
+            int year = getYear(t);
+            int month = getMonth(t);
+            int day = getDay(t);
+            if (compareDay(year1, month1, day1, year, month, day)
+                    && compareDay(year, month, day, year2, month2, day2)) {
+                if (!dayList.contains(i)) {
+                    i.setI(2);
+                    dayList.add(i);
+                } else {
+                    int index = dayList.indexOf(i);
+                    Statistics newEle = dayList.get(index);
+                    newEle = new Statistics(newEle.getCreateDate(), newEle.getCount(), 2);
+                    newEle.add(i.getCount());
+                    dayList.remove(index);
+                    dayList.add(newEle);
+                }
+            }
+        }
+        while (compareDay(year1, month1, day1, year2, month2, day2)) {
+            java.sql.Date t = setDay(day1, month1, year1);
+            Statistics s = new Statistics(t, 0, 2);
+            if (!dayList.contains(s)) {
+                dayList.add(s);
+            }
+            t = addDay(t);
+            day1 = getDay(t);
+            month1 = getMonth(t);
+            year1 = getYear(t);
+        }
+        Collections.sort(dayList);
+        year1 = month1 = -1;
+        for (Statistics i : dayList) {
+            year2 = i.getYear();
+            month2 = i.getMonth();
+            dataset.addValue(i.getCount(), "", "" + i.getDay() + (month1 == month2 ? ""
+                    : ("/" + ((int) month2 + (int) 1) + (year1 == year2 ? "" : ("/" + year2)))));
+            month1 = month2;
+            year1 = year2;
+        }
+    }
 
-	private boolean compareDay(int year1, int month1, int day1, int year2, int month2, int day2) {
-		if (year1 < year2)
-			return true;
-		if (year1 == year2) {
-			if (month1 < month2)
-				return true;
-			if (month1 == month2) {
-				if (day1 < day2)
-					return true;
-				return false;
-			}
-			return false;
-		}
-		return false;
-	}
+    private boolean compareDay(int year1, int month1, int day1, int year2, int month2, int day2) {
+        if (year1 < year2) {
+            return true;
+        }
+        if (year1 == year2) {
+            if (month1 < month2) {
+                return true;
+            }
+            if (month1 == month2) {
+                return day1 <= day2;
+            }
+            return false;
+        }
+        return false;
+    }
 
-	private java.sql.Date addDay(java.sql.Date t) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(t);
-		cal.set(Calendar.DAY_OF_MONTH, getDay(t) + 1);
-		return new java.sql.Date(cal.getTime().getTime());
-	}
+    private java.sql.Date addDay(java.sql.Date t) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(t);
+        cal.set(Calendar.DAY_OF_MONTH, getDay(t) + 1);
+        return new java.sql.Date(cal.getTime().getTime());
+    }
 
-	private java.sql.Date setDay(int day, int month, int year) {
-		Calendar cal = Calendar.getInstance();
-		Date value;
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.MONTH, month);
-		cal.set(Calendar.DAY_OF_MONTH, day);
-		value = cal.getTime();
-		return new java.sql.Date(value.getTime());
-	}
+    private java.sql.Date setDay(int day, int month, int year) {
+        Calendar cal = Calendar.getInstance();
+        Date value;
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.DAY_OF_MONTH, day);
+        value = cal.getTime();
+        return new java.sql.Date(value.getTime());
+    }
 
-	private int getDay(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.DAY_OF_MONTH);
-	}
+    private int getDay(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DAY_OF_MONTH);
+    }
 
-	/*
+    /*
 	 * Version 1
 	 * 
 	 * private void setDayTime() { dataset.clear(); List<Statistics> day = new
@@ -725,5 +735,5 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 	 * cal.set(Calendar.HOUR_OF_DAY, 23); cal.set(Calendar.MINUTE, 59);
 	 * cal.set(Calendar.SECOND, 59); cal.set(Calendar.MILLISECOND, 99); value =
 	 * cal.getTime(); return value; }
-	 */
+     */
 }

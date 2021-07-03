@@ -2,9 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */ 
+ */
 package GuiNetbean;
-
 
 import Controller.ChuyenManHinhController;
 import Controller.DanhmucBean;
@@ -22,23 +21,21 @@ public class guiAccountManager extends javax.swing.JFrame {
 
     /**
      * Creates new form guiAccountManager
+     *
+     * @param login
      */
     public guiAccountManager(Account login) {
         initComponents();
-
-        ChuyenManHinhController controller = new ChuyenManHinhController(panelView);
+        controller = new ChuyenManHinhController(panelView, login);
         controller.setView(AccountManager, lbAccount);
-        
-        List <DanhmucBean> listItem = new ArrayList<DanhmucBean>();
+
+        List<DanhmucBean> listItem = new ArrayList<DanhmucBean>();
         listItem.add(new DanhmucBean("AccountManager", AccountManager, lbAccount));
-        listItem.add(new DanhmucBean("StacticChart", StaticChart, lbStatic));
+        listItem.add(new DanhmucBean("StatisChart", StaticChart, lbStatic));
         listItem.add(new DanhmucBean("AdminProfile", AdminProfile, lbAdminProfile));
-        
-        controller.setEvent(listItem);  
+
+        controller.setEvent(listItem);
     }
-    
-   
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,7 +128,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         StaticChart.setLayout(StaticChartLayout);
         StaticChartLayout.setHorizontalGroup(
             StaticChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbStatic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+            .addComponent(lbStatic, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         StaticChartLayout.setVerticalGroup(
             StaticChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +138,11 @@ public class guiAccountManager extends javax.swing.JFrame {
         panelMenu.add(StaticChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 315, -1));
 
         logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
         panelMenu.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, -1, -1));
 
         jLabel4.setText("Carrot team @2021");
@@ -153,27 +155,29 @@ public class guiAccountManager extends javax.swing.JFrame {
         lbAdminProfile.setForeground(new java.awt.Color(255, 255, 255));
         lbAdminProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbAdminProfile.setText("Admin profile");
+        lbAdminProfile.setPreferredSize(new java.awt.Dimension(134, 24));
 
         javax.swing.GroupLayout AdminProfileLayout = new javax.swing.GroupLayout(AdminProfile);
         AdminProfile.setLayout(AdminProfileLayout);
         AdminProfileLayout.setHorizontalGroup(
             AdminProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbAdminProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(lbAdminProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         AdminProfileLayout.setVerticalGroup(
             AdminProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbAdminProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
-        panelMenu.add(AdminProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 310, -1));
+        panelMenu.add(AdminProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 315, -1));
 
         panelView.setBackground(new java.awt.Color(204, 204, 204));
+        panelView.setPreferredSize(new java.awt.Dimension(950, 700));
 
         javax.swing.GroupLayout panelViewLayout = new javax.swing.GroupLayout(panelView);
         panelView.setLayout(panelViewLayout);
         panelViewLayout.setHorizontalGroup(
             panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
+            .addGap(0, 950, Short.MAX_VALUE)
         );
         panelViewLayout.setVerticalGroup(
             panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +191,8 @@ public class guiAccountManager extends javax.swing.JFrame {
             .addGroup(paneRootLayout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         paneRootLayout.setVerticalGroup(
             paneRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +213,11 @@ public class guiAccountManager extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        new guiMain().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +256,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         });
     }
 
+    private final ChuyenManHinhController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccountManager;
     private javax.swing.JPanel AdminProfile;

@@ -5,20 +5,16 @@
  */
 package Controller;
 
-import GuiNetbean.guiAdmin;
-import Controller.DanhmucBean;
-import GuiNetbean.guiProfile;
+import GuiNetbean.AdminJPanel;
+import GuiNetbean.AdminProfileJPanel;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -30,24 +26,23 @@ public class ChuyenManHinhController {
 
     private final JPanel root;
     private String kindSelected = "";
-
-    Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
-            LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
+    private final Account a;
 
     private List<DanhmucBean> listItem = null;
 
-    public ChuyenManHinhController(JPanel panelRoot) {
+    public ChuyenManHinhController(JPanel panelRoot, Account admin) {
         this.root = panelRoot;
+        a = admin;
     }
 
     public void setView(JPanel paneItem, JLabel lbItem) {
-        kindSelected = "Account Management";
+        kindSelected = "AccountManager";
         paneItem.setBackground(new Color(96, 100, 191));
         lbItem.setBackground(new Color(96, 100, 191));
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-        //    root.add(node);
+        root.add(new AdminJPanel());
         root.validate();
         root.repaint();
 
@@ -62,7 +57,7 @@ public class ChuyenManHinhController {
 
     class LabelEvent implements MouseListener {
 
-        private JFrame node;
+        private JPanel node;
 
         private final String kind;
         private final JPanel paneItem;
@@ -77,12 +72,13 @@ public class ChuyenManHinhController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "AccountManager":
-                    node = new guiAdmin();
+                    node = new AdminJPanel();
                     break;
                 case "StatisChart":
                     node = new guiStatisticalChart();
+                    break;
                 case "AdminProfile":
-                    node = new guiProfile(a);
+                    node = new AdminProfileJPanel(a);
                     break;
 
                 default:
@@ -100,7 +96,6 @@ public class ChuyenManHinhController {
             kindSelected = kind;
             paneItem.setBackground(new Color(96, 100, 191));
             lbItem.setBackground(new Color(96, 100, 191));
-
         }
 
         public void mouseReleased(MouseEvent e) {
@@ -115,7 +110,6 @@ public class ChuyenManHinhController {
             if (!kindSelected.equalsIgnoreCase(kind)) {
                 paneItem.setBackground(new Color(76, 175, 80));
                 lbItem.setBackground(new Color(76, 175, 80));
-
             }
         }
     }

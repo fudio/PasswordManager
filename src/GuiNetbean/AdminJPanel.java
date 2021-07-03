@@ -4,32 +4,31 @@
  * and open the template in the editor.
  */
 package GuiNetbean;
-//addd
 
-import Storage.Avatar;
 import Storage.Account;
 import Storage.AccountList;
+import Storage.Avatar;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.Queue;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Admin
+ * @author theng
  */
-public class guiAdmin extends javax.swing.JFrame {
+public class AdminJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form guiAdmin
+     * Creates new form adminJPanel
      */
-    public guiAdmin() {
+    public AdminJPanel() {
         initComponents();
+        this.setVisible(true);
 
         initComponentsCustom();
         setValueTable(list.getAccountList());
@@ -44,13 +43,11 @@ public class guiAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainJPanel = new javax.swing.JPanel();
         panelAdmin = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         osearch = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
-        logout = new javax.swing.JButton();
         ofullname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -79,9 +76,6 @@ public class guiAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(650, 250));
-
         panelAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -91,7 +85,6 @@ public class guiAdmin extends javax.swing.JFrame {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         panelAdmin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 370, 54));
-        jLabel1.getAccessibleContext().setAccessibleName("");
 
         jLabel2.setFont(new java.awt.Font("UTM Avo", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,16 +102,6 @@ public class guiAdmin extends javax.swing.JFrame {
             }
         });
         panelAdmin.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 390, -1, -1));
-
-        logout.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
-        logout.setText("Logout");
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
-        panelAdmin.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 95, -1));
-        logout.getAccessibleContext().setAccessibleName("ButtonDX");
 
         ofullname.setEditable(false);
         ofullname.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -310,66 +293,23 @@ public class guiAdmin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jt);
 
-        javax.swing.GroupLayout mainJPanelLayout = new javax.swing.GroupLayout(mainJPanel);
-        mainJPanel.setLayout(mainJPanelLayout);
-        mainJPanelLayout.setHorizontalGroup(
-            mainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
-            .addGroup(mainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainJPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(mainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
-                    .addContainerGap()))
-        );
-        mainJPanelLayout.setVerticalGroup(
-            mainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
-            .addGroup(mainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainJPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addGap(1, 1, 1)))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        int output = JOptionPane.showConfirmDialog(logout, "Do you want to sign out?", "Logout",
-                JOptionPane.YES_NO_OPTION);
-        if (output == 0) {
-            guiMain f1 = new guiMain();
-            f1.setVisible(true);
-            dispose();
-        }
-
-    }//GEN-LAST:event_logoutActionPerformed
-
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-//        final DefaultTableModel model = (DefaultTableModel) jt.getModel();
-//        AccountList a = new AccountList();
-//        int index = jt.getSelectedRow();
-//        if (index == -1) {
-//            return;
-//        }
-//        String choice = (String) jt.getValueAt(index, 0);
-//        a.delete(choice);
-//        model.removeRow(index);
         int index = jt.getSelectedRow();
         if (index == -1) {
             return;
@@ -378,72 +318,6 @@ public class guiAdmin extends javax.swing.JFrame {
         list.delete(choice);
         model.removeRow(index);
     }//GEN-LAST:event_deleteActionPerformed
-
-    private void jtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMouseClicked
-        int index = jt.getSelectedRow();
-        ofullname.setText((String) jt.getValueAt(index, 1));
-        obirthday.setText((String) jt.getValueAt(index, 2));
-        ophonenum.setText((String) jt.getValueAt(index, 3));
-        oemail.setText((String) jt.getValueAt(index, 5));
-        osex.setText((String) jt.getValueAt(index, 4));
-        owork.setText((String) jt.getValueAt(index, 7));
-        oaddress.setText((String) jt.getValueAt(index, 8));
-        ofb.setText((String) jt.getValueAt(index, 6));
-        Image img = Avatar.readPicture((String) jt.getValueAt(index, 0));
-        if (img != null) {
-            Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-            lbAvatar.setIcon(new ImageIcon(resize));
-        } else {
-            lbAvatar.setIcon(null);
-        }
-        if (copyMode) {
-            StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));
-            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clpbrd.setContents(stringSelection, null);
-        }
-    }//GEN-LAST:event_jtMouseClicked
-
-    private void searchByName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByName1ActionPerformed
-        list.searchByFullNameSort(osearch.getText());
-        setValueTable(list.getSearchList());
-    }//GEN-LAST:event_searchByName1ActionPerformed
-
-    private void searchByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByUsernameActionPerformed
-        list.searchByUsernameSort(osearch.getText());
-        setValueTable(list.getSearchList());
-    }//GEN-LAST:event_searchByUsernameActionPerformed
-
-    private void resetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetTableActionPerformed
-        setValueTable(list.getAccountList());
-    }//GEN-LAST:event_resetTableActionPerformed
-
-    private void softByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_softByUsernameActionPerformed
-        if (sortUsernameFlag) {
-            list.sortByUsernameZA();
-            setValueTable(list.getAccountList());
-            sortUsernameFlag = false;
-        } else {
-            list.sortByUsernameAZ();
-            setValueTable(list.getAccountList());
-            sortUsernameFlag = true;
-        }
-    }//GEN-LAST:event_softByUsernameActionPerformed
-
-    private void softByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_softByNameActionPerformed
-        if (sortNameFlag) {
-            list.sortByNameZA();
-            setValueTable(list.getAccountList());
-            sortNameFlag = false;
-        } else {
-            list.sortByNameAZ();
-            setValueTable(list.getAccountList());
-            sortNameFlag = true;
-        }
-    }//GEN-LAST:event_softByNameActionPerformed
-
-    private void copyModeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyModeBtnActionPerformed
-        copyMode = copyModeBtn.isSelected();
-    }//GEN-LAST:event_copyModeBtnActionPerformed
 
     private void ofullnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ofullnameMouseClicked
         if (copyMode && evt.getModifiers() == java.awt.event.MouseEvent.BUTTON3_MASK) {
@@ -501,42 +375,71 @@ public class guiAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ofbMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(guiAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(guiAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(guiAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(guiAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void softByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_softByNameActionPerformed
+        if (sortNameFlag) {
+            list.sortByNameZA();
+            setValueTable(list.getAccountList());
+            sortNameFlag = false;
+        } else {
+            list.sortByNameAZ();
+            setValueTable(list.getAccountList());
+            sortNameFlag = true;
         }
-        //</editor-fold>
+    }//GEN-LAST:event_softByNameActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//                Account a = new Account("fudio101_admin007", "Ng01637202484", "Nguyen Do The Nguyen",
-//                        LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
-                new guiAdmin().setVisible(true);
-            }
-        });
-    }
+    private void softByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_softByUsernameActionPerformed
+        if (sortUsernameFlag) {
+            list.sortByUsernameZA();
+            setValueTable(list.getAccountList());
+            sortUsernameFlag = false;
+        } else {
+            list.sortByUsernameAZ();
+            setValueTable(list.getAccountList());
+            sortUsernameFlag = true;
+        }
+    }//GEN-LAST:event_softByUsernameActionPerformed
+
+    private void searchByUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByUsernameActionPerformed
+        list.searchByUsernameSort(osearch.getText());
+        setValueTable(list.getSearchList());
+    }//GEN-LAST:event_searchByUsernameActionPerformed
+
+    private void searchByName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByName1ActionPerformed
+        list.searchByFullNameSort(osearch.getText());
+        setValueTable(list.getSearchList());
+    }//GEN-LAST:event_searchByName1ActionPerformed
+
+    private void resetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetTableActionPerformed
+        setValueTable(list.getAccountList());
+    }//GEN-LAST:event_resetTableActionPerformed
+
+    private void copyModeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyModeBtnActionPerformed
+        copyMode = copyModeBtn.isSelected();
+    }//GEN-LAST:event_copyModeBtnActionPerformed
+
+    private void jtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMouseClicked
+        int index = jt.getSelectedRow();
+        ofullname.setText((String) jt.getValueAt(index, 1));
+        obirthday.setText((String) jt.getValueAt(index, 2));
+        ophonenum.setText((String) jt.getValueAt(index, 3));
+        oemail.setText((String) jt.getValueAt(index, 5));
+        osex.setText((String) jt.getValueAt(index, 4));
+        owork.setText((String) jt.getValueAt(index, 7));
+        oaddress.setText((String) jt.getValueAt(index, 8));
+        ofb.setText((String) jt.getValueAt(index, 6));
+        Image img = Avatar.readPicture((String) jt.getValueAt(index, 0));
+        if (img != null) {
+            Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            lbAvatar.setIcon(new ImageIcon(resize));
+        } else {
+            lbAvatar.setIcon(null);
+        }
+        if (copyMode) {
+            StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
+    }//GEN-LAST:event_jtMouseClicked
 
     private boolean copyMode;
     private boolean sortUsernameFlag;
@@ -560,8 +463,6 @@ public class guiAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jpnView;
     private javax.swing.JTable jt;
     private javax.swing.JLabel lbAvatar;
-    private javax.swing.JButton logout;
-    private javax.swing.JPanel mainJPanel;
     private javax.swing.JTextField oaddress;
     private javax.swing.JTextField obirthday;
     private javax.swing.JTextField oemail;
@@ -578,24 +479,6 @@ public class guiAdmin extends javax.swing.JFrame {
     private javax.swing.JButton softByName;
     private javax.swing.JButton softByUsername;
     // End of variables declaration//GEN-END:variables
-
-    private void initComponentsCustom() {
-        copyMode = false;
-        sortNameFlag = false;
-        sortUsernameFlag = true;
-        list = new AccountList();
-        model = (DefaultTableModel) jt.getModel();
-//        jt.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jt.getColumnModel().getColumn(0).setPreferredWidth(80);
-        jt.getColumnModel().getColumn(1).setPreferredWidth(175);
-        jt.getColumnModel().getColumn(2).setPreferredWidth(75);
-        jt.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jt.getColumnModel().getColumn(4).setPreferredWidth(50);
-        jt.getColumnModel().getColumn(5).setPreferredWidth(175);
-        jt.getColumnModel().getColumn(6).setPreferredWidth(100);
-        jt.getColumnModel().getColumn(7).setPreferredWidth(100);
-        jt.getColumnModel().getColumn(8).setPreferredWidth(150);
-    }
 
     private void setValueTable(Queue<Account> accountList) {
         for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -620,7 +503,21 @@ public class guiAdmin extends javax.swing.JFrame {
         }
     }
 
-    public JPanel getJPanel() {
-        return mainJPanel;
+    private void initComponentsCustom() {
+        copyMode = false;
+        sortNameFlag = false;
+        sortUsernameFlag = true;
+        list = new AccountList();
+        model = (DefaultTableModel) jt.getModel();
+//        jt.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jt.getColumnModel().getColumn(0).setPreferredWidth(80);
+        jt.getColumnModel().getColumn(1).setPreferredWidth(175);
+        jt.getColumnModel().getColumn(2).setPreferredWidth(75);
+        jt.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jt.getColumnModel().getColumn(4).setPreferredWidth(50);
+        jt.getColumnModel().getColumn(5).setPreferredWidth(175);
+        jt.getColumnModel().getColumn(6).setPreferredWidth(100);
+        jt.getColumnModel().getColumn(7).setPreferredWidth(100);
+        jt.getColumnModel().getColumn(8).setPreferredWidth(150);
     }
 }

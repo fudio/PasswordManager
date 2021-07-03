@@ -38,7 +38,7 @@ import org.jfree.chart.ui.TextAnchor;
  *
  * @author theng
  */
-public class guiStatisticalChart extends javax.swing.JFrame {
+public class guiStatisticalChart extends javax.swing.JPanel {
 
     /**
      * Creates new form guiStatisticalChart
@@ -126,7 +126,7 @@ public class guiStatisticalChart extends javax.swing.JFrame {
 
         statisticsBy = new javax.swing.ButtonGroup();
         chartStyle = new javax.swing.ButtonGroup();
-        pnRoot = new javax.swing.JPanel();
+        pnChart = new javax.swing.JPanel();
         pnOption = new javax.swing.JPanel();
         statisticsByLabel1 = new javax.swing.JLabel();
         allTimeButton = new javax.swing.JRadioButton();
@@ -154,9 +154,17 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         barChartButton = new javax.swing.JRadioButton();
         lineChartButton = new javax.swing.JRadioButton();
         showButton = new javax.swing.JButton();
-        pnChart = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
+        pnChart.setLayout(pnChartLayout);
+        pnChartLayout.setHorizontalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
+        );
+        pnChartLayout.setVerticalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -299,44 +307,26 @@ public class guiStatisticalChart extends javax.swing.JFrame {
         });
         pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
-        javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
-        pnChart.setLayout(pnChartLayout);
-        pnChartLayout.setHorizontalGroup(
-            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
-        );
-        pnChartLayout.setVerticalGroup(
-            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
-        pnRoot.setLayout(pnRootLayout);
-        pnRootLayout.setHorizontalGroup(
-            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnRootLayout.createSequentialGroup()
-                .addComponent(pnOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnRootLayout.setVerticalGroup(
-            pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-            .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnOption, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                    .addComponent(pnChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void yearButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_yearButtonActionPerformed
@@ -474,7 +464,6 @@ public class guiStatisticalChart extends javax.swing.JFrame {
     private javax.swing.JPanel pnDay;
     private javax.swing.JPanel pnMonth;
     private javax.swing.JPanel pnOption;
-    private javax.swing.JPanel pnRoot;
     private javax.swing.JPanel pnYear;
     private javax.swing.JButton showButton;
     private javax.swing.ButtonGroup statisticsBy;

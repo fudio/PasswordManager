@@ -331,4 +331,8 @@ public class Account {
 
         insert("Account.db");
     }
+
+    public void setSex(boolean b) {
+        this.sex = b;
+    }
 }

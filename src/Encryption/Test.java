@@ -35,7 +35,7 @@ public class Test {
 		System.out.println("Ciphertext: " + hexEncode(encrypted) + "\n");
 
 		// Write IV
-		FileOutputStream fs = new FileOutputStream(new File("paramFile"));
+		FileOutputStream fs = new FileOutputStream(new File("src/Encryption/key/paramFile"));
 		BufferedOutputStream bos = new BufferedOutputStream(fs);
 		bos.write(iv); //ivspec.getIV()
 		bos.close();
@@ -44,7 +44,7 @@ public class Test {
 		byte[] fileData = new byte[16];
 		DataInputStream dis = null;
 
-		dis = new DataInputStream(new FileInputStream(new File("paramFile")));
+		dis = new DataInputStream(new FileInputStream(new File("src/Encryption/key/paramFile")));
 		dis.readFully(fileData);
 		if (dis != null) {
 			dis.close();

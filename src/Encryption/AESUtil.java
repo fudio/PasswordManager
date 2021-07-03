@@ -201,8 +201,8 @@ public class AESUtil {
 		SecretKey key = AESUtil.getKeyFromPassword(password, salt);
 		// SecretKey key = getKey();
 		String cipherText = AESUtil.encryptPasswordBased(plainText, key, ivParameterSpec);
-		AESUtil.saveKey(key, "keyFile_");
-		SecretKey key2 = AESUtil.readKey("keyFile_");
+		AESUtil.saveKey(key, "src/Encryption/key/keyFile_");
+		SecretKey key2 = AESUtil.readKey("src/Encryption/key/keyFile_");
 		String decryptedCipherText = AESUtil.decryptPasswordBased(cipherText, key2, ivParameterSpec);
 		System.out.println(plainText);
 		System.out.println(decryptedCipherText);

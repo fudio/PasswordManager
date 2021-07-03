@@ -104,8 +104,8 @@ public class Account {
         String BCryptHash = BCryptHash(pw);
 
         try {
-            this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
-                    AESUtil.readIv("paramFile"));
+            this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("src/Encryption/key/keyFile"),
+                    AESUtil.readIv("src/Encryption/key/paramFile"));
         } catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
                 | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
                 | IOException e) {
@@ -172,7 +172,7 @@ public class Account {
 
     private String getHasedPw() {
         try {
-            return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("keyFile"), AESUtil.readIv("paramFile"));
+            return AESUtil.decryptPasswordBased(this.password, AESUtil.readKey("src/Encryption/key/keyFile"), AESUtil.readIv("src//Encryption/key/paramFile"));
         } catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
                 | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
                 | IOException e) {
@@ -321,8 +321,8 @@ public class Account {
         String BCryptHash = BCryptHash(pw);
 
         try {
-            this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("keyFile"),
-                    AESUtil.readIv("paramFile"));
+            this.password = AESUtil.encryptPasswordBased(BCryptHash, AESUtil.readKey("src/Encryption/key/keyFile"),
+                    AESUtil.readIv("src/Encryption/key/paramFile"));
         } catch (InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException
                 | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException
                 | IOException e) {

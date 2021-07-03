@@ -81,7 +81,7 @@ public class ChuyenManHinhController {
                     break;
                 case "StatisChart":
                     node = new guiStatisticalChart();
-                case "AdminAccount":
+                case "AdminProfile":
                     node = new guiProfile(a);
                     break;
 

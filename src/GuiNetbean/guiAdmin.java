@@ -32,7 +32,6 @@ public class guiAdmin extends javax.swing.JFrame {
         
         initComponentsCustom();
         setValueTable(list.getAccountList());
-        this.setVisible(true);
     }
 
     /**
@@ -74,6 +73,7 @@ public class guiAdmin extends javax.swing.JFrame {
         resetTable = new javax.swing.JButton();
         copyModeBtn = new javax.swing.JRadioButton();
         jpnView = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
 
@@ -276,7 +276,8 @@ public class guiAdmin extends javax.swing.JFrame {
         });
         panelAdmin.add(resetTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
 
-        copyModeBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        copyModeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        copyModeBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         copyModeBtn.setForeground(new java.awt.Color(255, 255, 255));
         copyModeBtn.setText("Copy Mode");
         copyModeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -288,6 +289,9 @@ public class guiAdmin extends javax.swing.JFrame {
 
         jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
         panelAdmin.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 420));
+
+        jCheckBox1.setText("jCheckBox1");
+        panelAdmin.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
         jt.setModel(new DefaultTableModel(
             new Object [][] {
@@ -520,6 +524,7 @@ public class guiAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton copyModeBtn;
     private javax.swing.JButton delete;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

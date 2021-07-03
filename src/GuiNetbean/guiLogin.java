@@ -47,7 +47,7 @@ public class guiLogin extends javax.swing.JFrame {
         jFrame4 = new javax.swing.JFrame();
         jFrame5 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         usernamePn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -156,14 +156,18 @@ public class guiLogin extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(650, 250, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(102, 204, 0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLayeredPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Rockwell", 0, 55)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Login");
         jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 3, 315, 65));
 
         usernamePn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -196,6 +200,8 @@ public class guiLogin extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.add(usernamePn, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 97, -1, -1));
 
         passwordPn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -235,12 +241,15 @@ public class guiLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.add(passwordPn, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 168, -1, 55));
+
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
             }
         });
+        jPanel2.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 250, 355, 31));
 
         signup.setText("Sign up");
         signup.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +257,7 @@ public class guiLogin extends javax.swing.JFrame {
                 signupActionPerformed(evt);
             }
         });
+        jPanel2.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 328, -1, -1));
 
         fogotpassword.setText("Fogot password");
         fogotpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +265,7 @@ public class guiLogin extends javax.swing.JFrame {
                 fogotpasswordActionPerformed(evt);
             }
         });
+        jPanel2.add(fogotpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 328, -1, -1));
 
         back.setText("Main menu");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -262,6 +273,7 @@ public class guiLogin extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 328, -1, -1));
 
         showpassword.setText("Show password");
         showpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -269,88 +281,15 @@ public class guiLogin extends javax.swing.JFrame {
                 showpasswordActionPerformed(evt);
             }
         });
+        jPanel2.add(showpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 225, -1, -1));
 
         jMs.setForeground(new java.awt.Color(255, 51, 51));
         jMs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(jMs, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 310, 355, -1));
 
-        jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(usernamePn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(passwordPn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(login, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(signup, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(fogotpassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(showpassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jMs, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(signup)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fogotpassword))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap(35, Short.MAX_VALUE)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                            .addComponent(usernamePn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(showpassword)
-                                .addComponent(passwordPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jMs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(20, 20, 20))
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(usernamePn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordPn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showpassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jMs)
-                .addGap(18, 18, 18)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signup)
-                    .addComponent(back)
-                    .addComponent(fogotpassword))
-                .addGap(53, 53, 53))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1)
-                .addContainerGap())
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -358,8 +297,8 @@ public class guiLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,15 +311,6 @@ public class guiLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        login(list, login, ousername, opassword);
-
-    }//GEN-LAST:event_loginActionPerformed
-
-    private void ousernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ousernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ousernameActionPerformed
-
     private void showpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpasswordActionPerformed
         // TODO add your handling code here:
         if (showpassword.isSelected()) {
@@ -390,16 +320,16 @@ public class guiLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showpasswordActionPerformed
 
-    private void opasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opasswordActionPerformed
-
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         guiMain d2 = new guiMain();
         d2.setVisible(true);
         dispose();
     }//GEN-LAST:event_backActionPerformed
+
+    private void fogotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fogotpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fogotpasswordActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         // TODO add your handling code here:
@@ -408,15 +338,23 @@ public class guiLogin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_signupActionPerformed
 
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        login(list, login, ousername, opassword);
+    }//GEN-LAST:event_loginActionPerformed
+
     private void opasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_opasswordKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             login(list, login, ousername, opassword);
         }
     }//GEN-LAST:event_opasswordKeyPressed
 
-    private void fogotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fogotpasswordActionPerformed
+    private void opasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fogotpasswordActionPerformed
+    }//GEN-LAST:event_opasswordActionPerformed
+
+    private void ousernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ousernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ousernameActionPerformed
     
     private void login(AccountList list, JButton login1, JTextField usernameField, JPasswordField passwordField) {
         String username = usernameField.getText();
@@ -503,9 +441,9 @@ public class guiLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel jMs;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField opassword;
     private javax.swing.JTextField ousername;

@@ -39,221 +39,104 @@ public class guiConfirmInformation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		jPanel1 = new javax.swing.JPanel();
-		jLabel1 = new javax.swing.JLabel();
-		usernameLb = new javax.swing.JLabel();
-		username = new javax.swing.JTextField();
-		nameLb = new javax.swing.JLabel();
-		name = new javax.swing.JTextField();
-		phoneLb = new javax.swing.JLabel();
-		phone = new javax.swing.JTextField();
-		birthdaylLb = new javax.swing.JLabel();
-		birthday = new com.toedter.calendar.JDateChooser();
-		addressLb = new javax.swing.JLabel();
-		address = new javax.swing.JTextField();
-		workLb = new javax.swing.JLabel();
-		work = new javax.swing.JTextField();
-		fbLb = new javax.swing.JLabel();
-		fb = new javax.swing.JTextField();
-		emailLb = new javax.swing.JLabel();
-		email = new javax.swing.JTextField();
-		jButton = new javax.swing.JButton();
-		sexLb = new javax.swing.JLabel();
-		sex = new javax.swing.JComboBox<String>();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        usernameLb = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        nameLb = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        phoneLb = new javax.swing.JLabel();
+        phone = new javax.swing.JTextField();
+        birthdaylLb = new javax.swing.JLabel();
+        birthday = new com.toedter.calendar.JDateChooser();
+        addressLb = new javax.swing.JLabel();
+        address = new javax.swing.JTextField();
+        workLb = new javax.swing.JLabel();
+        work = new javax.swing.JTextField();
+        fbLb = new javax.swing.JLabel();
+        fb = new javax.swing.JTextField();
+        emailLb = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jButton = new javax.swing.JButton();
+        sexLb = new javax.swing.JLabel();
+        sex = new javax.swing.JComboBox<String>();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		jLabel1.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
-		jLabel1.setText("Confirm Information");
+        jPanel2.setBackground(new java.awt.Color(255, 204, 0));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel2.setPreferredSize(new java.awt.Dimension(540, 570));
+        jPanel2.setRequestFocusEnabled(false);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		usernameLb.setText("Username");
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		nameLb.setText("Fullname");
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
+        jLabel1.setText("Confirm Information");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
-		phoneLb.setText("Phone");
+        usernameLb.setText("Username");
+        jPanel1.add(usernameLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 78, 26));
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 170, -1));
 
-		birthdaylLb.setText("Date of birth");
+        nameLb.setText("Fullname");
+        jPanel1.add(nameLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 78, 26));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 170, -1));
 
-		birthday.setDateFormatString("dd/MM/YYYY");
-		birthday.setDateFormatString("dd/MM/yyyy");
+        phoneLb.setText("Phone");
+        jPanel1.add(phoneLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 78, 26));
+        jPanel1.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 170, -1));
 
-		addressLb.setText("Address");
+        birthdaylLb.setText("Date of birth");
+        jPanel1.add(birthdaylLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 78, 26));
 
-		workLb.setText("Work");
+        birthday.setDateFormatString("dd/MM/YYYY");
+        birthday.setDateFormatString("dd/MM/yyyy");
+        jPanel1.add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 170, -1));
 
-		fbLb.setText("Facebook");
+        addressLb.setText("Address");
+        jPanel1.add(addressLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 78, 26));
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 170, -1));
 
-		emailLb.setText("Email");
+        workLb.setText("Work");
+        jPanel1.add(workLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 78, 26));
+        jPanel1.add(work, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 170, -1));
 
-		jButton.setFont(new java.awt.Font("UTM Alberta Heavy", 0, 18)); // NOI18N
-		jButton.setText("CONFIRM INFOMATION");
-		jButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButtonActionPerformed(evt);
-			}
-		});
+        fbLb.setText("Facebook");
+        jPanel1.add(fbLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 78, 26));
+        jPanel1.add(fb, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 170, -1));
 
-		sexLb.setText("Sex");
+        emailLb.setText("Email");
+        jPanel1.add(emailLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 78, 26));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 170, -1));
 
-		sex.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
+        jButton.setFont(new java.awt.Font("UTM Alberta Heavy", 0, 18)); // NOI18N
+        jButton.setText("CONFIRM INFOMATION");
+        jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 247, 39));
 
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup().addContainerGap(111, Short.MAX_VALUE)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-										jPanel1Layout.createSequentialGroup().addComponent(jLabel1).addGap(97, 97, 97))
-								.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-										jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
-												.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-												.addGroup(jPanel1Layout.createSequentialGroup()
-														.addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE,
-																78, javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addGap(55, 55, 55).addComponent(email,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 170,
-																javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addGroup(jPanel1Layout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(jPanel1Layout.createSequentialGroup()
-																.addComponent(workLb,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(55, 55, 55).addComponent(work,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 170,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addGroup(jPanel1Layout.createSequentialGroup()
-																.addComponent(addressLb,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(55, 55, 55).addComponent(address,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 170,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addGroup(jPanel1Layout.createSequentialGroup()
-																.addComponent(fbLb,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(55, 55, 55).addComponent(fb,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 170,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addComponent(sexLb))
-												.addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-														.addComponent(usernameLb,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-																javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(nameLb, javax.swing.GroupLayout.PREFERRED_SIZE,
-																78, javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(phoneLb, javax.swing.GroupLayout.PREFERRED_SIZE,
-																78, javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addComponent(birthdaylLb,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 78,
-																javax.swing.GroupLayout.PREFERRED_SIZE))
-														.addGap(55, 55, 55)
-														.addGroup(jPanel1Layout
-																.createParallelGroup(
-																		javax.swing.GroupLayout.Alignment.LEADING)
-																.addComponent(sex,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGroup(jPanel1Layout.createParallelGroup(
-																		javax.swing.GroupLayout.Alignment.LEADING)
-																		.addComponent(username,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				170,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(name,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				170,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(phone,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				170,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(birthday,
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				170,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)))))
-												.addGap(120, 120, 120))))
-				.addGroup(jPanel1Layout
-						.createSequentialGroup().addGap(147, 147, 147).addComponent(jButton,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 0, Short.MAX_VALUE)));
-		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(jLabel1)
-						.addGap(45, 45, 45)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(usernameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(nameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(phoneLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-								.addComponent(birthday, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(birthdaylLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(sexLb).addComponent(sex, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(addressLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(work, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(workLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(fbLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(44, 44, 44).addComponent(jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(23, Short.MAX_VALUE)));
+        sexLb.setText("Sex");
+        jPanel1.add(sexLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        sex.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
+        jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, -1, -1));
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 500, 600));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 560, 630));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonActionPerformed
         String un = username.getText();
@@ -338,29 +221,30 @@ public class guiConfirmInformation extends javax.swing.JFrame {
 
     private Account reset;
     private Boolean mode;
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JTextField address;
-	private javax.swing.JLabel addressLb;
-	private com.toedter.calendar.JDateChooser birthday;
-	private javax.swing.JLabel birthdaylLb;
-	private javax.swing.JTextField email;
-	private javax.swing.JLabel emailLb;
-	private javax.swing.JTextField fb;
-	private javax.swing.JLabel fbLb;
-	private javax.swing.JButton jButton;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JTextField name;
-	private javax.swing.JLabel nameLb;
-	private javax.swing.JTextField phone;
-	private javax.swing.JLabel phoneLb;
-	private javax.swing.JComboBox<String> sex;
-	private javax.swing.JLabel sexLb;
-	private javax.swing.JTextField username;
-	private javax.swing.JLabel usernameLb;
-	private javax.swing.JTextField work;
-	private javax.swing.JLabel workLb;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address;
+    private javax.swing.JLabel addressLb;
+    private com.toedter.calendar.JDateChooser birthday;
+    private javax.swing.JLabel birthdaylLb;
+    private javax.swing.JTextField email;
+    private javax.swing.JLabel emailLb;
+    private javax.swing.JTextField fb;
+    private javax.swing.JLabel fbLb;
+    private javax.swing.JButton jButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField name;
+    private javax.swing.JLabel nameLb;
+    private javax.swing.JTextField phone;
+    private javax.swing.JLabel phoneLb;
+    private javax.swing.JComboBox<String> sex;
+    private javax.swing.JLabel sexLb;
+    private javax.swing.JTextField username;
+    private javax.swing.JLabel usernameLb;
+    private javax.swing.JTextField work;
+    private javax.swing.JLabel workLb;
+    // End of variables declaration//GEN-END:variables
 
     private void initCustomer() {
         if (mode) {

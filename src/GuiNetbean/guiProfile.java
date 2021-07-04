@@ -364,7 +364,7 @@ public class guiProfile extends javax.swing.JFrame {
         String fblink_ = fblink.getText();
         String email_ = email.getText();
         Date birthday_ = dateChooser.getCalendar().getTime();
-
+        
         if (!isValidPhone(phone_)) {
             JOptionPane.showMessageDialog(agreeButton,
                     "Not a Vietnamese phone number", "InvalidPhoneNumberError",
@@ -416,6 +416,13 @@ public class guiProfile extends javax.swing.JFrame {
         dateChooser.setVisible(false);
         gender.setVisible(false);
         sexField.setVisible(true);
+        Image img = Avatar.readPicture(login.getUsername());
+        if (img != null) {
+            Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            pic.setIcon(new ImageIcon(resize));
+        } else {
+            pic.setIcon(null);
+        }
     }// GEN-LAST:event_cancelButtonActionPerformed
 
     /**

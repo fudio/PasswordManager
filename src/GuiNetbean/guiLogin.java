@@ -284,7 +284,7 @@ public class guiLogin extends javax.swing.JFrame {
         jMs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jMs, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 310, 355, -1));
+        jPanel2.add(jMs, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 290, 355, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 410));
 

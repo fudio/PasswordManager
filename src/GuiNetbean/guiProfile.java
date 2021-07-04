@@ -7,6 +7,10 @@ package GuiNetbean;
 
 import Storage.Account;
 import Storage.AccountList;
+import Storage.Avatar;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.JOptionPane;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -16,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -44,6 +49,13 @@ public class guiProfile extends javax.swing.JFrame {
         cal.set(Calendar.MILLISECOND, 0);
         Date date = cal.getTime();
         dateChooser.setDate(date);
+        Image img = Avatar.readPicture(login.getUsername());
+        if (img != null) {
+            Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            pic.setIcon(new ImageIcon(resize));
+        } else {
+            pic.setIcon(null);
+        }
     }
 
     /**
@@ -96,6 +108,7 @@ public class guiProfile extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Btchooserpic.setText("Chooser Picturer");
+        Btchooserpic.setVisible(false);
         Btchooserpic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtchooserpicActionPerformed(evt);
@@ -104,6 +117,14 @@ public class guiProfile extends javax.swing.JFrame {
         getContentPane().add(Btchooserpic, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
+        //Image pict = Avatar.readPicture((String) f);
+        //        if (pict != null) {
+            //            Image resize = pic.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            //            pic.setIcon(new ImageIcon(resize));
+            //        } else {
+            //            pic.setIcon(null);
+            //        };
+        pic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
         getContentPane().add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 230, 230));
 
@@ -266,15 +287,17 @@ public class guiProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_genderActionPerformed
 
     private void BtchooserpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtchooserpicActionPerformed
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle("Select an image");
-        jfc.setAcceptAllFileFilterUsed(false);
+        JFileChooser FileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        FileChooser.setDialogTitle("Select an image");
+        FileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
-        jfc.addChoosableFileFilter(filter);
-        int returnValue = jfc.showOpenDialog(null);
+        FileChooser.addChoosableFileFilter(filter);
+        FileChooser.setMultiSelectionEnabled(false);
+        int returnValue = FileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            System.out.println(jfc.getSelectedFile().getPath());
-        }
+            File f = FileChooser.getSelectedFile();
+            pic.setIcon(new ImageIcon(f.getAbsolutePath()));
+        }; //  Avatar.updatePicture(login.getUsername(),f);
     }//GEN-LAST:event_BtchooserpicActionPerformed
 
     Date date = new Date();
@@ -304,6 +327,7 @@ public class guiProfile extends javax.swing.JFrame {
         agreeButton.setVisible(true);
         cancelButton.setVisible(true);
         editProfileButton.setVisible(false);
+        Btchooserpic.setVisible(true);
         fullname.setEditable(true);
         phone.setEditable(true);
         address.setEditable(true);
@@ -322,6 +346,7 @@ public class guiProfile extends javax.swing.JFrame {
         agreeButton.setVisible(false);
         cancelButton.setVisible(false);
         editProfileButton.setVisible(true);
+        Btchooserpic.setVisible(false);
         fullname.setEditable(false);
         phone.setEditable(false);
         address.setEditable(true);
@@ -339,7 +364,7 @@ public class guiProfile extends javax.swing.JFrame {
         String fblink_ = fblink.getText();
         String email_ = email.getText();
         Date birthday_ = dateChooser.getCalendar().getTime();
-        
+
         if (!isValidPhone(phone_)) {
             JOptionPane.showMessageDialog(agreeButton,
                     "Not a Vietnamese phone number", "InvalidPhoneNumberError",
@@ -380,6 +405,7 @@ public class guiProfile extends javax.swing.JFrame {
         agreeButton.setVisible(false);
         cancelButton.setVisible(false);
         editProfileButton.setVisible(true);
+        Btchooserpic.setVisible(false);
         fullname.setText(login.getFullName());
         phone.setText(login.getPhoneNum());
         address.setText(login.getAddress());

@@ -9,6 +9,7 @@ import Storage.Account;
 import Storage.AccountList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,9 +40,11 @@ public class guiVerifyAccount extends javax.swing.JFrame {
         inputTf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btmain = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verify");
+        setLocation(new java.awt.Point(650, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -69,11 +72,21 @@ public class guiVerifyAccount extends javax.swing.JFrame {
             }
         });
 
+        btmain.setText("Main menu");
+        btmain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmainActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRootLayout = new javax.swing.GroupLayout(panelRoot);
         panelRoot.setLayout(panelRootLayout);
         panelRootLayout.setHorizontalGroup(
             panelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGroup(panelRootLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btmain)
+                .addContainerGap(481, Short.MAX_VALUE))
             .addGroup(panelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelRootLayout.createSequentialGroup()
                     .addGap(0, 24, Short.MAX_VALUE)
@@ -92,7 +105,10 @@ public class guiVerifyAccount extends javax.swing.JFrame {
         );
         panelRootLayout.setVerticalGroup(
             panelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRootLayout.createSequentialGroup()
+                .addContainerGap(260, Short.MAX_VALUE)
+                .addComponent(btmain)
+                .addContainerGap())
             .addGroup(panelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelRootLayout.createSequentialGroup()
                     .addGap(0, 33, Short.MAX_VALUE)
@@ -131,7 +147,9 @@ public class guiVerifyAccount extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String content = inputTf.getText();
         Account account;
-        if (isValidPhone(content)) {
+        if (content == "") {
+           JOptionPane.showMessageDialog(jButton1, "Please enter information","Error", JOptionPane.ERROR_MESSAGE);
+        } else if (isValidPhone(content)) {
             account = list.accountSearchByPhone(content);
             new guiConfirmInformation(account, true).setVisible(true);
         } else {
@@ -144,6 +162,12 @@ public class guiVerifyAccount extends javax.swing.JFrame {
     private void inputTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTfActionPerformed
+
+    private void btmainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmainActionPerformed
+        guiMain g1 = new guiMain();
+        g1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btmainActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +206,7 @@ public class guiVerifyAccount extends javax.swing.JFrame {
 
     private final AccountList list;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btmain;
     private javax.swing.JTextField inputTf;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;

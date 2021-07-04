@@ -325,7 +325,9 @@ public class guiLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void fogotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fogotpasswordActionPerformed
-        // TODO add your handling code here:
+       guiVerifyAccount f2 = new guiVerifyAccount();
+       f2.setVisible(true);
+       dispose();
     }//GEN-LAST:event_fogotpasswordActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
@@ -357,23 +359,18 @@ public class guiLogin extends javax.swing.JFrame {
         String username = usernameField.getText();
         char[] password = passwordField.getPassword();
         if (username.equals("") || (new String(password)).equals("")) {
-//            JOptionPane.showMessageDialog(login1, "Please enter username and password", "NullError",
-//                    JOptionPane.WARNING_MESSAGE);
             jMs.setText("Please enter username and password");
         } else {
             @SuppressWarnings("LocalVariableHidesMemberVariable")
             Account login = list.accountSearch(username.toLowerCase());
             if (login != null) {
                 if (!login.check(new String(password))) {
-//                    JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
-//                            JOptionPane.WARNING_MESSAGE);
                     jMs.setText("Wrong username or password");
                 } else {
                     JOptionPane.showMessageDialog(login1, "Logged in successfully", "Success",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (login.getRank() == 0) {
                         new guiAccountManager(login).setVisible(true);
-//						admin.setVisible(true);
                         dispose();
                     } else {
                         guiProfile frm1 = new guiProfile(login);
@@ -382,8 +379,6 @@ public class guiLogin extends javax.swing.JFrame {
                     }
                 }
             } else {
-//                JOptionPane.showMessageDialog(login1, "Wrong username or password", "VerifycationError",
-//                        JOptionPane.WARNING_MESSAGE);
                 jMs.setText("Wrong username or password");
             }
         }

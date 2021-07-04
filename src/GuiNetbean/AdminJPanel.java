@@ -213,7 +213,6 @@ public class AdminJPanel extends javax.swing.JPanel {
         lbAvatar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbAvatar.setForeground(new java.awt.Color(255, 255, 255));
         lbAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAvatar.setText("Avatar");
         lbAvatar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelAdmin.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 230, 230));
 

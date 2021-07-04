@@ -91,6 +91,8 @@ public class guiRegister extends javax.swing.JFrame {
         setTitle("Register");
         setLocation(new java.awt.Point(650, 250));
 
+        jDesktopPane2.setBackground(new java.awt.Color(255, 255, 0));
+
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 55)); // NOI18N

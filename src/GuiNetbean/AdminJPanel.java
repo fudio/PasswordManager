@@ -215,7 +215,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         lbAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbAvatar.setText("Avatar");
         lbAvatar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelAdmin.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 200, 200));
+        panelAdmin.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 230, 230));
 
         softByName.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         softByName.setText("Sort by name");

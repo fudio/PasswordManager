@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,7 +87,7 @@ public class guiMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wellcome");
-        setLocation(new java.awt.Point(650, 250));
+        setLocation(new java.awt.Point(600, 250));
         setSize(new java.awt.Dimension(650, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -159,16 +160,19 @@ public class guiMain extends javax.swing.JFrame {
         panelRoot.add(Link3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 200, 60));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("*________________________________*");
-        panelRoot.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 220, -1));
+        panelRoot.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 250, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("*________________________________*");
-        panelRoot.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 230, -1));
+        panelRoot.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 260, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("*________________________________*");
-        panelRoot.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 230, 20));
+        panelRoot.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/Untitled-1.png"))); // NOI18N
         panelRoot.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 220));
@@ -193,13 +197,13 @@ public class guiMain extends javax.swing.JFrame {
         panelRoot.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 20));
 
         login2.setText("Join us now");
-        login2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 102, 0)));
+        login2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.yellow, java.awt.Color.green, java.awt.Color.blue, java.awt.Color.red));
         login2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login2ActionPerformed(evt);
             }
         });
-        panelRoot.add(login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 70, -1));
+        panelRoot.add(login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 80, -1));
 
         View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
         panelRoot.add(View, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 500));
@@ -225,6 +229,11 @@ public class guiMain extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
 
         jMenuItem4.setText("Exit");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar2.add(jMenu2);
@@ -264,6 +273,14 @@ public class guiMain extends javax.swing.JFrame {
         df2.setVisible(true);
         dispose();
     }//GEN-LAST:event_login2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        int output = JOptionPane.showConfirmDialog(jMenuItem4, "Do you want to exit?", "Logout",
+                JOptionPane.YES_NO_OPTION);
+        if (output == 0) {
+            dispose();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

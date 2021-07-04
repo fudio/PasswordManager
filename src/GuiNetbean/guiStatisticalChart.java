@@ -126,7 +126,6 @@ public class guiStatisticalChart extends javax.swing.JPanel {
 
         statisticsBy = new javax.swing.ButtonGroup();
         chartStyle = new javax.swing.ButtonGroup();
-        pnChart = new javax.swing.JPanel();
         pnOption = new javax.swing.JPanel();
         statisticsByLabel1 = new javax.swing.JLabel();
         allTimeButton = new javax.swing.JRadioButton();
@@ -154,17 +153,7 @@ public class guiStatisticalChart extends javax.swing.JPanel {
         barChartButton = new javax.swing.JRadioButton();
         lineChartButton = new javax.swing.JRadioButton();
         showButton = new javax.swing.JButton();
-
-        javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
-        pnChart.setLayout(pnChartLayout);
-        pnChartLayout.setHorizontalGroup(
-            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-        );
-        pnChartLayout.setVerticalGroup(
-            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        pnChart = new javax.swing.JPanel();
 
         pnOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -306,6 +295,17 @@ public class guiStatisticalChart extends javax.swing.JPanel {
             }
         });
         pnOption.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+
+        javax.swing.GroupLayout pnChartLayout = new javax.swing.GroupLayout(pnChart);
+        pnChart.setLayout(pnChartLayout);
+        pnChartLayout.setHorizontalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
+        );
+        pnChartLayout.setVerticalGroup(
+            pnChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

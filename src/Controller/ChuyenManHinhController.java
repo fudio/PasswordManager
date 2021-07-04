@@ -7,6 +7,7 @@ package Controller;
 
 import GuiNetbean.AdminJPanel;
 import GuiNetbean.AdminProfileJPanel;
+import GuiNetbean.StatisticalChartJPanel;
 import GuiNetbean.guiStatisticalChart;
 import Storage.Account;
 import java.awt.BorderLayout;
@@ -75,7 +76,7 @@ public class ChuyenManHinhController {
                     node = new AdminJPanel();
                     break;
                 case "StatisChart":
-                    node = new guiStatisticalChart();
+                    node = new StatisticalChartJPanel();
                     break;
                 case "AdminProfile":
                     node = new AdminProfileJPanel(a);

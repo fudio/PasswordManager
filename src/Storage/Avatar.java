@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
 public class Avatar {
 
@@ -205,7 +206,6 @@ public class Avatar {
 			}
 		}
 	}
-
 	public Avatar() {
 	}
 }

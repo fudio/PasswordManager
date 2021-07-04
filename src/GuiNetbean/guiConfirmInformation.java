@@ -66,8 +66,10 @@ public class guiConfirmInformation extends javax.swing.JFrame {
         jButton = new javax.swing.JButton();
         sexLb = new javax.swing.JLabel();
         sex = new javax.swing.JComboBox<String>();
+        btmain = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(650, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 0));
@@ -133,12 +135,27 @@ public class guiConfirmInformation extends javax.swing.JFrame {
         sex.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
         jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, -1, -1));
 
+        btmain.setText("Main menu");
+        btmain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmainActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btmain, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, -1, -1));
+
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 500, 600));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 560, 630));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btmainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmainActionPerformed
+guiMain h1 = new guiMain();
+h1.setVisible(true);
+dispose();
+           // TODO add your handling code here:
+    }//GEN-LAST:event_btmainActionPerformed
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonActionPerformed
         String un = username.getText();
@@ -228,6 +245,7 @@ public class guiConfirmInformation extends javax.swing.JFrame {
     private javax.swing.JLabel addressLb;
     private com.toedter.calendar.JDateChooser birthday;
     private javax.swing.JLabel birthdaylLb;
+    private javax.swing.JButton btmain;
     private javax.swing.JTextField email;
     private javax.swing.JLabel emailLb;
     private javax.swing.JTextField fb;

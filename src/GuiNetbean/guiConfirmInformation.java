@@ -22,13 +22,14 @@ public class guiConfirmInformation extends javax.swing.JFrame {
 
     /**
      * Creates new form guiConfirmInformation
+     *
      * @param account
      * @param mod
      */
     public guiConfirmInformation(Account account, Boolean mod) {
-        initComponents();
         reset = account;
         mode = mod;
+        initComponents();
         initCustomer();
     }
 
@@ -87,7 +88,10 @@ public class guiConfirmInformation extends javax.swing.JFrame {
 
         usernameLb.setText("Username");
         jPanel1.add(usernameLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 78, 26));
+
+        username.setEditable(false);
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 170, -1));
+        username.setText(reset.getUsername());
 
         nameLb.setText("Fullname");
         jPanel1.add(nameLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 78, 26));
@@ -151,10 +155,10 @@ public class guiConfirmInformation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btmainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmainActionPerformed
-guiMain h1 = new guiMain();
-h1.setVisible(true);
-dispose();
-           // TODO add your handling code here:
+        guiMain h1 = new guiMain();
+        h1.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btmainActionPerformed
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonActionPerformed
@@ -270,9 +274,6 @@ dispose();
         if (mode) {
             phone.setText(reset.getPhoneNum());
             phone.setEditable(false);
-        } else {
-            username.setText(reset.getUsername());
-            username.setEditable(false);
         }
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2001);

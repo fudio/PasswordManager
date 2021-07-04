@@ -306,15 +306,15 @@ public class AdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        int output = JOptionPane.showConfirmDialog(delete, "Do you want to delete this account?", "Delete Account",JOptionPane.YES_NO_OPTION);
-        if (output==0){
-        int index = jt.getSelectedRow();
-        if (index == -1) {
-            return;
-        }
-        String choice = (String) jt.getValueAt(index, 0);
-        list.delete(choice);
-        model.removeRow(index);
+        int output = JOptionPane.showConfirmDialog(delete, "Do you want to delete this account?", "Delete Account", JOptionPane.YES_NO_OPTION);
+        if (output == 0) {
+            int index = jt.getSelectedRow();
+            if (index == -1) {
+                return;
+            }
+            String choice = (String) jt.getValueAt(index, 0);
+            list.delete(choice);
+            model.removeRow(index);
         }
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -487,17 +487,19 @@ public class AdminJPanel extends javax.swing.JPanel {
         int size = accountList.size();
         for (int i = 0; i < size; i++) {
             Account t = accountList.poll();
-            obj = new Object[9];
-            obj[0] = t.getUsername();
-            obj[1] = t.getFullName();
-            obj[2] = t.getBirthday();
-            obj[3] = t.getPhoneNum();
-            obj[4] = t.getSex() ? "Male" : "Female";
-            obj[5] = t.getEmail();
-            obj[6] = t.getFb();
-            obj[7] = t.getWork();
-            obj[8] = t.getAddress();
-            model.addRow(obj);
+            if (t.getRank() != 0) {
+                obj = new Object[9];
+                obj[0] = t.getUsername();
+                obj[1] = t.getFullName();
+                obj[2] = t.getBirthday();
+                obj[3] = t.getPhoneNum();
+                obj[4] = t.getSex() ? "Male" : "Female";
+                obj[5] = t.getEmail();
+                obj[6] = t.getFb();
+                obj[7] = t.getWork();
+                obj[8] = t.getAddress();
+                model.addRow(obj);
+            }
             accountList.add(t);
         }
     }

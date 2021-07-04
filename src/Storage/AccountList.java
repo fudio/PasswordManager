@@ -119,7 +119,7 @@ public class AccountList implements Serializable {
     public boolean addAccount(Account a) {
         String t = a.getUsername();
         for (Account i : this.list) {
-            if (i.getUsername().equals(t)) {
+            if (i.getUsername().toLowerCase().equals(t)) {
                 return false;
             }
         }
@@ -529,7 +529,11 @@ public class AccountList implements Serializable {
     }
 
     public Account accountSearchByPhone(String content) {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-        // Tools | Templates.
+        for (Account i : this.list) {
+            if (i.getPhoneNum().equals(content)) {
+                return i;
+            }
+        }
+        return null;
     }
 }

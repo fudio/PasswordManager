@@ -135,16 +135,25 @@ public class guiVerifyAccount extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String content = inputTf.getText();
         Account account;
-        if (content == "") {
-           JOptionPane.showMessageDialog(jButton1, "Please enter information","Error", JOptionPane.ERROR_MESSAGE);
+        if ("".equals(content)) {
+            JOptionPane.showMessageDialog(jButton1, "Please enter information", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } else if (isValidPhone(content)) {
             account = list.accountSearchByPhone(content);
-            new guiConfirmInformation(account, true).setVisible(true);
+            if (account != null) {
+                new guiConfirmInformation(account, true).setVisible(true);
+                this.dispose();
+                return;
+            }
         } else {
             account = list.accountSearch(content);
-            new guiConfirmInformation(account, false).setVisible(true);
+            if (account != null) {
+                new guiConfirmInformation(account, false).setVisible(true);
+                this.dispose();
+                return;
+            }
         }
-        this.dispose();
+        JOptionPane.showMessageDialog(jButton1, "Can't find account", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTfActionPerformed

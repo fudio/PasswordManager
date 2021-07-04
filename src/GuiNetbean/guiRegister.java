@@ -289,7 +289,6 @@ public class guiRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_loginActionPerformed
 
     private void BtSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSignupActionPerformed
-        // TODO add your handling code here:
         String username = ousername.getText();
         char[] password = opassword1.getPassword();
         char[] password_2 = opassword2.getPassword();

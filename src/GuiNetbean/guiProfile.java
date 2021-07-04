@@ -94,6 +94,7 @@ public class guiProfile extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         gender = new javax.swing.JComboBox();
         sexField = new javax.swing.JTextField();
+        linkk = new javax.swing.JTextField();
         View = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -117,7 +118,6 @@ public class guiProfile extends javax.swing.JFrame {
         getContentPane().add(Btchooserpic, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
-        //Image pict = Avatar.readPicture((String) f);
         //        if (pict != null) {
             //            Image resize = pic.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
             //            pic.setIcon(new ImageIcon(resize));
@@ -253,6 +253,7 @@ public class guiProfile extends javax.swing.JFrame {
         sexField.setText("jTextField1");
         getContentPane().add(sexField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
         sexField.setText(login.getSex() ? "Male" : "Female");
+        getContentPane().add(linkk, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 210, -1));
 
         View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/background.png"))); // NOI18N
         getContentPane().add(View, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 540));
@@ -288,6 +289,7 @@ public class guiProfile extends javax.swing.JFrame {
 
     private void BtchooserpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtchooserpicActionPerformed
         JFileChooser FileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        String link;
         FileChooser.setDialogTitle("Select an image");
         FileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
@@ -296,11 +298,27 @@ public class guiProfile extends javax.swing.JFrame {
         int returnValue = FileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File f = FileChooser.getSelectedFile();
+            link = f.getPath();
             pic.setIcon(new ImageIcon(f.getAbsolutePath()));
-        }; //  Avatar.updatePicture(login.getUsername(),f);
+            int output = JOptionPane.showConfirmDialog(Btchooserpic, "Do you want to change", "", JOptionPane.YES_NO_OPTION);
+            if (output == 0) {
+                Avatar.updatePicture(login.getUsername(), link);
+            } else {
+                Image img = Avatar.readPicture(login.getUsername());
+                if (img != null) {
+                    Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+                    pic.setIcon(new ImageIcon(resize));
+                } else {
+                    pic.setIcon(null);
+                }
+            }}
     }//GEN-LAST:event_BtchooserpicActionPerformed
 
-    Date date = new Date();
+        Date date = new Date();
+
+    
+
+    
 
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phoneActionPerformed
     }// GEN-LAST:event_phoneActionPerformed
@@ -364,7 +382,6 @@ public class guiProfile extends javax.swing.JFrame {
         String fblink_ = fblink.getText();
         String email_ = email.getText();
         Date birthday_ = dateChooser.getCalendar().getTime();
-        
         if (!isValidPhone(phone_)) {
             JOptionPane.showMessageDialog(agreeButton,
                     "Not a Vietnamese phone number", "InvalidPhoneNumberError",
@@ -514,6 +531,7 @@ public class guiProfile extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JTextField linkk;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel pic;
     private javax.swing.JTextField sexField;

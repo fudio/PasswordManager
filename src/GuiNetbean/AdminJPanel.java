@@ -429,7 +429,6 @@ public class AdminJPanel extends javax.swing.JPanel {
             lbAvatar.setText("");
         } else {
             lbAvatar.setIcon(null);
-            lbAvatar.setText("Avatar");
         }
         if (copyMode) {
             StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));

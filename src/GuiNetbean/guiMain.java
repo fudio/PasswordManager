@@ -177,24 +177,30 @@ public class guiMain extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/Untitled-1.png"))); // NOI18N
         panelRoot.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 220));
 
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("We protect your account with the Bcrypt hash algorithm");
         jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelRoot.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 290, 20));
+        panelRoot.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 330, 20));
 
+        jTextField2.setEditable(false);
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("Bcrypt is a password encryption function designed by Niels Provos and David Mazières");
         jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelRoot.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 430, 20));
+        panelRoot.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 490, 20));
 
+        jTextField3.setEditable(false);
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField3.setText("Bcrypt is a cross-platform file encryption utility");
         jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelRoot.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 230, 20));
+        panelRoot.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 260, 20));
 
+        jTextField4.setEditable(false);
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField4.setText("BCrypt is rated as more secure and secure than MD5 and SHA");
         jTextField4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelRoot.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 20));
+        panelRoot.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 350, 20));
 
         login2.setText("Join us now");
         login2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.yellow, java.awt.Color.green, java.awt.Color.blue, java.awt.Color.red));

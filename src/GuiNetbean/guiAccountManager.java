@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,6 +146,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         });
         panelMenu.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, -1, -1));
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carrot team @2021");
         panelMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, -1, -1));
 
@@ -215,8 +217,11 @@ public class guiAccountManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        new guiMain().setVisible(true);
-        this.dispose();
+        int output = JOptionPane.showConfirmDialog(logoutButton, "Do you want to log out", "Sign out", JOptionPane.YES_NO_OPTION);
+        if (output == 0) {
+            new guiMain().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**

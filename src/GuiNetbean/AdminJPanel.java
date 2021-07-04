@@ -14,6 +14,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.Queue;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -212,7 +213,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         lbAvatar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbAvatar.setForeground(new java.awt.Color(255, 255, 255));
         lbAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAvatar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbAvatar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("UTM Avo", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         panelAdmin.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 230, 230));
 
         softByName.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
@@ -305,6 +306,8 @@ public class AdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        int output = JOptionPane.showConfirmDialog(delete, "Do you want to delete this account?", "Delete Account",JOptionPane.YES_NO_OPTION);
+        if (output==0){
         int index = jt.getSelectedRow();
         if (index == -1) {
             return;
@@ -312,6 +315,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         String choice = (String) jt.getValueAt(index, 0);
         list.delete(choice);
         model.removeRow(index);
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void ofullnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ofullnameMouseClicked

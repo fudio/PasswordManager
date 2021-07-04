@@ -7,6 +7,7 @@ package GuiNetbean;
 
 import Storage.Account;
 import Storage.AccountList;
+import Storage.Avatar;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -22,7 +23,10 @@ import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -47,6 +51,14 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         cal.set(Calendar.MILLISECOND, 0);
         Date date = cal.getTime();
         dateChooser.setDate(date);
+        dateChooser.setDate(date);
+        Image img = Avatar.readPicture(login.getUsername());
+        if (img != null) {
+            Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            pic.setIcon(new ImageIcon(resize));
+        } else {
+            pic.setIcon(null);
+        }
     }
 
     /**
@@ -58,6 +70,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtChooser = new javax.swing.JToggleButton();
         pic = new javax.swing.JLabel();
         fullname = new javax.swing.JTextField();
         birthday = new javax.swing.JTextField();
@@ -85,6 +98,15 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(950, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtChooser.setText("Chooser Picture");
+        BtChooser.setVisible(false);
+        BtChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtChooserActionPerformed(evt);
+            }
+        });
+        add(BtChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
@@ -144,7 +166,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         });
         add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 620, -1, -1));
 
-        fblink.setText(login.getEmail());
+        email.setText(login.getEmail());
         email.setEditable(false);
         add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 190, -1));
 
@@ -232,6 +254,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         dateChooser.setVisible(true);
         gender.setVisible(true);
         sexTextField.setVisible(false);
+        BtChooser.setVisible(true);
     }//GEN-LAST:event_editProfileButtonActionPerformed
 
     private void agreeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agreeButtonActionPerformed
@@ -248,6 +271,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         dateChooser.setVisible(false);
         gender.setVisible(false);
         sexTextField.setVisible(true);
+        BtChooser.setVisible(false);
         String fullName = fullname.getText();
         String phone_ = phone.getText();
         String address_ = address.getText();
@@ -308,10 +332,39 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         work.setEditable(false);
         fblink.setEditable(false);
         email.setEditable(false);
+        BtChooser.setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
     }//GEN-LAST:event_genderActionPerformed
+
+    private void BtChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtChooserActionPerformed
+        JFileChooser FileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        String link;
+        FileChooser.setDialogTitle("Select an image");
+        FileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
+        FileChooser.addChoosableFileFilter(filter);
+        FileChooser.setMultiSelectionEnabled(false);
+        int returnValue = FileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File f = FileChooser.getSelectedFile();
+            link = f.getPath();
+            pic.setIcon(new ImageIcon(f.getAbsolutePath()));
+            int output = JOptionPane.showConfirmDialog(BtChooser, "Do you want to change", "", JOptionPane.YES_NO_OPTION);
+            if (output == 0) {
+                Avatar.updatePicture(login.getUsername(), link);
+            } else {
+                Image img = Avatar.readPicture(login.getUsername());
+                if (img != null) {
+                    Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+                    pic.setIcon(new ImageIcon(resize));
+                } else {
+                    pic.setIcon(null);
+                }
+            }
+        }
+    }//GEN-LAST:event_BtChooserActionPerformed
 
     private boolean isValidPhone(String phoneNum) {
         String regex = "(84[3|5|7|8|9]|0[3|5|7|8|9])+([0-9]{8})";
@@ -326,6 +379,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
 
     private Account login;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton BtChooser;
     private javax.swing.JTextField address;
     private javax.swing.JButton agreeButton;
     private javax.swing.JLabel background;

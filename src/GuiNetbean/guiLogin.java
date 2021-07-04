@@ -254,7 +254,7 @@ public class guiLogin extends javax.swing.JFrame {
                 signupActionPerformed(evt);
             }
         });
-        jPanel2.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 328, -1, -1));
+        jPanel2.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
         fogotpassword.setText("Fogot password");
         fogotpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -262,7 +262,7 @@ public class guiLogin extends javax.swing.JFrame {
                 fogotpasswordActionPerformed(evt);
             }
         });
-        jPanel2.add(fogotpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 328, -1, -1));
+        jPanel2.add(fogotpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
         back.setText("Main menu");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +270,7 @@ public class guiLogin extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 328, -1, -1));
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         showpassword.setText("Show password");
         showpassword.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +286,7 @@ public class guiLogin extends javax.swing.JFrame {
         jMs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jMs, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 290, 355, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 410));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 390));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,8 +301,8 @@ public class guiLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

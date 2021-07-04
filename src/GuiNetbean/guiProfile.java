@@ -81,7 +81,6 @@ public class guiProfile extends javax.swing.JFrame {
         editProfileButton = new javax.swing.JButton();
         agreeButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        email = new javax.swing.JTextField();
         work = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -94,7 +93,7 @@ public class guiProfile extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         gender = new javax.swing.JComboBox();
         sexField = new javax.swing.JTextField();
-        linkk = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         View = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -118,12 +117,6 @@ public class guiProfile extends javax.swing.JFrame {
         getContentPane().add(Btchooserpic, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
-        //        if (pict != null) {
-            //            Image resize = pic.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-            //            pic.setIcon(new ImageIcon(resize));
-            //        } else {
-            //            pic.setIcon(null);
-            //        };
         pic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
         getContentPane().add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 230, 230));
@@ -185,10 +178,6 @@ public class guiProfile extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, -1, -1));
-
-        fblink.setText(login.getEmail());
-        email.setEditable(false);
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 190, -1));
 
         work.setText(login.getWork());
         work.setEditable(false);
@@ -253,12 +242,15 @@ public class guiProfile extends javax.swing.JFrame {
         sexField.setText("jTextField1");
         getContentPane().add(sexField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
         sexField.setText(login.getSex() ? "Male" : "Female");
-        getContentPane().add(linkk, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 210, -1));
+
+        email.setEditable(false);
+        email.setText(login.getEmail());
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 190, -1));
 
         View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/background.png"))); // NOI18N
         getContentPane().add(View, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 540));
 
-        jMenu1.setText("Account");
+        jMenu1.setText("Hello "+login.getUsername());
 
         jMenuItem1.setText("Logout");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -311,14 +303,11 @@ public class guiProfile extends javax.swing.JFrame {
                 } else {
                     pic.setIcon(null);
                 }
-            }}
+            }
+        }
     }//GEN-LAST:event_BtchooserpicActionPerformed
 
-        Date date = new Date();
-
-    
-
-    
+    Date date = new Date();
 
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phoneActionPerformed
     }// GEN-LAST:event_phoneActionPerformed
@@ -357,6 +346,7 @@ public class guiProfile extends javax.swing.JFrame {
         dateChooser.setVisible(true);
         gender.setVisible(true);
         sexField.setVisible(false);
+        //       pic.setVisible(false);
 
     }// GEN-LAST:event_editProfileButtonActionPerformed
 
@@ -404,9 +394,6 @@ public class guiProfile extends javax.swing.JFrame {
             }
             if (fblink_ == null ? login.getFb() != null : !fblink_.equals(login.getFb())) {
                 login.setFblink(fblink_);
-            }
-            if (email_ == null ? login.getEmail() != null : !email_.equals(login.getEmail())) {
-                login.setEmail(email_);
             }
             if (email_ == null ? login.getEmail() != null : !email_.equals(login.getEmail())) {
                 login.setEmail(email_);
@@ -531,7 +518,6 @@ public class guiProfile extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JTextField linkk;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel pic;
     private javax.swing.JTextField sexField;

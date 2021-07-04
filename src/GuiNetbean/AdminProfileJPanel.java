@@ -88,7 +88,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
-        add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 210, 200));
+        add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 230, 230));
 
         fullname.setText(login.getFullName());
         fullname.setEditable(false);
@@ -105,15 +105,15 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
 
         address.setText(login.getAddress());
         address.setEditable(false);
-        add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 270, 50));
+        add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 270, 50));
 
         phone.setText(login.getPhoneNum());
         phone.setEditable(false);
-        add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 270, -1));
+        add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 270, -1));
 
         fblink.setText(login.getFb());
         fblink.setEditable(false);
-        add(fblink, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 190, -1));
+        add(fblink, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, 190, -1));
 
         editProfileButton.setForeground(new java.awt.Color(255, 153, 0));
         editProfileButton.setText("Edit profile");
@@ -146,16 +146,16 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
 
         fblink.setText(login.getEmail());
         email.setEditable(false);
-        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 190, -1));
+        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 190, -1));
 
         work.setText(login.getWork());
         work.setEditable(false);
-        add(work, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, 270, 60));
+        add(work, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 580, 270, 60));
 
         jLabel4.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
         jLabel4.setText("Facebook");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 140, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 153, 0));
@@ -175,27 +175,27 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 153, 0));
         jLabel8.setText("Address   _____________________");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 270, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 270, -1));
 
         jLabel9.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 153, 0));
         jLabel9.setText("Phone number   ________________");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 270, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 270, -1));
 
         jLabel11.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 153, 0));
         jLabel11.setText("Work  ________________________");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 270, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 270, -1));
 
         jLabel12.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 153, 0));
         jLabel12.setText("----------About----------");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 160, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 160, -1));
 
         jLabel13.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 153, 0));
         jLabel13.setText("Email");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 100, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 100, -1));
 
         gender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
         gender.setToolTipText("");

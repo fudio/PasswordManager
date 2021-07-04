@@ -16,6 +16,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -54,6 +57,7 @@ public class guiProfile extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        Btchooserpic = new javax.swing.JToggleButton();
         pic = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         fullname = new javax.swing.JTextField();
@@ -91,25 +95,33 @@ public class guiProfile extends javax.swing.JFrame {
         setLocation(new java.awt.Point(600, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Btchooserpic.setText("Chooser Picturer");
+        Btchooserpic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtchooserpicActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btchooserpic, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+
         pic.setForeground(new java.awt.Color(255, 153, 0));
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
-        getContentPane().add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 210, 200));
+        getContentPane().add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 230, 230));
 
         jLabel3.setForeground(new java.awt.Color(255, 153, 0));
         jLabel3.setText("Carrot team @ 2021");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 520, -1, -1));
 
         fullname.setText(login.getFullName());
         fullname.setEditable(false);
         fullname.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        getContentPane().add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 280, -1));
+        getContentPane().add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 280, -1));
 
         birthday.setText(login.getBirthday());
         birthday.setEditable(false);
-        getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 130, -1));
+        getContentPane().add(birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 130, -1));
 
         dateChooser.setVisible(false);
-        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 180, -1));
+        getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 180, -1));
         dateChooser.setDateFormatString("dd/MM/yyyy");
 
         address.setText(login.getAddress());
@@ -122,7 +134,7 @@ public class guiProfile extends javax.swing.JFrame {
 
         fblink.setText(login.getFb());
         fblink.setEditable(false);
-        getContentPane().add(fblink, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 190, -1));
+        getContentPane().add(fblink, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 190, -1));
 
         editProfileButton.setForeground(new java.awt.Color(255, 153, 0));
         editProfileButton.setText("Edit profile");
@@ -155,7 +167,7 @@ public class guiProfile extends javax.swing.JFrame {
 
         fblink.setText(login.getEmail());
         email.setEditable(false);
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 190, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 190, -1));
 
         work.setText(login.getWork());
         work.setEditable(false);
@@ -164,22 +176,22 @@ public class guiProfile extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
         jLabel4.setText("Facebook");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 140, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 153, 0));
         jLabel5.setText("Name");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 50, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 50, -1));
 
         jLabel6.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 153, 0));
         jLabel6.setText("Date of birth");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 120, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 120, -1));
 
         jLabel7.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 0));
         jLabel7.setText("Gender");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 100, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 100, 20));
 
         jLabel8.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 153, 0));
@@ -199,12 +211,12 @@ public class guiProfile extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 153, 0));
         jLabel12.setText("----------About----------");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 160, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 160, -1));
 
         jLabel13.setFont(new java.awt.Font("UTM Ambrose", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 153, 0));
         jLabel13.setText("Email");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 100, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 100, -1));
 
         gender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
         gender.setToolTipText("");
@@ -213,12 +225,12 @@ public class guiProfile extends javax.swing.JFrame {
                 genderActionPerformed(evt);
             }
         });
-        getContentPane().add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+        getContentPane().add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
         gender.setVisible(false);
 
         sexField.setEditable(false);
         sexField.setText("jTextField1");
-        getContentPane().add(sexField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+        getContentPane().add(sexField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
         sexField.setText(login.getSex() ? "Male" : "Female");
 
         View.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/background.png"))); // NOI18N
@@ -250,8 +262,20 @@ public class guiProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_genderActionPerformed
+
+    private void BtchooserpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtchooserpicActionPerformed
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle("Select an image");
+        jfc.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
+        jfc.addChoosableFileFilter(filter);
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            System.out.println(jfc.getSelectedFile().getPath());
+        }
+    }//GEN-LAST:event_BtchooserpicActionPerformed
 
     Date date = new Date();
 
@@ -315,6 +339,7 @@ public class guiProfile extends javax.swing.JFrame {
         String fblink_ = fblink.getText();
         String email_ = email.getText();
         Date birthday_ = dateChooser.getCalendar().getTime();
+        
         if (!isValidPhone(phone_)) {
             JOptionPane.showMessageDialog(agreeButton,
                     "Not a Vietnamese phone number", "InvalidPhoneNumberError",
@@ -337,6 +362,9 @@ public class guiProfile extends javax.swing.JFrame {
             }
             if (fblink_ == null ? login.getFb() != null : !fblink_.equals(login.getFb())) {
                 login.setFblink(fblink_);
+            }
+            if (email_ == null ? login.getEmail() != null : !email_.equals(login.getEmail())) {
+                login.setEmail(email_);
             }
             if (email_ == null ? login.getEmail() != null : !email_.equals(login.getEmail())) {
                 login.setEmail(email_);
@@ -406,7 +434,7 @@ public class guiProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Account a = new Account("fudio", "Ng01637202484", "Nguy?n ?? Th? Nguyên",
+                Account a = new Account("fudio", "Ng01637202484", "Nguyen Do The Nguyen",
                         LocalDate.of(2001, Month.JANUARY, 1), "0337202484");
                 new guiProfile(a).setVisible(true);
             }
@@ -426,6 +454,7 @@ public class guiProfile extends javax.swing.JFrame {
 
     private final Account login;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Btchooserpic;
     private javax.swing.JLabel View;
     private javax.swing.JTextField address;
     private javax.swing.JButton agreeButton;

@@ -72,7 +72,6 @@ public class AdminJPanel extends javax.swing.JPanel {
         resetTable = new javax.swing.JButton();
         copyModeBtn = new javax.swing.JRadioButton();
         jpnView = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
 
@@ -261,7 +260,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         });
         panelAdmin.add(resetTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
 
-        copyModeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        copyModeBtn.setBackground(new java.awt.Color(0, 0, 0));
         copyModeBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         copyModeBtn.setForeground(new java.awt.Color(255, 255, 255));
         copyModeBtn.setText("Copy Mode");
@@ -274,9 +273,6 @@ public class AdminJPanel extends javax.swing.JPanel {
 
         jpnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/ABSTRACT_BACKGROUND_01.jpg"))); // NOI18N
         panelAdmin.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 420));
-
-        jCheckBox1.setText("jCheckBox1");
-        panelAdmin.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
         jt.setModel(new DefaultTableModel(
             new Object [][] {
@@ -431,8 +427,10 @@ public class AdminJPanel extends javax.swing.JPanel {
         if (img != null) {
             Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
             lbAvatar.setIcon(new ImageIcon(resize));
+            lbAvatar.setText("");
         } else {
             lbAvatar.setIcon(null);
+            lbAvatar.setText("Avatar");
         }
         if (copyMode) {
             StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));
@@ -449,7 +447,6 @@ public class AdminJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton copyModeBtn;
     private javax.swing.JButton delete;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

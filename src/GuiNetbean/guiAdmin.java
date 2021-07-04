@@ -393,8 +393,10 @@ public class guiAdmin extends javax.swing.JFrame {
         if (img != null) {
             Image resize = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
             lbAvatar.setIcon(new ImageIcon(resize));
+            lbAvatar.setText("");
         } else {
             lbAvatar.setIcon(null);
+            lbAvatar.setText("Avatar");
         }
         if (copyMode) {
             StringSelection stringSelection = new StringSelection((String) jt.getValueAt(index, 0));

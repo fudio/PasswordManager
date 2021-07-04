@@ -26,8 +26,9 @@ public class guiAccountManager extends javax.swing.JFrame {
      * @param login
      */
     public guiAccountManager(Account login) {
+        admin = login;
         initComponents();
-        controller = new ChuyenManHinhController(panelView, login);
+        controller = new ChuyenManHinhController(panelView, admin);
         controller.setView(AccountManager, lbAccount);
 
         List<DanhmucBean> listItem = new ArrayList<DanhmucBean>();
@@ -51,6 +52,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         panelMenu = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        usernameLb = new javax.swing.JLabel();
         AccountManager = new javax.swing.JPanel();
         lbAccount = new javax.swing.JLabel();
         StaticChart = new javax.swing.JPanel();
@@ -59,6 +61,7 @@ public class guiAccountManager extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         AdminProfile = new javax.swing.JPanel();
         lbAdminProfile = new javax.swing.JLabel();
+        changePwBtn = new javax.swing.JButton();
         panelView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,30 +72,19 @@ public class guiAccountManager extends javax.swing.JFrame {
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("UTM Androgyne", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ACCOUNT  MANAGEMENT");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 315, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
+        usernameLb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        usernameLb.setText(admin.getUsername());
+        jPanel3.add(usernameLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        panelMenu.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panelMenu.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
         AccountManager.setBackground(new java.awt.Color(0, 153, 0));
 
@@ -144,7 +136,7 @@ public class guiAccountManager extends javax.swing.JFrame {
                 logoutButtonActionPerformed(evt);
             }
         });
-        panelMenu.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, -1, -1));
+        panelMenu.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 650, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Carrot team @2021");
@@ -167,10 +159,18 @@ public class guiAccountManager extends javax.swing.JFrame {
         );
         AdminProfileLayout.setVerticalGroup(
             AdminProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbAdminProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+            .addComponent(lbAdminProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
         );
 
         panelMenu.add(AdminProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 315, -1));
+
+        changePwBtn.setText("Change password");
+        changePwBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePwBtnActionPerformed(evt);
+            }
+        });
+        panelMenu.add(changePwBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, -1, -1));
 
         panelView.setBackground(new java.awt.Color(204, 204, 204));
         panelView.setPreferredSize(new java.awt.Dimension(950, 700));
@@ -224,6 +224,36 @@ public class guiAccountManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void changePwBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePwBtnActionPerformed
+        javax.swing.JPasswordField field0 = new javax.swing.JPasswordField();
+        field0.setEchoChar('\u2022');
+        javax.swing.JPasswordField field1 = new javax.swing.JPasswordField();
+        field1.setEchoChar('\u2022');
+        javax.swing.JPasswordField field2 = new javax.swing.JPasswordField();
+        field2.setEchoChar('\u2022');
+        Object[] message = {"Old password:", field0, "New password:", field1, "Re-enter new pass:", field2};
+        int option = JOptionPane.showConfirmDialog(rootPane, message, "Change password",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            char[] value0 = field0.getPassword();
+            if (admin.check(new String(value0))) {
+                char[] value1 = field1.getPassword();
+                char[] value2 = field2.getPassword();
+                if ((new String(value1)).equals(new String(value2)) && value1.length != 0) {
+                    admin.setNewPassword(new String(value1));
+                    JOptionPane.showMessageDialog(rootPane, "Change password successfully", "",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "New password does not match", "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Password incorrect", "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_changePwBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,11 +291,13 @@ public class guiAccountManager extends javax.swing.JFrame {
         });
     }
 
+    private final Account admin;
     private final ChuyenManHinhController controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccountManager;
     private javax.swing.JPanel AdminProfile;
     private javax.swing.JPanel StaticChart;
+    private javax.swing.JButton changePwBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
@@ -276,5 +308,6 @@ public class guiAccountManager extends javax.swing.JFrame {
     private javax.swing.JPanel paneRoot;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelView;
+    private javax.swing.JLabel usernameLb;
     // End of variables declaration//GEN-END:variables
 }

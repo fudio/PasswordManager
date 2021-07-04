@@ -109,7 +109,9 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         add(BtChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
 
         pic.setForeground(new java.awt.Color(255, 153, 0));
+        pic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avatar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(255, 153, 0))); // NOI18N
+        pic.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 230, 230));
 
         fullname.setText(login.getFullName());
@@ -343,7 +345,7 @@ public class AdminProfileJPanel extends javax.swing.JPanel {
         String link;
         FileChooser.setDialogTitle("Select an image");
         FileChooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and GIF images", "png", "gif", "jpg", "jpeg");
         FileChooser.addChoosableFileFilter(filter);
         FileChooser.setMultiSelectionEnabled(false);
         int returnValue = FileChooser.showOpenDialog(null);

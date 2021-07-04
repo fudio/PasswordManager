@@ -185,7 +185,9 @@ public class guiConfirmInformation extends javax.swing.JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 char[] value1 = field1.getPassword();
                 char[] value2 = field2.getPassword();
-                if ((new String(value1)).equals(new String(value2))) {
+                if ((new String(value1)).equals(new String(value2)) && value1.length != 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Change password successfully", "",
+                            JOptionPane.INFORMATION_MESSAGE);
                     reset.setNewPassword(new String(value1));
                     new guiMain().setVisible(true);
                     this.dispose();

@@ -9,7 +9,6 @@ import Storage.Account;
 import Storage.AccountList;
 import Storage.Avatar;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import javax.swing.JOptionPane;
 import java.time.Instant;
@@ -98,6 +97,7 @@ public class guiProfile extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        changePwMenuItem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GuiNetbean/Pic/4882066.jpg"))); // NOI18N
@@ -260,6 +260,14 @@ public class guiProfile extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        changePwMenuItem.setText("Change password");
+        changePwMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePwMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(changePwMenuItem);
+
         jMenuItem2.setText("Exit");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +292,7 @@ public class guiProfile extends javax.swing.JFrame {
         String link;
         FileChooser.setDialogTitle("Select an image");
         FileChooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and  GIF images", "png", "gif", "jpg", "jpeg");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG JPG JPEG and GIF images", "png", "gif", "jpg", "jpeg");
         FileChooser.addChoosableFileFilter(filter);
         FileChooser.setMultiSelectionEnabled(false);
         int returnValue = FileChooser.showOpenDialog(null);
@@ -306,6 +314,36 @@ public class guiProfile extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_BtchooserpicActionPerformed
+
+    private void changePwMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePwMenuItemActionPerformed
+        javax.swing.JPasswordField field0 = new javax.swing.JPasswordField();
+        field0.setEchoChar('\u2022');
+        javax.swing.JPasswordField field1 = new javax.swing.JPasswordField();
+        field1.setEchoChar('\u2022');
+        javax.swing.JPasswordField field2 = new javax.swing.JPasswordField();
+        field2.setEchoChar('\u2022');
+        Object[] message = {"Old password:", field0, "New password:", field1, "Re-enter new pass:", field2};
+        int option = JOptionPane.showConfirmDialog(rootPane, message, "Change password",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            char[] value0 = field0.getPassword();
+            if (login.check(new String(value0))) {
+                char[] value1 = field1.getPassword();
+                char[] value2 = field2.getPassword();
+                if ((new String(value1)).equals(new String(value2)) && value1.length != 0) {
+                    login.setNewPassword(new String(value1));
+                    JOptionPane.showMessageDialog(rootPane, "Change password successfully", "",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "New password does not match", "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Password incorrect", "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_changePwMenuItemActionPerformed
 
     Date date = new Date();
 
@@ -497,6 +535,7 @@ public class guiProfile extends javax.swing.JFrame {
     private javax.swing.JButton agreeButton;
     private javax.swing.JTextField birthday;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JMenuItem changePwMenuItem;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JButton editProfileButton;
     private javax.swing.JTextField email;
